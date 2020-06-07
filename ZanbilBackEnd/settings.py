@@ -113,11 +113,24 @@ CORS_ORIGIN_ALLOW_ALL = True
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'zanbil',
+    #     'USER': 'root',
+    #     'PASSWORD': 'chucknorris',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
         'NAME': 'zanbil',
-        'USER': 'root',
+
+        'USER': 'postgres',
+
         'PASSWORD': 'chucknorris',
+
+        'HOST': 'localhost',
+
+        'PORT': '5432',
     }
 }
 

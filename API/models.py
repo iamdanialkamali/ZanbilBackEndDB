@@ -62,7 +62,7 @@ class Sans(models.Model):
     weekDay = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
-        return str(self.startTime) + ' : ' + str(self.endTime)
+        return str(self.startTimeHour) + ' : ' + str(self.startTimeMinute) + "-->" +str(self.endTimeHour) + ' : ' + str(self.endTimeMinute)
 
 
 class Reserve(models.Model):
@@ -92,7 +92,7 @@ class Transaction(models.Model):
     amount = models.FloatField()
 
     def __str__(self):
-        return self.paidAt.__str__() + " " + self.amount
+        return self.paidAt.__str__() + " " + self.amount.__str__()
 
 
 class BusinessFile(models.Model):
