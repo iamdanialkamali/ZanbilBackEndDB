@@ -1,7 +1,8 @@
 
-Bpython:S125,"Remove this commented out code.(†Îê­ùÿÿÿÿ8œ–§Ê¨.
-spython:S100"URename method "getSansForPage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¿ÿ æ8‹‡Ê¨.
-Dpython:S1481"%Remove the unused local variable "i".(—«ô8‹‡Ê¨.
-python:S18717"bEither merge this branch with the identical one on line "52" or change one of the implementations.(ï•ô«8‹‡Ê¨.
-qpython:S100"URename method "getSansForWeek" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¦è—Æúÿÿÿÿ
-<python:S1259"Remove this commented out code.(¡¼©38èÎüÊ¨.
+python:S18716"bEither merge this branch with the identical one on line "51" or change one of the implementations.(ï•ô«8‹‡Ê¨.
+Bpython:S125+"Remove this commented out code.(†Îê­ùÿÿÿÿ8œ–§Ê¨.
+spython:S100"URename method "getSansForPage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¿ÿ æ8‹‡Ê¨.
+qpython:S100
+"URename method "getSansForWeek" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¦è—Æúÿÿÿÿ
+<python:S1258"Remove this commented out code.(¡¼©38èÎüÊ¨.
+Dpython:S1481"%Remove the unused local variable "i".(—«ô8‹‡Ê¨.

@@ -1,11 +1,11 @@
 
-\python:S5754›"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ûüó†¦.
-Cpython:S125À"Remove this commented out code.(§¶›®øÿÿÿÿ8öï°ˆ¦.
-Epython:S1481­"%Remove the unused local variable "i".(—«ô8×Üá‡¦.
->python:S125Ú"Remove this commented out code.(í¥Å¥8«Ù×ˆ¦.
-Cpython:S125°"Remove this commented out code.(éØî¢øÿÿÿÿ8­Çè‡¦.
-Epython:S1481Æ"%Remove the unused local variable "i".(—«ô8×Üá‡¦.
->python:S125É"Remove this commented out code.(á¨òÆ8ª…ºˆ¦.
-Bpython:S125"Remove this commented out code.(øİ²Šøÿÿÿÿ8ûüó†¦.
->python:S125•"Remove this commented out code.(Ã»Œ¹8±Ìëˆ¦.
->python:S125£"Remove this commented out code.(†ç”Å8Ó¡ÙÉ¨.
+>python:S125¢"Remove this commented out code.(†ç”Å8Ó¡ÙÉ¨.
+Bpython:S125"Remove this commented out code.(øİ²Šøÿÿÿÿ8ûüó†¦.
+Cpython:S125¿"Remove this commented out code.(§¶›®øÿÿÿÿ8öï°ˆ¦.
+Epython:S1481¬"%Remove the unused local variable "i".(—«ô8×Üá‡¦.
+>python:S125Ù"Remove this commented out code.(í¥Å¥8«Ù×ˆ¦.
+\python:S5754š"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ûüó†¦.
+>python:S125”"Remove this commented out code.(Ã»Œ¹8±Ìëˆ¦.
+>python:S125È"Remove this commented out code.(á¨òÆ8ª…ºˆ¦.
+Epython:S1481Å"%Remove the unused local variable "i".(—«ô8×Üá‡¦.
+Cpython:S125¯"Remove this commented out code.(éØî¢øÿÿÿÿ8­Çè‡¦.

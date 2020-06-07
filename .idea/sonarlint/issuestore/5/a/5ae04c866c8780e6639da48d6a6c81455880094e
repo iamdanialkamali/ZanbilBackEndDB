@@ -1,5 +1,4 @@
 
-Jpython:S1481"+Remove the unused local variable "user_id".(¨âÀÉ8÷˜¸É¨.
-Ipython:S1481%"%Remove the unused local variable "a".(È‘ç®ùÿÿÿÿ8÷˜¸É¨.
-Qpython:S1481",Remove the unused local variable "capacity".(Ã“€ùÿÿÿÿ8÷˜¸É¨.
-Ypython:S1481†"4Remove the unused local variable "capacity_changed".(òÊÃ¦øÿÿÿÿ8÷˜¸É¨.
+Opython:S1481q"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8»ÇÒ¨.
+Opython:S1481"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8÷˜¸É¨.
+Ppython:S1481ˆ"0Remove the unused local variable "selectedSans".(Ë¬å8‹’ëÒ¨.
