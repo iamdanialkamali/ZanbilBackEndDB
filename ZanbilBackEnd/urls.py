@@ -38,7 +38,7 @@ urlpatterns = []
 #     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 # ]
 
-from API.Business import BusinessController
+from API.Business import BusinessController,BusinessSearchController
 from API.Service import ServiceController,SearchController
 from API.Category import CategoryController
 from API.Review import ReviewController
@@ -51,6 +51,7 @@ from API.Ticket import TicketController,TicketSearchController
 from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns += [
     path('admin/', admin.site.urls),
+    path('api/business/search/',BusinessSearchController.as_view()),
     path('api/business/',BusinessController.as_view()),
     path('api/service/', ServiceController.as_view()),
     path('api/service/search/',SearchController.as_view()),

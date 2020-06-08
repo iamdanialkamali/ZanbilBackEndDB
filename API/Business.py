@@ -108,3 +108,48 @@ class BusinessController(APIView):
                     }, status=status.HTTP_200_OK)
          # except Exception :
          #     return Response({},status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, format=None, *args, **kwargs):
+
+        # try:
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('userId'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            id = request.POST['userId']
+            mybusiness = orm.select(Business, owner_id=id)
+
+            data = []
+
+            for business in mybusiness:
+                data.append(
+                    {
+                        "business": orm.toDict(business),
+                        "pictures": orm.toDict(orm.select(BusinessFile, business_id=business.id))
+                    }
+                )
+            return Response(
+                data, status= status.HTTP_200_OK)
+
+        # except Exception:
+        #     return Response({}, status= status.HTTP_400_BAD_REQUEST)
+
+
+
+class BusinessSearchController(APIView):
+    def get(self, request, format=None, *args, **kwargs):
+        # try:
+            data = request.GET
+            query = "SELECT \"API_business\".\"id\", \"API_business\".\"name\" , \"API_business\".\"score\", \"API_business\".\"owner_id\", \"API_category\".\"id\" as \"categoryId\", \"API_category\".\"name\" as \"categryName\", \"API_business\".\"address\", \"API_business\".\"phone_number\", \"API_business\".\"description\" FROM \"API_business\" INNER JOIN \"API_category\" ON (\"API_business\".\"category_id\" = \"API_category\".\"id\") WHERE ( 1=1"
+            if data.get('business_name'):
+                query += " AND \"API_business\".\"name\" LIKE  {}".format("'%" + data.get('business_name') + "%'")
+            if data.get('category'):
+                query += " AND \"API_category\".\"name\" LIKE  {}".format("'%" + data.get('category') + "%'")
+            query += ") ORDER BY \"score\" DESC"
+
+            res = orm.rawQuery(query)
+            resDict = orm.toDict(res)
+            return Response(resDict, status=status.HTTP_200_OK)
+
+        # except Exception:
+        #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
