@@ -63,10 +63,7 @@ class ServiceController(APIView):
                                    name=name,
                                    description=description,
                                    fee=price,
-                                   business_id=business_id,
-                                   rating=10,
-                                   timeTable_id=timetable.id,
-                                   cancellation_range=cancellation_range
+                                   business_id=business_id
                                    )[-1]
 
         sanses = SansController.getSansForWeek(timetable.id)
@@ -95,7 +92,7 @@ class ServiceController(APIView):
         timeTable = orm.select(TimeTable, id=service.timeTable_id)[0]
 
         today = JalaliDate.today().__str__().replace('-', '/')
-        sanses, start_of_week_date = SansController.getSansForPage(timetable_id=timeTable.id, date=today)
+        sanses, start_of_week_date = SansController.getSansForPage(timeTable_id=timeTable.id, date=today)
 
         return Response({"service": service_data,
                          "sanses": sanses,
@@ -124,7 +121,7 @@ class ServiceController(APIView):
             service_data = orm.toDict(service)
 
             timetable = orm.insert(TimeTable, services_id=service.id)
-            (sanses, start_of_week_date) = SansController.getSansForPage(timetable_id=timetable.id, date=date)
+            (sanses, start_of_week_date) = SansController.getSansForPage(timeTable_id=timetable.id, date=date)
 
             return Response({"service": service_data,
                              "sanses": sanses,

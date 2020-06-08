@@ -40,7 +40,7 @@ def select(model,**options):
             if "__gt" in key:
                 print("WTF")
             else:
-                query += "AND {}={} ".format(key,value)
+                query += "AND \"{}\"={} ".format(key,value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
         c.execute("select * from \"{}\" where {};".format(modelName,query))
         return namedtuplefetchall(c)
