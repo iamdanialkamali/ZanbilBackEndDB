@@ -55,7 +55,7 @@ class TimeTableController(APIView):
                         orm.insert(Sans, weekDay=weekday,
                                    start_time=temp_datetime.time().__str__()[:5]
                                    , end_time=sans_end_datetime.time().__str__()[:5]
-                                   , timetable_id=timeTable.id)
+                                   , timeTable_id=timeTable.id)
 
                     temp_datetime += delta
 
@@ -77,7 +77,7 @@ class TimeTableController(APIView):
                            startTimeMinute=int(sans['startTime'][3:]),
                            endTimeHour=int(sans['endTime'][:2]),
                            endTimeMinute=int(sans['endTime'][3:]),
-                           timetable_id=timeTable.id
+                           timeTable_id=timeTable.id
                            )
         return timeTable
 
