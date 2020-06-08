@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Business,BusinessFile
+from .models import Business, BusinessFile, Service
 import json
 import API.orm as orm
 from .validation import FieldValidator
@@ -60,11 +60,12 @@ class BusinessController(APIView):
                 Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
             id = request.GET['business_id']
-            mybusiness = orm.select(Business, id=id)
+            mybusiness = orm.select(Business, id=id)[0]
             return Response(
                 {
                     "business":orm.toDict(mybusiness),
-                    "pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness[0].id))
+                    "service":orm.toDict(orm.select(Service,business_id=mybusiness.id)),
+                    "pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness.id))
                 }, status= status.HTTP_200_OK)
 
         # except Exception:
