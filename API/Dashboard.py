@@ -154,9 +154,9 @@ class DashboardController(APIView):
         for service in services:
             # currentMonthReserve = Reserve.objects.filter(service_id=service.id, date__contains=day)
             # # print(currentMonthReserve.query)
-            # # q = Reserve.objects.raw("SELECT `API_reserve`.`id`, `API_reserve`.`user_id`, `API_reserve`.`service_id`, `API_reserve`.`sans_id`, `API_reserve`.`description`, `API_reserve`.`date`, `API_reserve`.`isCancelled` FROM `API_reserve` WHERE (`API_reserve`.`date` LIKE BINARY %{}% AND `API_reserve`.`service_id` = {})".format(day.__str__(),service.id))
+            # # q = Reserve.objects.raw("SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE BINARY %{}% AND \"API_reserve\".\"service_id\" = {})".format(day.__str__(),service.id))
             try:
-                query = "SELECT * FROM API_reserve WHERE date LIKE {} AND service_id={};".format('"%'+day.__str__()+'%"',service.id)
+                query = "SELECT * FROM API_reserve WHERE date LIKE {} AND service_id={};".format("'%"+day.__str__()+"%'",service.id)
                 reserves += orm.rawQuery(query)
             except:
                 pass
@@ -167,7 +167,7 @@ class DashboardController(APIView):
     def findAllReserveForAMonth(day,business_id):
         day=day.__str__()
         # currentMonthReserve=Reserve.objects.filter(service__business__id=business_id , date__contains=day[:7])
-        query = "SELECT `API_reserve`.`id`, `API_reserve`.`user_id`, `API_reserve`.`service_id`, `API_reserve`.`sans_id`, `API_reserve`.`description`, `API_reserve`.`date`, `API_reserve`.`isCancelled` FROM `API_reserve` INNER JOIN `API_service` ON (`API_reserve`.`service_id` = `API_service`.`id`) WHERE (`API_reserve`.`date` LIKE  {} AND `API_service`.`business_id` ={})".format('"%'+day+'%"',business_id)
+        query = "SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"id\") WHERE (\"API_reserve\".\"date\" LIKE  {} AND \"business_id\" ={})".format("'%"+day+"%'",business_id)
         numReserveInMonth=len(orm.rawQuery(query))
         return numReserveInMonth
 
@@ -180,7 +180,7 @@ class DashboardController(APIView):
             this_week_days_date.append("'"+weekday_date.__str__()+"'")
             weekday_date = weekday_date + timedelta(1)
         # currentWeekReserve=Reserve.objects.filter(service__business__id=business_id , date__in=this_week_days_date)
-        q = orm.rawQuery("SELECT `API_reserve`.`id`, `API_reserve`.`user_id`, `API_reserve`.`service_id`, `API_reserve`.`sans_id`, `API_reserve`.`description`, `API_reserve`.`date`, `API_reserve`.`isCancelled` FROM `API_reserve` INNER JOIN `API_service` ON (`API_reserve`.`service_id` = `API_service`.`id`) WHERE (`API_reserve`.`date` IN ({}) AND `API_service`.`business_id`={})".format(", ".join(this_week_days_date), business_id))
+        q = orm.rawQuery("SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"id\") WHERE (\"API_reserve\".\"date\" IN ({}) AND \"business_id\"={})".format(", ".join(this_week_days_date), business_id))
 
         numReserveInWeek=len(q)
         return numReserveInWeek
@@ -193,7 +193,7 @@ class DashboardController(APIView):
         for service in services:
             Tname=service.name
             dayS=day.__str__()
-            query = "SELECT `API_reserve`.`id`, `API_reserve`.`user_id`, `API_reserve`.`service_id`, `API_reserve`.`sans_id`, `API_reserve`.`description`, `API_reserve`.`date`, `API_reserve`.`isCancelled` FROM `API_reserve` WHERE (`API_reserve`.`date` LIKE BINARY {} AND `API_reserve`.`service_id` = {})".format('"%'+dayS[:7]+'%"', service.id)
+            query = "SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE  {} AND \"API_reserve\".\"service_id\" = {})".format("'%"+dayS[:7]+"%'", service.id)
             cMonthRes = orm.rawQuery(query)
             # cMonthRes=Reserve.objects.filter(service_id=service.id , date__contains=dayS[:7])
             # print(cMonthRes.query)
@@ -206,7 +206,7 @@ class DashboardController(APIView):
                 weekday_date = weekday_date + timedelta(1)
             # cWeekRes=Reserve.objects.filter(service_id=service.id , date__in=this_week_days_date)
             cWeekRes = orm.rawQuery(
-                "SELECT `API_reserve`.`id`, `API_reserve`.`user_id`, `API_reserve`.`service_id`, `API_reserve`.`sans_id`, `API_reserve`.`description`, `API_reserve`.`date`, `API_reserve`.`isCancelled` FROM `API_reserve` WHERE (`API_reserve`.`date` IN ({}) AND `API_reserve`.`service_id` = {})".format(
+                "SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" IN ({}) AND \"API_reserve\".\"service_id\" = {})".format(
                     ", ".join(this_week_days_date), service.id))
 
             TnumberOfReserveInCurrentWeek=len(cWeekRes)
@@ -222,7 +222,7 @@ class DashboardController(APIView):
     def findCustomers(business_id):
         customers=[]
         # customers_ids=Reserve.objects.filter(service__business__id=business_id).values_list('user', flat=True)
-        res = orm.rawQuery("SELECT `API_reserve`.`id`, `API_reserve`.`user_id`, `API_reserve`.`service_id`, `API_reserve`.`sans_id`, `API_reserve`.`description`, `API_reserve`.`date`, `API_reserve`.`isCancelled` FROM `API_reserve` INNER JOIN `API_service` ON (`API_reserve`.`service_id` = `API_service`.`id`) WHERE `API_service`.`business_id` = {}".format(business_id))
+        res = orm.rawQuery("SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"id\") WHERE \"business_id\" = {}".format(business_id))
         customers_ids = [x.user_id for x in res]
         customers_ids=set(customers_ids)
         for id in customers_ids:

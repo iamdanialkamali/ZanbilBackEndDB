@@ -41,7 +41,7 @@ class SansController:
         #exmine are seleted sanses reserved
         
         # reserved_sanses = Reserve.objects.filter(date__in=this_week_days_date,isCancelled=False).values('sans_id').annotate(total=Count('sans_id')).order_by('total')
-        # reserved_sanses = orm.rawQuery("SELECT `API_reserve`.`sans_id`, COUNT(`API_reserve`.`sans_id`) AS `total` FROM `API_reserve` WHERE (`API_reserve`.`date`  IN ({})  AND `API_reserve`.`isCancelled` = False) GROUP BY `API_reserve`.`sans_id` ORDER BY `total` ASC".format(", ".join(this_week_days_date)))
+        # reserved_sanses = orm.rawQuery("SELECT \"API_reserve\".\"sans_id\", COUNT(\"API_reserve\".\"sans_id\") AS \"total\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\"  IN ({})  AND \"API_reserve\".\"isCancelled\" = False) GROUP BY \"API_reserve\".\"sans_id\" ORDER BY \"total\" ASC".format(", ".join(this_week_days_date)))
 
 
         result=[[],[],[],[],[],[],[]]
@@ -55,7 +55,7 @@ class SansController:
 
             # capacity = 1
             # capacity = 1 - len(reserved_sanses.filter(sans_id = sans.id ).values())
-            capacity = 1 - len(orm.rawQuery("SELECT `API_reserve`.`sans_id`, COUNT(`API_reserve`.`sans_id`) AS `total` FROM `API_reserve` WHERE (`API_reserve`.`date` IN ({}) AND `API_reserve`.`isCancelled` = False AND `API_reserve`.`sans_id` = {}) GROUP BY `API_reserve`.`sans_id` ORDER BY `total` ASC".format(", ".join(this_week_days_date),sans.id)))
+            capacity = 1 - len(orm.rawQuery("SELECT \"API_reserve\".\"sans_id\", COUNT(\"API_reserve\".\"sans_id\") AS \"total\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" IN ({}) AND \"API_reserve\".\"isCancelled\" = False AND \"API_reserve\".\"sans_id\" = {}) GROUP BY \"API_reserve\".\"sans_id\" ORDER BY \"total\" ASC".format(", ".join(this_week_days_date),sans.id)))
             
             if(capacity<1):
                 is_reserved = True

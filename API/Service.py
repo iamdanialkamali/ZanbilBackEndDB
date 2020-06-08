@@ -206,25 +206,25 @@ class ServiceController(APIView):
 
 class SearchController(APIView):
     def post(self, request, format=None, *args, **kwargs):
-        try:
-            query = "SELECT `API_service`.`id`, `API_service`.`business_id`, `API_service`.`timeTable_id`, `API_service`.`name`, `API_service`.`address`, `API_service`.`fee`, `API_service`.`rating`, `API_service`.`description`, `API_service`.`cancellation_range` FROM `API_service` INNER JOIN `API_business` ON (`API_service`.`business_id` = `API_business`.`id`) INNER JOIN `API_category` ON (`API_business`.`category_id` = `API_category`.`id`) WHERE ( 1=1"
+        # try:
+            query = "SELECT \"API_service\".\"id\", \"business_id\", \"API_service\".\"timeTable_id\", \"API_service\".\"name\", \"API_service\".\"address\", \"API_service\".\"fee\", \"API_service\".\"rating\", \"API_service\".\"description\", \"API_service\".\"cancellation_range\" FROM \"API_service\" INNER JOIN \"API_business\" ON (\"API_service\".\"business_id\" = \"API_business\".\"id\") INNER JOIN \"API_category\" ON (\"API_business\".\"category_id\" = \"API_category\".\"id\") WHERE ( 1=1"
             data = request.GET
             if data.get("service_name"):
-                query += " AND `API_service`.`name` LIKE BINARY {}".format('"%' + data.get("service_name") + '%"')
+                query += " AND \"API_service\".\"name\" LIKE  {}".format("'%" + data.get("service_name") + "%'")
             if data.get('business_name'):
-                query += " AND `API_business`.`name` LIKE BINARY {}".format('"%' + data.get('business_name') + '%"')
+                query += " AND \"API_business\".\"name\" LIKE  {}".format("'%" + data.get('business_name') + "%'")
             if data.get("min_price"):
-                query += " AND `API_service`.`fee` <= {}".format(data.get("max_price"))
+                query += " AND \"fee\" <= {}".format(data.get("max_price"))
             if data.get("max_price"):
-                query += " AND `API_service`.`fee` >= {}".format(data.get("max_price"))
+                query += " AND \"fee\" >= {}".format(data.get("max_price"))
             if data.get('category'):
-                query += " AND `API_category`.`name` LIKE BINARY {}".format('"%' + data.get('category') + '%"')
-            query += ") ORDER BY `API_service`.`rating` DESC"
+                query += " AND \"API_category\".\"name\" LIKE  {}".format("'%" + data.get('category') + "%'")
+            query += ") ORDER BY \"rating\" DESC"
             if data.get("sort_fee"):
-                query += ",`API_service`.`fee` DESC"
+                query += ",\"fee\" DESC"
             res = orm.rawQuery(query)
             resDict = orm.toDict(res)
             return Response(resDict, status=status.HTTP_200_OK)
 
-        except Exception:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception:
+        #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
