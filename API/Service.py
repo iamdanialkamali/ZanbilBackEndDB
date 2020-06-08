@@ -129,7 +129,6 @@ class ServiceController(APIView):
             return Response({"service": service_data,
                              "sanses": sanses,
                              "pictures": orm.toDict(orm.select(ServiceFile, service_id=service.id)),
-
                              "start_of_week_date": start_of_week_date}
                             , status=status.HTTP_200_OK)
         except Exception:
@@ -182,7 +181,7 @@ class ServiceController(APIView):
                 else:
 
                     if not (orm.update(Sans, id=sans['sans_id'],
-                                       weekday=sans['weekday'],
+                                       weekDay=sans['weekday'],
                                        startTimeHour=int(sans['startTime'][:2]),
                                        startTimeMinute=int(sans['startTime'][3:]),
                                        endTimeHour=int(sans['endTime'][:2]),

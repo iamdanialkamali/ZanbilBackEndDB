@@ -64,7 +64,7 @@ class BusinessController(APIView):
             return Response(
                 {
                     "business":orm.toDict(mybusiness),
-                    "service":orm.toDict(orm.select(Service,business_id=mybusiness.id)),
+                    "services":orm.toDict(orm.select(Service,business_id=mybusiness.id)),
                     "pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness.id))
                 }, status= status.HTTP_200_OK)
 

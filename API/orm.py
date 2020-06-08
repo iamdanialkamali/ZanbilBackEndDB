@@ -52,8 +52,12 @@ def insert(model,**options):
                 options[key] = "'"+ value +"'"
             else:
                 options[key] = str(value)
+        keys = []
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-        query = "INSERT INTO \"{}\" ({})  VALUES ( {} );".format(modelName ,",".join(options.keys()),",".join(options.values()))
+        for x in options.keys():
+            # keys.append("\"{}\".\"{}\"".format(modelName,x))
+            keys.append("\"{}\"".format(x))
+        query = "INSERT INTO \"{}\"({})  VALUES ({} );".format(modelName ,",".join(keys),",".join(options.values()))
         w = c.execute(query)
 
 def delete(model,**options):
