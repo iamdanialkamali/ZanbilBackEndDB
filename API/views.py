@@ -17,9 +17,9 @@ class TEST(APIView):
     parser_classes = (MultiPartParser,)
 
     def post(self, request, format=None, *args, **kwargs):
-                    try:
-                user_id = request.GET['userId']
-            except:
+        try:
+            user_id = request.GET['userId']
+        except:
                 Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
         ali = request.FILES['pic']
         print(ali.name)

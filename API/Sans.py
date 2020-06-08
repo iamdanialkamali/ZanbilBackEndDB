@@ -27,7 +27,7 @@ class SansController:
         this_week_days_date = []
         weekday_date=start_week_date
         for i in range(7):
-            this_week_days_date.append('"'+weekday_date.__str__().replace('/', '-')+'"')
+            this_week_days_date.append("'"+weekday_date.__str__().replace('/', '-')+"'")
             weekday_date = weekday_date + timedelta(1)
 
         #get sanses

@@ -1,74 +1,74 @@
 
-python:S4144"rUpdate this function so that its implementation is not identical to _check_with_nationalCodeValidator on line 138.(Ï¯ ¬8ª×œİ¥.
-{python:S100"`Rename method "_check_with_fileValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¾ƒë8ª×œİ¥.
-Œpython:S100"pRename method "checkBankAccountDestinationForSubmerchant" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Îæ›ø8ª×œİ¥.
-wpython:S100"[Rename method "checkObjectExistence" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(õÆå§8ª×œİ¥.
-Špython:S100"iRename method "_check_with_minDataLengthValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(­èÆ×øÿÿÿÿ8ª×œİ¥.
-qpython:S100"PRename method "checkType" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(•åŸ¯ûÿÿÿÿ8ª×œİ¥.
-xpython:S116"WRename this field "objectValidator" to match the regular expression ^[_a-z][_a-z0-9]*$.(•ºùßúÿÿÿÿ8ª×œİ¥.
-vpython:S100"URename method "checkInputData" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(òÏ§şÿÿÿÿ8ª×œİ¥.
-ppython:S100"TRename method "checkFeatures" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¸ÀÀ°8ª×œİ¥.
-ppython:S100"TRename method "checkUsername" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(åãœŠ8ª×œİ¥.
-ˆpython:S100"gRename method "_check_with_phoneNumberValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(»¢áàşÿÿÿÿ8ª×œİ¥.
-upython:S100"TRename method "addValidation" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(©„Ô¥ıÿÿÿÿ8ª×œİ¥.
-npython:S1226"LIntroduce a new variable or use its initial value before reassigning 'self'.(êé‰Òÿÿÿÿÿ8ª×œİ¥.
-{python:S116"ZRename this field "validationPipeline" to match the regular expression ^[_a-z][_a-z0-9]*$.(ñéÍŒûÿÿÿÿ8ª×œİ¥.
-upython:S100"TRename method "addValidation" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(©„Ô¥ıÿÿÿÿ8ª×œİ¥.
-spython:S100"RRename method "checkMobile" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(’ªİ¥ùÿÿÿÿ8ª×œİ¥.
-epython:S3827"HSubMerchant is not defined. Change its name or define it before using it(·âÙ±8ÍŸİ¥.
-|python:S100"`Rename method "_check_with_IBANValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¯ƒé8ª×œİ¥.
-python:S100"^Rename method "checkNonDuplicateObject" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(”¿Õ÷øÿÿÿÿ8ª×œİ¥.
-rpython:S100"VRename method "generateMessage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(åÏß8ª×œİ¥.
-|python:S100"`Rename method "checkOfficer2NationalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(üÒõÄ8ª×œİ¥.
-{python:S116"ZRename this field "validationPipeline" to match the regular expression ^[_a-z][_a-z0-9]*$.(ñéÍŒûÿÿÿÿ8ª×œİ¥.
-|python:S100"`Rename method "_check_with_noneValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¢ô›ö8ª×œİ¥.
-{python:S100"ZRename method "getValidatorsErrors" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ª„»›ûÿÿÿÿ8ª×œİ¥.
-qpython:S100"PRename method "getErrors" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ô†Ÿ´úÿÿÿÿ8ª×œİ¥.
-spython:S116"RRename this field "statusCode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Áïë‹ıÿÿÿÿ8ª×œİ¥.
-ƒpython:S100"bRename method "_check_with_mobileValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(«á®Œûÿÿÿÿ8ª×œİ¥.
-‡python:S100"kRename method "_check_with_ObjectExistenceValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìñó¾8ª×œİ¥.
-„python:S100"cRename method "_check_with_IbanTransferable" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Èƒà×ùÿÿÿÿ8ª×œİ¥.
-Œpython:S100"pRename method "_check_with_officer2NationalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ï¯ ¬8ª×œİ¥.
-qpython:S100"PRename method "getErrors" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ô†Ÿ´úÿÿÿÿ8ª×œİ¥.
-Špython:S100"iRename method "_check_with_maxDataLengthValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(…åËÈşÿÿÿÿ8ª×œİ¥.
-python:S5717"]Change this default value to "None" and initialize this parameter inside the function/method.(Úä©õÿÿÿÿÿ8ª×œİ¥.
-~python:S100"]Rename method "checkNationalLegalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(É×±·ıÿÿÿÿ8ª×œİ¥.
-mpython:S100"QRename method "checkEmail" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(€©¯Ÿ8ª×œİ¥.
-‹python:S100"jRename method "_check_with_authenticationValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(©ÉÊ´ûÿÿÿÿ8ª×œİ¥.
-qpython:S116"VRename this field "fieldValidator" to match the regular expression ^[_a-z][_a-z0-9]*$.(êüò\8ª×œİ¥.
-‰python:S100"hRename method "_check_with_nationalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ñä¦úÿÿÿÿ8ª×œİ¥.
-kpython:S100"ORename method "setError" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìî‰¥8ª×œİ¥.
-Epython:S1481"(Remove the unused local variable "self".(©ì”¿8ª×œİ¥.
-}python:S100"aRename method "_check_with_inputValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Õêó…8ª×œİ¥.
-python:S100"`Rename method "_check_with_typeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Í¶öÿÿÿÿÿ8ª×œİ¥.
-python:S1845"sRename method "checkUsername" to prevent any misunderstanding/clash with method "checkUserName" defined on line 304(åãœŠ8ª×œİ¥.
-‡python:S100"kRename method "_check_with_equalDataLengthValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìñ™ô8ª×œİ¥.
-rpython:S100"VRename method "checkDataLength" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(“¥˜Ø8ª×œİ¥.
-spython:S116"RRename this field "statusCode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Áïë‹ıÿÿÿÿ8ª×œİ¥.
-‰python:S100"mRename method "_check_with_nationalLegalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ï»‚°8ª×œİ¥.
-upython:S100"TRename method "checkUserName" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ò›±ùÿÿÿÿ8ª×œİ¥.
-vpython:S116"URename this field "invalidFields" to match the regular expression ^[_a-z][_a-z0-9]*$.(ı¹‹Øûÿÿÿÿ8ª×œİ¥.
-}python:S4144"[Update this function so that its implementation is not identical to checkPhone on line 308.(ßö›¾ıÿÿÿÿ8ª×œİ¥.
-…python:S100"dRename method "_check_with_userNameValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(‡òÊÉùÿÿÿÿ8ª×œİ¥.
-qpython:S100"PRename method "checkIBAN" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ı½Ö–ùÿÿÿÿ8ª×œİ¥.
-kpython:S100"ORename method "setError" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìî‰¥8ª×œİ¥.
-…python:S100"dRename method "_check_with_featuresValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ëş „üÿÿÿÿ8ª×œİ¥.
-zpython:S100"^Rename method "checkIsIbanTransferable" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(•‘Á¹8ª×œİ¥.
-“python:S100"rRename method "_check_with_subMerchantBankAccountValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¾ùº„øÿÿÿÿ8ª×œİ¥.
-qpython:S100"PRename method "checkFile" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(şéıÁùÿÿÿÿ8ª×œİ¥.
-npython:S1226"LIntroduce a new variable or use its initial value before reassigning 'self'.(êé‰Òÿÿÿÿÿ8ª×œİ¥.
-kpython:S930"OAdd 1 missing arguments; '_check_with_username' expects 1 positional arguments.(‰§‰Ì8ª×œİ¥.
-tpython:S100"SRename method "checkNotNone" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(âùˆıÿÿÿÿ8ª×œİ¥.
-}python:S100"aRename method "_check_with_emailValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Á¶ÜÚ8ª×œİ¥.
-Ypython:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ª×œİ¥.
-python:S5717"]Change this default value to "None" and initialize this parameter inside the function/method.(Úä©õÿÿÿÿÿ8ª×œİ¥.
-python:S100"`Rename method "checkOfficer1NationalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ë­ã‹şÿÿÿÿ8ª×œİ¥.
-vpython:S116"URename this field "invalidFields" to match the regular expression ^[_a-z][_a-z0-9]*$.(ı¹‹Øûÿÿÿÿ8ª×œİ¥.
-lpython:S100"QRename method "checkPhone" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(âçn8ª×œİ¥.
-vpython:S100"URename method "checkTelephone" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ßö›¾ıÿÿÿÿ8ª×œİ¥.
-ypython:S100"XRename method "checkNationalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(øùÆ¡úÿÿÿÿ8ª×œİ¥.
-‘python:S100"pRename method "_check_with_officer1NationalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(µö¦Êüÿÿÿÿ8ª×œİ¥.
-Špython:S100"nRename method "_check_with_nonDuplicateObjectValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(É°«¾8ª×œİ¥.
-ypython:S100"^Rename method "checkUserAuthentication" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ğ“—8ª×œİ¥.
-spython:S116"RRename this field "statusCode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Áïë‹ıÿÿÿÿ8ª×œİ¥.
-Ypython:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ª×œİ¥.
+–python:S100÷"rRename method "_check_with_subMerchantBankAccountValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¾ùº„øÿÿÿÿ8ª×œİ¥.
+tpython:S100É"PRename method "checkIBAN" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ı½Ö–ùÿÿÿÿ8ª×œİ¥.
+„python:S100¡"`Rename method "checkOfficer1NationalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ë­ã‹şÿÿÿÿ8ª×œİ¥.
+upython:S116"RRename this field "statusCode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Áïë‹ıÿÿÿÿ8ª×œİ¥.
+spython:S100"PRename method "getErrors" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ô†Ÿ´úÿÿÿÿ8ª×œİ¥.
+ppython:S1226S"LIntroduce a new variable or use its initial value before reassigning 'self'.(êé‰Òÿÿÿÿÿ8ª×œİ¥.
+‡python:S100"cRename method "_check_with_IbanTransferable" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Èƒà×ùÿÿÿÿ8ª×œİ¥.
+upython:S116O"RRename this field "statusCode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Áïë‹ıÿÿÿÿ8ª×œİ¥.
+[python:S5754e"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ª×œİ¥.
+wpython:S100Á"SRename method "checkNotNone" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(âùˆıÿÿÿÿ8ª×œİ¥.
+opython:S100µ"QRename method "checkPhone" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(âçn8ª×œİ¥.
+”python:S100™"pRename method "_check_with_officer1NationalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(µö¦Êüÿÿÿÿ8ª×œİ¥.
+wpython:S100""TRename method "addValidation" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(©„Ô¥ıÿÿÿÿ8ª×œİ¥.
+python:S1006"^Rename method "checkNonDuplicateObject" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(”¿Õ÷øÿÿÿÿ8ª×œİ¥.
+xpython:S116"URename this field "invalidFields" to match the regular expression ^[_a-z][_a-z0-9]*$.(ı¹‹Øûÿÿÿÿ8ª×œİ¥.
+€python:S100Ï"aRename method "_check_with_emailValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Á¶ÜÚ8ª×œİ¥.
+Špython:S100…"kRename method "_check_with_equalDataLengthValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìñ™ô8ª×œİ¥.
+tpython:S100™"PRename method "checkType" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(•åŸ¯ûÿÿÿÿ8ª×œİ¥.
+ppython:S100½"QRename method "checkEmail" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(€©¯Ÿ8ª×œİ¥.
+€python:S4144å"[Update this function so that its implementation is not identical to checkPhone on line 309.(ßö›¾ıÿÿÿÿ8ª×œİ¥.
+python:S100§"pRename method "_check_with_officer2NationalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ï¯ ¬8ª×œİ¥.
+python:S100Í"pRename method "checkBankAccountDestinationForSubmerchant" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Îæ›ø8ª×œİ¥.
+vpython:S116÷"RRename this field "statusCode" to match the regular expression ^[_a-z][_a-z0-9]*$.(Áïë‹ıÿÿÿÿ8ª×œİ¥.
+~python:S100ù"ZRename method "getValidatorsErrors" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ª„»›ûÿÿÿÿ8ª×œİ¥.
+|python:S100©"XRename method "checkNationalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(øùÆ¡úÿÿÿÿ8ª×œİ¥.
+ˆpython:S100½"dRename method "_check_with_userNameValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(‡òÊÉùÿÿÿÿ8ª×œİ¥.
+ˆpython:S100·"dRename method "_check_with_featuresValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ëş „üÿÿÿÿ8ª×œİ¥.
+python:S100¥"`Rename method "checkOfficer2NationalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(üÒõÄ8ª×œİ¥.
+Gpython:S1481T"(Remove the unused local variable "self".(©ì”¿8ª×œİ¥.
+€python:S100Š"aRename method "_check_with_inputValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Õêó…8ª×œİ¥.
+Œpython:S100Š"hRename method "_check_with_nationalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ñä¦úÿÿÿÿ8ª×œİ¥.
+spython:S100­"TRename method "checkFeatures" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¸ÀÀ°8ª×œİ¥.
+ppython:S1226"LIntroduce a new variable or use its initial value before reassigning 'self'.(êé‰Òÿÿÿÿÿ8ª×œİ¥.
+python:S100("jRename method "_check_with_authenticationValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(©ÉÊ´ûÿÿÿÿ8ª×œİ¥.
+hpython:S3827ø"HSubMerchant is not defined. Change its name or define it before using it(·âÙ±8ÍŸİ¥.
+xpython:S100±"TRename method "checkUserName" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ò›±ùÿÿÿÿ8ª×œİ¥.
+}python:S116N"ZRename this field "validationPipeline" to match the regular expression ^[_a-z][_a-z0-9]*$.(ñéÍŒûÿÿÿÿ8ª×œİ¥.
+tpython:S100Å"PRename method "checkFile" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(şéıÁùÿÿÿÿ8ª×œİ¥.
+xpython:S116Q"URename this field "invalidFields" to match the regular expression ^[_a-z][_a-z0-9]*$.(ı¹‹Øûÿÿÿÿ8ª×œİ¥.
+[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ª×œİ¥.
+’python:S4144§"rUpdate this function so that its implementation is not identical to _check_with_nationalCodeValidator on line 138.(Ï¯ ¬8ª×œİ¥.
+Œpython:S100,"nRename method "_check_with_nonDuplicateObjectValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(É°«¾8ª×œİ¥.
+†python:S100Æ"bRename method "_check_with_mobileValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(«á®Œûÿÿÿÿ8ª×œİ¥.
+python:S100û"iRename method "_check_with_minDataLengthValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(­èÆ×øÿÿÿÿ8ª×œİ¥.
+ypython:S100å"URename method "checkTelephone" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ßö›¾ıÿÿÿÿ8ª×œİ¥.
+spython:S100^"PRename method "getErrors" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ô†Ÿ´úÿÿÿÿ8ª×œİ¥.
+tpython:S116ô"VRename this field "fieldValidator" to match the regular expression ^[_a-z][_a-z0-9]*$.(êüò\8ª×œİ¥.
+npython:S930î"OAdd 1 missing arguments; '_check_with_username' expects 1 positional arguments.(‰§‰Ì8ª×œİ¥.
+‹python:S100v"mRename method "_check_with_nationalLegalCodeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ï»‚°8ª×œİ¥.
+python:S100í"`Rename method "_check_with_IBANValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¯ƒé8ª×œİ¥.
+mpython:S100V"ORename method "setError" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìî‰¥8ª×œİ¥.
+ypython:S100;"[Rename method "checkObjectExistence" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(õÆå§8ª×œİ¥.
+~python:S100Ü"`Rename method "_check_with_fileValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¾ƒë8ª×œİ¥.
+mpython:S100"ORename method "setError" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìî‰¥8ª×œİ¥.
+ƒpython:S100r"`Rename method "_check_with_typeValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Í¶öÿÿÿÿÿ8ª×œİ¥.
+python:S100"]Rename method "checkNationalLegalCode" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(É×±·ıÿÿÿÿ8ª×œİ¥.
+{python:S100@"^Rename method "checkUserAuthentication" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ğ“—8ª×œİ¥.
+python:S100€"iRename method "_check_with_maxDataLengthValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(…åËÈşÿÿÿÿ8ª×œİ¥.
+vpython:S100¹"RRename method "checkMobile" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(’ªİ¥ùÿÿÿÿ8ª×œİ¥.
+spython:S100í"TRename method "checkUsername" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(åãœŠ8ª×œİ¥.
+python:S100Ø"`Rename method "_check_with_noneValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¢ô›ö8ª×œİ¥.
+ypython:S100á"URename method "checkInputData" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(òÏ§şÿÿÿÿ8ª×œİ¥.
+upython:S100„"VRename method "generateMessage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(åÏß8ª×œİ¥.
+python:S5717"]Change this default value to "None" and initialize this parameter inside the function/method.(Úä©õÿÿÿÿÿ8ª×œİ¥.
+“python:S1845í"sRename method "checkUsername" to prevent any misunderstanding/clash with method "checkUserName" defined on line 305(åãœŠ8ª×œİ¥.
+upython:S100Õ"VRename method "checkDataLength" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(“¥˜Ø8ª×œİ¥.
+‰python:S1001"kRename method "_check_with_ObjectExistenceValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ìñó¾8ª×œİ¥.
+wpython:S100h"TRename method "addValidation" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(©„Ô¥ıÿÿÿÿ8ª×œİ¥.
+}python:S100é"^Rename method "checkIsIbanTransferable" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(•‘Á¹8ª×œİ¥.
+{python:S116õ"WRename this field "objectValidator" to match the regular expression ^[_a-z][_a-z0-9]*$.(•ºùßúÿÿÿÿ8ª×œİ¥.
+}python:S116	"ZRename this field "validationPipeline" to match the regular expression ^[_a-z][_a-z0-9]*$.(ñéÍŒûÿÿÿÿ8ª×œİ¥.
+python:S5717L"]Change this default value to "None" and initialize this parameter inside the function/method.(Úä©õÿÿÿÿÿ8ª×œİ¥.
+‹python:S100Â"gRename method "_check_with_phoneNumberValidator" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(»¢áàşÿÿÿÿ8ª×œİ¥.

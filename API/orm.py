@@ -33,7 +33,7 @@ def select(model,**options):
         query = "1 = 1 "
         for key, value in options.items():
             if isinstance(value,str):
-                options[key] = '"'+ value +'"'
+                options[key] = "'"+ value +"'"
             else:
                 options[key] = str(value)
         for key,value in options.items():
@@ -49,11 +49,11 @@ def insert(model,**options):
     with connection.cursor() as c:
         for key, value in options.items():
             if isinstance(value,str):
-                options[key] = '"'+ value +'"'
+                options[key] = "'"+ value +"'"
             else:
                 options[key] = str(value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-        query = "INSERT INTO {} ({})  VALUES({});".format(modelName ,",".join(options.keys()),",".join(options.values()))
+        query = "INSERT INTO {} ({})  VALUES ( {} );".format(modelName ,",".join(options.keys()),",".join(options.values()))
         w = c.execute(query)
 
 def delete(model,**options):
@@ -61,7 +61,7 @@ def delete(model,**options):
         query = "1 = 1 "
         for key, value in options.items():
             if isinstance(value,str):
-                options[key] = '"'+ value +'"'
+                options[key] = "'"+ value +"'"
             else:
                 options[key] = str(value)
         for key,value in options.items():
@@ -78,7 +78,7 @@ def update(model,id,**options):
             query =  " "
             for key, value in options.items():
                 if isinstance(value,str):
-                    options[key] = '"'+ value +'"'
+                    options[key] = "'"+ value +"'"
                 else:
                     options[key] = str(value)
             for key,value in options.items():

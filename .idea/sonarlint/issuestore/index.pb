@@ -9,8 +9,6 @@ D
 zanbil/mongoModel.py,4/8/48de5197926316aa9ec9bdefbd1dabbc7cdd685f
 E
 ZanbilBackEnd/wsgi.py,a/4/a4e98b9d80dedb4bfab9a9f438ae7690af748efe
->
-zanbil/enum.py,a/4/a40b8a567ca3509ffd4a490bef70f731eb1d8a0a
 J
 API/migrations/__init__.py,7/6/76ce3b86b1f536a08287c5cfdd9246b38a5b51ff
 I
@@ -72,3 +70,12 @@ D
 API/ticketService.py,0/6/0631a0f6fd82cc9920ba8b81ef76d47c79317980
 =
 API/Ticket.py,2/b/2b80270b5af68f6478f375a3bdc7aa790440ecfd
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+;
+API/enum.py,8/a/8ad8139ca4e185a51110a4613da33ea3cd642579
+?
+requirement.txt,9/4/947575bab703658c1cbf5f87b75506b7180a9f8e
+A
+API/validation.py,0/9/09d4698be37efdcd51c5b1bf7e35c358fe4aee77

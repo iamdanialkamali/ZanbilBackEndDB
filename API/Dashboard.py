@@ -177,7 +177,7 @@ class DashboardController(APIView):
         this_week_days_date = []
         weekday_date=start_week_date
         for i in range(7):
-            this_week_days_date.append('"'+weekday_date.__str__()+'"')
+            this_week_days_date.append("'"+weekday_date.__str__()+"'")
             weekday_date = weekday_date + timedelta(1)
         # currentWeekReserve=Reserve.objects.filter(service__business__id=business_id , date__in=this_week_days_date)
         q = orm.rawQuery("SELECT `API_reserve`.`id`, `API_reserve`.`user_id`, `API_reserve`.`service_id`, `API_reserve`.`sans_id`, `API_reserve`.`description`, `API_reserve`.`date`, `API_reserve`.`isCancelled` FROM `API_reserve` INNER JOIN `API_service` ON (`API_reserve`.`service_id` = `API_service`.`id`) WHERE (`API_reserve`.`date` IN ({}) AND `API_service`.`business_id`={})".format(", ".join(this_week_days_date), business_id))

@@ -64,7 +64,7 @@ class AccountPageController(APIView):
         except Exception:
             return Response({}, status=status.HTTP_400_BAD_REQUEST)
     def put(self, request, format=None, *args, **kwargs):
-        try:
+        # try:
             user_name = request.POST.get("username")
             first_name= request.POST.get("firstName")
             last_name= request.POST.get("lastName")
@@ -73,7 +73,7 @@ class AccountPageController(APIView):
             national_code= request.POST.get("nationalCode")
             phone_number= request.POST.get("phoneNumber")
             validator = FieldValidator(request.POST)
-            validator.checkUserName('username'). \
+            validator.checkNotNone('username'). \
                 checkNotNone('description'). \
                 checkNotNone('firstName'). \
                 checkNotNone('lastName'). \
@@ -84,7 +84,7 @@ class AccountPageController(APIView):
                 validate()
             if validator.statusCode != 200:
                 Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
-            try:
+            # try:
                 orm.insert(User,
                            username=user_name,
                            last_name=last_name,
@@ -97,16 +97,16 @@ class AccountPageController(APIView):
                            is_staff=False,
                            is_active=True
                            )
-            except:
-                return Response({
-                    'user': "نام کاربری تکراری است"
-                }, status=status.HTTP_200_OK)
+            # except:
+            #     return Response({
+            #         'user': "نام کاربری تکراری است"
+            #     }, status=status.HTTP_200_OK)
             user = orm.select(User,username=user_name)
             return Response({
                 'user': orm.toDict(user[0])
             }, status=status.HTTP_200_OK)
-        except Exception:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception:
+        #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request, format=None, *args, **kwargs):
         try:
