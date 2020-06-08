@@ -44,7 +44,7 @@ class BusinessController(APIView):
                     category_id=category,
                     score=0,
                 )
-                mybusiness = orm.select(Business,owner_id=user_id,name=name)
+                mybusiness = orm.select(Business,owner_id=user_id,name=name)[0]
 
             return Response({"business":orm.toDict(mybusiness),"pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness.id))}, status=status.HTTP_200_OK)
 
@@ -100,7 +100,7 @@ class BusinessController(APIView):
 
                 if not status:
                      return Response({},status=status.HTTP_400_BAD_REQUEST)
-                mybusiness = orm.select(Business, id=id)
+                mybusiness = orm.select(Business, id=id)[0]
                 return Response(
                     {
                         "business": orm.toDict(mybusiness),
