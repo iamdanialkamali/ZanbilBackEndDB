@@ -20,7 +20,7 @@ class TEST(APIView):
         try:
             user_id = request.GET['userId']
         except:
-                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+                return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
         ali = request.FILES['pic']
         print(ali.name)
         file = open("uploads/"+ali.name,'wb')

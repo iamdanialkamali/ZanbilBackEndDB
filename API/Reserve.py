@@ -15,7 +15,7 @@ class ReserveController(APIView):
             try:
                 user_id = request.GET['userId']
             except:
-                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+                return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             data = request.POST
             description = data['description']
             sans_id = data['sans_id']

@@ -18,7 +18,7 @@ class Image(APIView):
         try:
             user_id = request.GET['userId']
         except:
-                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+                return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
         service = int(request.POST.get('service',0))
         business = int(request.POST.get('business',0))
         message = int(request.POST.get('message',0))

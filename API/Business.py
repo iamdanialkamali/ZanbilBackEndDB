@@ -17,7 +17,7 @@ class BusinessController(APIView):
             try:
                 user_id = request.GET['userId']
             except:
-                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+                return  Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             validator = FieldValidator(request.POST)
             validator.checkNotNone('name'). \
                 checkNotNone('phone_number'). \
@@ -25,7 +25,7 @@ class BusinessController(APIView):
                 checkNotNone('category'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
             data = request.POST
             name = data['name']
             phone_number = data['phone_number']
@@ -80,7 +80,7 @@ class BusinessController(APIView):
                 checkNotNone('id'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
             data = request.POST
             name = data['name']
             phone_number = data['phone_number']

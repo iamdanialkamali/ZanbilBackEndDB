@@ -42,7 +42,7 @@ def select(model,**options):
             else:
                 query += "AND {}={} ".format(key,value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-        c.execute("select * from {} where {};".format(modelName,query))
+        c.execute("select * from \"{}\" where {};".format(modelName,query))
         return namedtuplefetchall(c)
 
 def insert(model,**options):
@@ -53,7 +53,7 @@ def insert(model,**options):
             else:
                 options[key] = str(value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-        query = "INSERT INTO {} ({})  VALUES ( {} );".format(modelName ,",".join(options.keys()),",".join(options.values()))
+        query = "INSERT INTO \"{}\" ({})  VALUES ( {} );".format(modelName ,",".join(options.keys()),",".join(options.values()))
         w = c.execute(query)
 
 def delete(model,**options):
@@ -70,7 +70,7 @@ def delete(model,**options):
             else:
                 query += "AND {}={} ".format(key,value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-        c.execute("delete from {} where {};".format(modelName,query))
+        c.execute("delete from \"{}\" where {};".format(modelName,query))
         return namedtuplefetchall(c)
 def update(model,id,**options):
     try:
@@ -84,7 +84,7 @@ def update(model,id,**options):
             for key,value in options.items():
                 query += "{}={},".format(key,value)
             modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-            final = "UPDATE {} SET {}  where id={};".format(modelName,query[:-1],id)
+            final = "UPDATE \"{}\" SET {}  where id={};".format(modelName,query[:-1],id)
             c.execute(final)
             return True
     except:

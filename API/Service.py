@@ -24,7 +24,7 @@ class ServiceController(APIView):
         try:
             user_id = request.GET['userId']
         except:
-            Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+            return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
 
         validator = FieldValidator(request.POST)
         validator.checkNotNone('name'). \
@@ -142,7 +142,7 @@ class ServiceController(APIView):
             try:
                 user_id = request.GET['userId']
             except:
-                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+                return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             data = request.POST
             name = data.get('name')
             id = data.get('id')
