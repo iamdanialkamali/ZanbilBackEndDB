@@ -9,11 +9,18 @@ from .models import Review, Service, Sans, Reserve
 
 from .models import Business,Service,Reserve,User
 import API.orm as orm
+from .validation import FieldValidator
+
 
 class DashboardController(APIView):
     def get(self, request, format=None, *args, **kwargs):
         # try:
 
+            validator = FieldValidator(request.GET)
+            validator.checkNotNone('id').\
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             business_id = request.GET['id']
             today = JalaliDate.today()
             # reserves = Reserve.objects.filter(service_business__id=business_id)

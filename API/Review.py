@@ -6,6 +6,8 @@ from rest_framework import status
 from .models import Review,Service
 import json
 import API.orm as orm
+from .validation import FieldValidator
+
 
 class ReviewController(APIView):
     def put(self, request, format=None, *args, **kwargs):
@@ -14,11 +16,20 @@ class ReviewController(APIView):
                 user_id = request.GET['userId']
             except:
                 Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('name'). \
+                checkType('point',float). \
+                checkNotNone('description'). \
+                checkNotNone('service_id'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+
             data = request.POST
             point = float(data['point'])
             description = data['description']
             service_id = data['service_id']
-
             if 0 <= point <= 10 :
                 self.newPointCalculator(service_id,point)
                 orm.insert(Review,
@@ -37,11 +48,19 @@ class ReviewController(APIView):
     def get(self, request, format=None, *args, **kwargs):
 
         # try:
-            id = request.GET['business_id']
-            reviews = Review.objects.filter(service__business__id=id)
 
-            review_datas = ReviewSerializer(reviews,many=True).data
-            return Response(review_datas, status= status.HTTP_200_OK)
+
+        validator = FieldValidator(request.GET)
+        validator.checkNotNone('business_id').\
+            validate()
+        if validator.statusCode != 200:
+            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+
+        id = request.GET['business_id']
+        reviews = Review.objects.filter(service__business__id=id)
+
+        review_datas = ReviewSerializer(reviews,many=True).data
+        return Response(review_datas, status= status.HTTP_200_OK)
 
         # except Exception:
         #     return Response({}, status= status.HTTP_400_BAD_REQUEST)

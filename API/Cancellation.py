@@ -8,6 +8,9 @@ from khayyam import *
 import API.orm as orm
 
 #cancel the reserve if its not too late
+from .validation import FieldValidator
+
+
 class CancellationController(APIView):
     def post(self, request, format=None, *args, **kwargs):
         # try:
@@ -16,7 +19,14 @@ class CancellationController(APIView):
             except:
                 Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             data = request.POST
+
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('reserve_id').\
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             reserve_id = data['reserve_id']
+
 
             if(True):
                 selected_Reserve = orm.select(Reserve,id=reserve_id)[0]

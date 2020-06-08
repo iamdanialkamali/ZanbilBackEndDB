@@ -10,6 +10,8 @@ import API.orm as orm
 from API.ticketService import TicketManager
 from ast import literal_eval
 
+from API.validation import FieldValidator
+
 
 class TicketController(APIView):
     parser_classes = (MultiPartParser,)
@@ -20,6 +22,11 @@ class TicketController(APIView):
             user_id = request.GET['userId']
         except:
             Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+        validator = FieldValidator(request.POST)
+        validator.checkNotNone('businessId'). \
+            validate()
+        if validator.statusCode != 200:
+            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
         data = request.POST
         toUserId = data.get("toUserId",None)
         businessId = data.get("businessId")
@@ -43,6 +50,11 @@ class TicketController(APIView):
     #     return Response({},status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, format=None, *args, **kwargs):
+        validator = FieldValidator(request.GET)
+        validator.checkNotNone('ticketId').\
+            validate()
+        if validator.statusCode != 200:
+            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
         ticketId = request.GET['ticketId']
         responseTicket = TicketManager.getTicket(ticketId)
         return Response({
@@ -54,7 +66,19 @@ class TicketController(APIView):
 
     def post(self, request, format=None, *args, **kwargs):
 
-        user_id = request.GET.get('userId')
+        try:
+            user_id = request.GET['userId']
+        except:
+            Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+
+        validator = FieldValidator(request.POST)
+        validator.checkNotNone('ticketId'). \
+            checkNotNone('businessId'). \
+            checkNotNone('text'). \
+            validate()
+        if validator.statusCode != 200:
+            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+
         ticketId = request.POST.get('ticketId')
         data = request.POST
         files = data.get("files", [])
@@ -77,6 +101,12 @@ class TicketController(APIView):
 class TicketSearchController(APIView):
 
     def get(self, request, format=None, *args, **kwargs):
+        validator = FieldValidator(request.GET)
+        validator.checkNotNone('userId'). \
+            checkNotNone('businessId'). \
+            validate()
+        if validator.statusCode != 200:
+            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
         userId = request.GET.get('userId')
         businessId = request.GET.get('businessId')
         responseTicket = TicketManager.search(userId=userId,businessId=businessId)

@@ -11,6 +11,7 @@ from .TimeTable import TimeTableController
 from rest_framework.parsers import MultiPartParser
 from API.models import Sans, Service, ServiceFile, TimeTable
 import API.orm as orm
+from .validation import FieldValidator
 
 
 class ServiceController(APIView):
@@ -24,6 +25,19 @@ class ServiceController(APIView):
             user_id = request.GET['userId']
         except:
             Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+
+        validator = FieldValidator(request.POST)
+        validator.checkNotNone('name'). \
+            checkNotNone('description'). \
+            checkNotNone('price'). \
+            checkNotNone('business_id'). \
+            checkNotNone('address'). \
+            checkNotNone('days'). \
+            checkNotNone('cancellation_range'). \
+            validate()
+        if validator.statusCode != 200:
+            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+
         data = request.POST
         name = data.get('name')
         description = data.get('description')
@@ -70,6 +84,11 @@ class ServiceController(APIView):
     def get(self, request, format=None, *args, **kwargs):
         # try:
         id = request.GET['service_id']
+        validator = FieldValidator(request.GET)
+        validator.checkNotNone('service_id'). \
+            validate()
+        if validator.statusCode != 200:
+            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
         service = orm.select(Service, id=id)[0]
         service_data = orm.toDict(service)
@@ -91,7 +110,14 @@ class ServiceController(APIView):
     def post(self, request, format=None, *args, **kwargs):
         try:
 
-            data = json.loads(request.body)
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('date'). \
+                checkNotNone('service_id'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+
+            data = request.POST
             date = data['date']
             id = data['service_id']
             service = orm.select(Service, id=id)[0]
@@ -126,6 +152,17 @@ class ServiceController(APIView):
             sanses = literal_eval(data.get('sanses'))
             cancellation_range = data.get('cancellation_range')
 
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('name'). \
+                checkNotNone('description'). \
+                checkNotNone('price'). \
+                checkNotNone('id'). \
+                checkNotNone('address'). \
+                checkNotNone('sanses'). \
+                checkNotNone('cancellation_range'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             # edit name and fee and description
             selectedService = orm.toDict(orm.select(Service, id=id)[0])
 

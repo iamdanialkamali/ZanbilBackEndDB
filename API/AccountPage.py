@@ -7,6 +7,10 @@ from khayyam import *
 import datetime
 import API.orm as orm
 import hashlib
+
+from .validation import FieldValidator
+
+
 class AccountPageController(APIView):
 
     def get(self, request, format=None, *args, **kwargs):
@@ -68,6 +72,18 @@ class AccountPageController(APIView):
             email= request.POST.get("email")
             national_code= request.POST.get("nationalCode")
             phone_number= request.POST.get("phoneNumber")
+            validator = FieldValidator(request.POST)
+            validator.checkUserName('username'). \
+                checkNotNone('description'). \
+                checkNotNone('firstName'). \
+                checkNotNone('lastName'). \
+                checkNotNone('password'). \
+                checkEmail('email'). \
+                checkNationalCode('nationalCode'). \
+                checkPhone('phoneNumber'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             try:
                 orm.insert(User,
                            username=user_name,
@@ -96,6 +112,12 @@ class AccountPageController(APIView):
         try:
             user_name = request.POST.get("username")
             password= request.POST.get("password")
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('username'). \
+                checkNotNone('password'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             user = orm.select(User,username=user_name,password=hashlib.sha256(password.encode()).hexdigest().__str__())
             if len(user)>0:
                 userDict = orm.toDict(user[0])

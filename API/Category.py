@@ -12,6 +12,7 @@ class CategoryController(APIView):
 
         try:
             id = request.GET['category_id']
+
             business_data = orm.toDict(orm.select(Business,category_id=id))
             return Response(business_data, status= status.HTTP_200_OK)
 
