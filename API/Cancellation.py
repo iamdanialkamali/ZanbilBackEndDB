@@ -11,7 +11,10 @@ import API.orm as orm
 class CancellationController(APIView):
     def post(self, request, format=None, *args, **kwargs):
         # try:
-            user_id = request.GET['userId']
+            try:
+                user_id = request.GET['userId']
+            except:
+                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             data = request.POST
             reserve_id = data['reserve_id']
 

@@ -11,7 +11,10 @@ class AccountPageController(APIView):
 
     def get(self, request, format=None, *args, **kwargs):
         try:
-            user_id = request.GET['userId']
+            try:
+                user_id = request.GET['userId']
+            except:
+                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             reserves = orm.select(Reserve,user_id=user_id)
             reserves_list = []
             for reserve in reserves:

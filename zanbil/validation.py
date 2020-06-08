@@ -1,4 +1,4 @@
-import zanbil.enum as enum
+import API.enum as enum
 import re
 
 class ObjectValidator():
@@ -29,7 +29,7 @@ class ObjectValidator():
             try:
                 validation['validator'](validation['data'])
             except:
-                self.setError(validation['data']['field'],enum.Error.INVALID_FIELD_DATA.value)
+                self.setError(validation['data']['field'], enum.Error.INVALID_FIELD_DATA.value)
 
     def addValidation(self, data, validatorFunction):
         self.validationPipeline.append({
@@ -99,7 +99,7 @@ class FieldValidator():
             try:
                 validation['validator'](validation['data'])
             except:
-                self.setError(validation['data']['field'],enum.Error.INVALID_FIELD_DATA.value)
+                self.setError(validation['data']['field'], enum.Error.INVALID_FIELD_DATA.value)
         return self
     def addValidation(self, data, validatorFunction):
         if (data['value'] == 'unAssigned') and data['field'] in self.data.keys():
@@ -250,7 +250,8 @@ class FieldValidator():
 
     def _check_with_minDataLengthValidator(self, data):
         if data['value'] is None or len(data['value']) < data['length']:
-            self.setError(data['field'],( enum.Error.MESSAGE_INSUFFICIENT_LENGTH.value[0].format(data['length']),enum.Error.MESSAGE_INSUFFICIENT_LENGTH.value[1]))
+            self.setError(data['field'], (enum.Error.MESSAGE_INSUFFICIENT_LENGTH.value[0].format(data['length']),
+                                          enum.Error.MESSAGE_INSUFFICIENT_LENGTH.value[1]))
 
     def _check_with_maxDataLengthValidator(self, data):
             if data['value'] is None or len(data['value']) > data['length']:

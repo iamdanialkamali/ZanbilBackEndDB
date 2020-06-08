@@ -20,7 +20,10 @@ class ServiceController(APIView):
 
         # try:
         from ast import literal_eval
-        user_id = request.GET['userId']
+        try:
+            user_id = request.GET['userId']
+        except:
+            Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
         data = request.POST
         name = data.get('name')
         description = data.get('description')
@@ -110,7 +113,10 @@ class ServiceController(APIView):
 
         try:
             from ast import literal_eval
-            user_id = request.GET['userId']
+            try:
+                user_id = request.GET['userId']
+            except:
+                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             data = request.POST
             name = data.get('name')
             id = data.get('id')

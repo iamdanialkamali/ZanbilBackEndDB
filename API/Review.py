@@ -10,7 +10,10 @@ import API.orm as orm
 class ReviewController(APIView):
     def put(self, request, format=None, *args, **kwargs):
          try:
-            user_id = request.GET['userId']
+            try:
+                user_id = request.GET['userId']
+            except:
+                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
             data = request.POST
             point = float(data['point'])
             description = data['description']

@@ -15,7 +15,10 @@ class Image(APIView):
     parser_classes = (MultiPartParser,)
 
     def put(self, request, format=None, *args, **kwargs):
-        # user_id = request.GET['userId']
+        try:
+            user_id = request.GET['userId']
+        except:
+                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
         service = int(request.POST.get('service',0))
         business = int(request.POST.get('business',0))
         message = int(request.POST.get('message',0))

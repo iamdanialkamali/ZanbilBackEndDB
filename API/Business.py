@@ -6,19 +6,33 @@ from rest_framework import status
 from .models import Business,BusinessFile
 import json
 import API.orm as orm
+from .validation import FieldValidator
+
 
 class BusinessController(APIView):
     def put(self, request, format=None, *args, **kwargs):
             # user_id = tokenizer.meta_encode(request.META)
          # try:
             # user_id = tokenizer.meta_decode(request.META)
-            user_id = request.GET['userId']
+            try:
+                user_id = request.GET['userId']
+            except:
+                Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('name'). \
+                checkNotNone('phone_number'). \
+                checkNotNone('description'). \
+                checkNotNone('category'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
             data = request.POST
             name = data['name']
             phone_number = data['phone_number']
             address = data['address']
             description = data['description']
             category = data['category']
+
 
             if(True):
                 orm.insert(Business,
@@ -39,6 +53,11 @@ class BusinessController(APIView):
     def get(self, request, format=None, *args, **kwargs):
 
         try:
+            validator = FieldValidator(request.GET)
+            validator.checkNotNone('business_id'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
             id = request.GET['business_id']
             mybusiness = orm.select(Business, id=id)
@@ -53,6 +72,15 @@ class BusinessController(APIView):
 
     def patch(self, request, format=None, *args, **kwargs):
          try:
+            validator = FieldValidator(request.POST)
+            validator.checkNotNone('name'). \
+                checkNotNone('phone_number'). \
+                checkNotNone('description'). \
+                checkNotNone('category'). \
+                checkNotNone('id'). \
+                validate()
+            if validator.statusCode != 200:
+                Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
             data = request.POST
             name = data['name']
             phone_number = data['phone_number']
@@ -62,7 +90,7 @@ class BusinessController(APIView):
             id = data['id']
 
             if(True):
-                state = orm.update(Business,id,
+                status = orm.update(Business,id,
                            name=name,
                            phone_number=phone_number,
                            address=address,

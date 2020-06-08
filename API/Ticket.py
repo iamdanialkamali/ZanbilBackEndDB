@@ -16,7 +16,10 @@ class TicketController(APIView):
 
     def put(self, request, format=None, *args, **kwargs):
 
-        user_id = request.GET['userId']
+        try:
+            user_id = request.GET['userId']
+        except:
+            Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
         data = request.POST
         toUserId = data.get("toUserId",None)
         businessId = data.get("businessId")
