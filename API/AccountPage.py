@@ -14,7 +14,7 @@ from .validation import FieldValidator
 class AccountPageController(APIView):
 
     def get(self, request, format=None, *args, **kwargs):
-        try:
+        # try:
             try:
                 user_id = request.GET['userId']
             except:
@@ -61,8 +61,8 @@ class AccountPageController(APIView):
                         'businseses':orm.toDict(businseses)
 
                     }, status=status.HTTP_200_OK)
-        except Exception:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception:
+        #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
     def put(self, request, format=None, *args, **kwargs):
         # try:
             user_name = request.POST.get("username")
@@ -109,7 +109,7 @@ class AccountPageController(APIView):
         #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request, format=None, *args, **kwargs):
-        try:
+        # try:
             user_name = request.POST.get("username")
             password= request.POST.get("password")
             validator = FieldValidator(request.POST)
@@ -128,5 +128,5 @@ class AccountPageController(APIView):
             else:
                 return Response({
                 }, status=status.HTTP_404_NOT_FOUND)
-        except Exception:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception:
+        #     return Response({}, status=status.HTTP_400_BAD_REQUEST)

@@ -194,14 +194,14 @@ class ServiceController(APIView):
 
     def delete(self, request, format=None, *args, **kwargs):
 
-        try:
+        # try:
             from ast import literal_eval
             data = request.POST
             id = data.get('id')
             orm.delete(Service, id=id)
             return Response({}, status=status.HTTP_200_OK)
-        except Exception:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception:
+        #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SearchController(APIView):

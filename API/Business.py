@@ -52,7 +52,7 @@ class BusinessController(APIView):
          #     return Response({},status=status.HTTP_400_BAD_REQUEST)
     def get(self, request, format=None, *args, **kwargs):
 
-        try:
+        # try:
             validator = FieldValidator(request.GET)
             validator.checkNotNone('business_id'). \
                 validate()
@@ -64,14 +64,14 @@ class BusinessController(APIView):
             return Response(
                 {
                     "business":orm.toDict(mybusiness),
-                    "pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness.id))
+                    "pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness[0].id))
                 }, status= status.HTTP_200_OK)
 
-        except Exception:
-            return Response({}, status= status.HTTP_400_BAD_REQUEST)
+        # except Exception:
+        #     return Response({}, status= status.HTTP_400_BAD_REQUEST)
 
     def patch(self, request, format=None, *args, **kwargs):
-         try:
+         # try:
             validator = FieldValidator(request.POST)
             validator.checkNotNone('name'). \
                 checkNotNone('phone_number'). \
@@ -106,5 +106,5 @@ class BusinessController(APIView):
                         "business": orm.toDict(mybusiness),
                         "pictures": orm.toDict(orm.select(BusinessFile, business_id=mybusiness.id))
                     }, status=status.HTTP_200_OK)
-         except Exception :
-             return Response({},status=status.HTTP_400_BAD_REQUEST)
+         # except Exception :
+         #     return Response({},status=status.HTTP_400_BAD_REQUEST)
