@@ -72,7 +72,7 @@ class TimeTableController(APIView):
             for data in day:
                 sans = data['sans']
                 orm.insert(Sans,
-                           weekday=sans['weekday'],
+                           weekDay=sans['weekday'],
                            startTimeHour=int(sans['startTime'][:2]),
                            startTimeMinute=int(sans['startTime'][3:]),
                            endTimeHour=int(sans['endTime'][:2]),
