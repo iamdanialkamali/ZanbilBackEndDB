@@ -8,7 +8,7 @@ import API.orm as orm
 class SansController:
     @staticmethod
     def getSansForWeek(timetable_id):
-        sanses = orm.select(Sans,timetable_id=timetable_id)
+        sanses = orm.select(Sans,timeTable_id=timetable_id)
         result = [[],[],[],[],[],[],[]]
         for sans in orm.toDict(sanses) :
             result[sans['weekDay']].append(sans)
@@ -33,7 +33,7 @@ class SansController:
         #get sanses
         # selected_sanses = Sans.objects.filter(
         #     timetable__id=timetable_id)
-        selected_sanses = orm.select(Sans,timetable_id=timetable_id)
+        selected_sanses = orm.select(Sans,timeTable_id=timetable_id)
 
         # get reserved sanses in given week
         # reserved_sanses = Reserve.objects.filter(date__in=this_week_days_date)
