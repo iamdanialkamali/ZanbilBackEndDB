@@ -65,14 +65,14 @@ class AccountPageController(APIView):
         #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
     def put(self, request, format=None, *args, **kwargs):
         # try:
-            user_name = request.POST.get("username")
-            first_name= request.POST.get("firstName")
-            last_name= request.POST.get("lastName")
-            password= request.POST.get("password")
-            email= request.POST.get("email")
-            national_code= request.POST.get("nationalCode")
-            phone_number= request.POST.get("phoneNumber")
-            validator = FieldValidator(request.POST)
+            user_name = request.data.get("username")
+            first_name= request.data.get("firstName")
+            last_name= request.data.get("lastName")
+            password= request.data.get("password")
+            email= request.data.get("email")
+            national_code= request.data.get("nationalCode")
+            phone_number= request.data.get("phoneNumber")
+            validator = FieldValidator(request.data)
             validator.checkNotNone('username'). \
                 checkNotNone('description'). \
                 checkNotNone('firstName'). \
@@ -110,9 +110,9 @@ class AccountPageController(APIView):
 
     def post(self, request, format=None, *args, **kwargs):
         # try:
-            user_name = request.POST.get("username")
-            password= request.POST.get("password")
-            validator = FieldValidator(request.POST)
+            user_name = request.data.get("username")
+            password= request.data.get("password")
+            validator = FieldValidator(request.data)
             validator.checkNotNone('username'). \
                 checkNotNone('password'). \
                 validate()

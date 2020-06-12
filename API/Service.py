@@ -26,7 +26,7 @@ class ServiceController(APIView):
         except:
             return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
 
-        validator = FieldValidator(request.POST)
+        validator = FieldValidator(request.data)
         validator.checkNotNone('name'). \
             checkNotNone('description'). \
             checkNotNone('price'). \
@@ -38,7 +38,7 @@ class ServiceController(APIView):
         if validator.statusCode != 200:
             Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
-        data = request.POST
+        data = request.data
         name = data.get('name')
         description = data.get('description')
         price = data.get('price')
@@ -107,14 +107,14 @@ class ServiceController(APIView):
     def post(self, request, format=None, *args, **kwargs):
         try:
 
-            validator = FieldValidator(request.POST)
+            validator = FieldValidator(request.data)
             validator.checkNotNone('date'). \
                 checkNotNone('service_id'). \
                 validate()
             if validator.statusCode != 200:
                 Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
-            data = request.POST
+            data = request.data
             date = data['date']
             id = data['service_id']
             service = orm.select(Service, id=id)[0]
@@ -139,7 +139,7 @@ class ServiceController(APIView):
                 user_id = request.GET['userId']
             except:
                 return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
-            data = request.POST
+            data = request.data
             name = data.get('name')
             id = data.get('id')
             description = data.get('description')
@@ -148,7 +148,7 @@ class ServiceController(APIView):
             sanses = literal_eval(data.get('sanses'))
             cancellation_range = data.get('cancellation_range')
 
-            validator = FieldValidator(request.POST)
+            validator = FieldValidator(request.data)
             validator.checkNotNone('name'). \
                 checkNotNone('description'). \
                 checkNotNone('price'). \
@@ -192,7 +192,7 @@ class ServiceController(APIView):
 
         # try:
             from ast import literal_eval
-            data = request.POST
+            data = request.data
             id = data.get('id')
             orm.delete(Service, id=id)
             return Response({}, status=status.HTTP_200_OK)

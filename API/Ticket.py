@@ -22,12 +22,12 @@ class TicketController(APIView):
             user_id = request.GET['userId']
         except:
             return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
-        validator = FieldValidator(request.POST)
+        validator = FieldValidator(request.data)
         validator.checkNotNone('businessId'). \
             validate()
         if validator.statusCode != 200:
             Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
-        data = request.POST
+        data = request.data
         toUserId = data.get("toUserId",None)
         businessId = data.get("businessId")
         files = data.get("files",[])
@@ -35,7 +35,7 @@ class TicketController(APIView):
             files = literal_eval(files)
         business = orm.select(Business,id=businessId)[0]
         admin = business.owner_id == user_id
-        ticket = TicketManager.createTicket(request.POST.get("subject"),businessId,toUserId)
+        ticket = TicketManager.createTicket(request.data.get("subject"),businessId,toUserId)
         ticket.save()
         if admin:
             TicketManager.addAdminMessage(ticket.id,data.get("text"),fromUserId=user_id,files=files)
@@ -71,7 +71,7 @@ class TicketController(APIView):
         except:
             return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
 
-        validator = FieldValidator(request.POST)
+        validator = FieldValidator(request.data)
         validator.checkNotNone('ticketId'). \
             checkNotNone('businessId'). \
             checkNotNone('text'). \
@@ -79,8 +79,8 @@ class TicketController(APIView):
         if validator.statusCode != 200:
             Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
-        ticketId = request.POST.get('ticketId')
-        data = request.POST
+        ticketId = request.data.get('ticketId')
+        data = request.data
         files = data.get("files", [])
         if isinstance(files,str):
             files = literal_eval(files)

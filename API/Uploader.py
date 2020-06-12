@@ -19,27 +19,27 @@ class Image(APIView):
             user_id = request.GET['userId']
         except:
                 return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
-        service = int(request.POST.get('service',0))
-        business = int(request.POST.get('business',0))
-        message = int(request.POST.get('message',0))
+        service = int(request.data.get('service',0))
+        business = int(request.data.get('business',0))
+        message = int(request.data.get('message',0))
         picture = request.FILES['picture']
         address = uuid4().__str__()
         if service:
-            service_id = request.POST['serviceId']
+            service_id = request.data['serviceId']
             orm.insert(ServiceFile,service_id=service_id,address=picture.name+"|"+picture.content_type)
             pic = orm.toDict(orm.select(BusinessFile,messageId=ServiceFile,address=picture.name+"|"+picture.content_type)[0])
 
             file = open("uploads/service/" + picture.name, 'wb')
 
         elif business:
-            business_id = request.POST['businessId']
+            business_id = request.data['businessId']
             orm.insert(BusinessFile,service_id=business_id,address=picture.name+"|"+picture.content_type)
             pic = orm.toDict(orm.select(BusinessFile,messageId=messageId,address=picture.name+"|"+picture.content_type)[0])
 
             file = open("uploads/business/" + picture.name, 'wb')
 
         elif message:
-            messageId = request.POST['messageId']
+            messageId = request.data['messageId']
             orm.insert(MessageFile,messageId=messageId,address=picture.name+"|"+picture.content_type)
             pic = orm.toDict(orm.select(MessageFile,messageId=messageId,address=picture.name+"|"+picture.content_type)[0])
             file = open("uploads/message/"+ picture.name, 'wb')
@@ -51,27 +51,27 @@ class Image(APIView):
 
 
     def post(self, request, format=None, *args, **kwargs):
-        service = int(request.POST.get('service',0))
-        business = int(request.POST.get('business',0))
-        message = int(request.POST.get('message',0))
-        id = request.POST.get('id',1)
+        service = int(request.data.get('service',0))
+        business = int(request.data.get('business',0))
+        message = int(request.data.get('message',0))
+        id = request.data.get('id',1)
 
         if service:
-            service_id = request.POST['serviceId']
+            service_id = request.data['serviceId']
             pic = orm.select(ServiceFile,service_id=service_id,id=id)
             data = pic[0].address.split("|")
             file = open("uploads/service/" + data[0], 'rb')
             return HttpResponse(file.read(), content_type=data[1])
 
         elif business:
-            business_id = request.POST['businessId']
+            business_id = request.data['businessId']
             pic = orm.select(BusinessFile,service_id=business_id,id=id)
             data = pic[0].address.split("|")
             file = open("uploads/business/" + data[0], 'rb')
             return HttpResponse(file.read(), content_type=data[1])
 
         elif message:
-            messageId = request.POST['messageId']
+            messageId = request.data['messageId']
             pic = orm.select(MessageFile,messageId=messageId,id=id)
             data = pic[0].address.split("|")
             file = open("uploads/message/" + data[0])

@@ -18,9 +18,9 @@ class CancellationController(APIView):
                 user_id = request.GET['userId']
             except:
                 return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
-            data = request.POST
+            data = request.data
 
-            validator = FieldValidator(request.POST)
+            validator = FieldValidator(request.data)
             validator.checkNotNone('reserve_id').\
                 validate()
             if validator.statusCode != 200:

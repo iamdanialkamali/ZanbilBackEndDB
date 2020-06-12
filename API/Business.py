@@ -18,7 +18,7 @@ class BusinessController(APIView):
                 user_id = request.GET['userId']
             except:
                 return  Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
-            validator = FieldValidator(request.POST)
+            validator = FieldValidator(request.data)
             validator.checkNotNone('name'). \
                 checkNotNone('phone_number'). \
                 checkNotNone('description'). \
@@ -26,7 +26,7 @@ class BusinessController(APIView):
                 validate()
             if validator.statusCode != 200:
                 return Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
-            data = request.POST
+            data = request.data
             name = data['name']
             phone_number = data['phone_number']
             address = data['address']
@@ -73,7 +73,7 @@ class BusinessController(APIView):
 
     def patch(self, request, format=None, *args, **kwargs):
          # try:
-            validator = FieldValidator(request.POST)
+            validator = FieldValidator(request.data)
             validator.checkNotNone('name'). \
                 checkNotNone('phone_number'). \
                 checkNotNone('description'). \
@@ -82,7 +82,7 @@ class BusinessController(APIView):
                 validate()
             if validator.statusCode != 200:
                 return Response({'status': False, 'errors': validator.getErrors()},status=validator.statusCode)
-            data = request.POST
+            data = request.data
             name = data['name']
             phone_number = data['phone_number']
             address = data['address']
@@ -112,12 +112,12 @@ class BusinessController(APIView):
     def post(self, request, format=None, *args, **kwargs):
 
         # try:
-            validator = FieldValidator(request.POST)
+            validator = FieldValidator(request.data)
             validator.checkNotNone('userId'). \
                 validate()
             if validator.statusCode != 200:
                 Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
-            id = request.POST['userId']
+            id = request.data['userId']
             mybusiness = orm.select(Business, owner_id=id)
 
             data = []
