@@ -37,7 +37,7 @@ class UserAPI(APIView):
         return Response(serializer.data)
 
     def put(self, request, format=None):
-        data = request.POST
+        data = request.data
         validator = DataValidator(data)
         validator.\
             fieldValidator.\

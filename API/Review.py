@@ -17,7 +17,7 @@ class ReviewController(APIView):
             except:
                 return Response({'status': False, 'errors':"AUTHENTICATION ERROR"},status=403)
 
-            validator = FieldValidator(request.POST)
+            validator = FieldValidator(request.data)
             validator.checkNotNone('name'). \
                 checkType('point',float). \
                 checkNotNone('description'). \
@@ -26,7 +26,7 @@ class ReviewController(APIView):
             if validator.statusCode != 200:
                 Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
-            data = request.POST
+            data = request.data
             point = float(data['point'])
             description = data['description']
             service_id = data['service_id']

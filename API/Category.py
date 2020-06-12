@@ -21,7 +21,7 @@ class CategoryController(APIView):
 
     def put(self, request, format=None, *args, **kwargs):
         # try:
-            name = request.POST.get['categoryName']
+            name = request.data.get['categoryName']
             orm.insert(Category,name=name)
             business_data = orm.toDict(orm.select(Business, category_id=id))
             return Response(business_data, status=status.HTTP_200_OK)
@@ -30,7 +30,7 @@ class CategoryController(APIView):
 
     def post(self, request, format=None, *args, **kwargs):
         # try:
-            name = request.POST.get['categoryName']
+            name = request.data.get['categoryName']
             orm.rawQuery("select * \"API_category\" where \"API_category\".\"name\" LIKE  \'%{}%\'".format(name))
             business_data = orm.toDict(orm.select(Business, category_id=id))
             return Response(business_data, status=status.HTTP_200_OK)

@@ -23,7 +23,7 @@ class UserAPI(generics.ListCreateAPIView,mixins.CreateModelMixin):
 
 
     def put(self, request, format=None):
-        data = request.POST
+        data = request.data
         # users = User.objects.raw("INSERT INTO auth_user ")
         validator = DataValidator(data)
         validator. \
