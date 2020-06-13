@@ -1,6 +1,6 @@
 
-;python:S125"Remove this commented out code.(сПтп8▓╫Дуе.
-Ypython:S5754"<Specify an exception class to catch or reraise the exception(И╩╔╖8ш▒ыте.
-@python:S125"Remove this commented out code.(Л▐┌в·    8▓╫Дуе.
-:python:S125"Remove this commented out code.(сеЧ>8ш▒ыте.
-Bpython:S1481"%Remove the unused local variable "w".(╚└ви8ш▒ыте.
+=python:S125J"Remove this commented out code.(сПтп8▓╫Дуе.
+Bpython:S125L"Remove this commented out code.(Л▐┌в·    8▓╫Дуе.
+[python:S5754H"<Specify an exception class to catch or reraise the exception(И╩╔╖8ш▒ыте.
+<python:S125"Remove this commented out code.(сеЧ>8ш▒ыте.
+Dpython:S14819"%Remove the unused local variable "w".(╚└ви8ш▒ыте.

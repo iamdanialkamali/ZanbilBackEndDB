@@ -80,10 +80,10 @@ class ServiceController(APIView):
 
     def get(self, request, format=None, *args, **kwargs):
         # try:
-        id = request.GET['service_id']
         validator = FieldValidator(request.GET)
         validator.checkNotNone('service_id'). \
             validate()
+        id = request.GET['service_id']
         if validator.statusCode != 200:
             Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 

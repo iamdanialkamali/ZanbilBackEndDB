@@ -16,7 +16,7 @@ class SansController:
 
     # get date and timetable id and return sanses
     @staticmethod
-    def getSansForPage(timetable_id,date):
+    def getSansForPage(timeTable_id,date):
 
         #calculate weekdays date of given date
         date_splited = date.split('/')
@@ -33,7 +33,7 @@ class SansController:
         #get sanses
         # selected_sanses = Sans.objects.filter(
         #     timetable__id=timetable_id)
-        selected_sanses = orm.select(Sans,timeTable_id=timetable_id)
+        selected_sanses = orm.select(Sans,timeTable_id=timeTable_id)
 
         # get reserved sanses in given week
         # reserved_sanses = Reserve.objects.filter(date__in=this_week_days_date)
