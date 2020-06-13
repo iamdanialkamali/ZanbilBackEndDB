@@ -1,4 +1,4 @@
 
-opython:S3827"MReviewSerializer is not defined. Change its name or define it before using it(˜´’öûÿÿÿÿ8¥˜ØÌ¨.
-Ypython:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ÄðÕ–©.
-apython:S3827"KServiceobjects is not defined. Change its name or define it before using it(Ã¿ýÈ
+qpython:S3827>"MReviewSerializer is not defined. Change its name or define it before using it(˜´’öûÿÿÿÿ8¥˜ØÌ¨.
+cpython:S3827E"KServiceobjects is not defined. Change its name or define it before using it(Ã¿ýÈ
+[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8ÄðÕ–©.
