@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -72,6 +75,7 @@ class Reserve(models.Model):
     sans = models.ForeignKey(Sans, on_delete=models.DO_NOTHING, null=True, blank=True)
     description = models.TextField()
     date = models.CharField(max_length=150)
+    createdAt = models.DateTimeField(default=datetime.now())
     isCancelled = models.BooleanField(default=False)
 
 

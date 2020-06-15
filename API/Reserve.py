@@ -1,5 +1,7 @@
 import json
+from datetime import datetime
 
+import jdatetime
 from khayyam import JalaliDate
 from rest_framework import status
 from rest_framework.response import Response
@@ -28,7 +30,7 @@ class ReserveController(APIView):
             #                                 date=date,
             #                                 service_id=service_id,
             #                                 is_cancelled=False).values()
-            reserves = orm.select(Sans,sans_id=sans_id,date=date,service_id=service_id,is_cancelled=False)[0]
+            reserves = orm.select(Reserve,sans_id=sans_id,date=date,service_id=service_id,isCancelled=False)
             free = len(reserves) == 0
             if free and verified:
 
@@ -38,11 +40,20 @@ class ReserveController(APIView):
                 #                                   date=date,
                 #                                   service_id=service_id,
                 #                                   )
+                year,month,day =map(int,date.split("-"))
                 orm.insert(Reserve,user_id=user_id,
                                                   description=description,
                                                   sans_id=sans_id,
                                                   date=date,
-                                                  service_id=service_id)
+                                                  createdAt="\""+jdatetime.datetime(
+                                                      year=year,
+                                                      month=month,
+                                                      day=day,
+                                                      hour=sans.startTimeHour,
+                                                      minute=sans.startTimeMinute
+                                                  ).togregorian().__str__() + "\"",
+                                                  service_id=service_id
+                           ,isCancelled=False)
                 return Response("DONE", status=status.HTTP_200_OK)
             else:
                 raise Exception

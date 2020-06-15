@@ -69,7 +69,7 @@ class TimeTableController(APIView):
         orm.insert(TimeTable, name="timeTable", business_id=business_id)
         timeTable = orm.select(TimeTable, business_id=business_id)[-1]
         for sans in days:
-            
+
             orm.insert(Sans,
                        weekDay=sans['weekday'],
                        startTimeHour=int(sans['startTime'][:2]),
