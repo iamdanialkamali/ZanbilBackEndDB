@@ -27,7 +27,7 @@ class SansController:
         this_week_days_date = []
         weekday_date=start_week_date
         for i in range(7):
-            this_week_days_date.append("'"+weekday_date.__str__().replace('/', '-')+"'")
+            this_week_days_date.append("\"{}\"".format(weekday_date.__str__()))
             weekday_date = weekday_date + timedelta(1)
 
         #get sanses
@@ -55,11 +55,16 @@ class SansController:
 
             # capacity = 1
             # capacity = 1 - len(reserved_sanses.filter(sans_id = sans.id ).values())
-            capacity = 1 - len(orm.rawQuery("SELECT \"API_reserve\".\"sans_id\", COUNT(\"API_reserve\".\"sans_id\") AS \"total\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" IN ({}) AND \"API_reserve\".\"isCancelled\" = False AND \"API_reserve\".\"sans_id\" = {}) GROUP BY \"API_reserve\".\"sans_id\" ORDER BY \"total\" ASC".format(", ".join(this_week_days_date),sans.id)))
-            
-            if(capacity<1):
+            # capacity = 1 - len(orm.rawQuery("SELECT \"API_reserve\".\"sans_id\", COUNT(\"API_reserve\".\"sans_id\") AS \"total\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE ANY (\'{}\') AND \"API_reserve\".\"isCancelled\" = False AND \"API_reserve\".\"sans_id\" = {}) GROUP BY \"API_reserve\".\"sans_id\" ORDER BY \"total\" ASC".format("{"+", ".join(this_week_days_date)+"}", sans.id)))
+            # capacity = orm.rawQuery("SELECT \"API_reserve\".\"sans_id\", COUNT(\"API_reserve\".\"sans_id\") AS \"total\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE ANY (\'{}\') AND \"API_reserve\".\"isCancelled\" = False AND \"API_reserve\".\"sans_id\" = {}) GROUP BY \"API_reserve\".\"sans_id\" ORDER BY \"total\" ASC".format("{"+", ".join(this_week_days_date)+"}", sans.id))
+            query = "SELECT \"API_reserve\".\"id\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE ANY (\'{}\') AND \"API_reserve\".\"sans_id\" = {} )".format("{" + ", ".join(this_week_days_date) + "}", sans.id)
+            c = orm.rawQuery(query)
+            capacity = 1 - len(c)
+            if(capacity==0):
                 is_reserved = True
-            result[sans.weekDay].append({"sans":orm.toDict(sans),"is_reserved": is_reserved , 'capacity':capacity})
+                result[sans.weekDay].append({"sans":orm.toDict(sans),"is_reserved": True , 'capacity':0 ,'reserveId':c[0].id})
+            else:
+                result[sans.weekDay].append({"sans":orm.toDict(sans),"is_reserved": is_reserved , 'capacity':capacity})
 
         return (result,start_week_date.__str__().replace('-','/'))
 
