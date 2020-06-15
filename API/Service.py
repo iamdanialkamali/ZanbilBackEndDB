@@ -145,7 +145,7 @@ class ServiceController(APIView):
             description = data.get('description')
             fee = data.get('price')
             address = data.get('address')
-            sanses = literal_eval(data.get('sanses'))
+            sanses = data.get('sanses')
             cancellation_range = data.get('cancellation_range')
 
             validator = FieldValidator(request.data)
