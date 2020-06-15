@@ -1,7 +1,7 @@
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status as restStatus
 
 from .models import Business, BusinessFile, Service
 import json
@@ -46,7 +46,7 @@ class BusinessController(APIView):
                 )
                 mybusiness = orm.select(Business,owner_id=user_id,name=name)[0]
 
-            return Response({"business":orm.toDict(mybusiness),"pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness.id))}, status=status.HTTP_200_OK)
+            return Response({"business":orm.toDict(mybusiness),"pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness.id))}, status=restStatus.HTTP_200_OK)
 
          # except Exception :
          #     return Response({},status=status.HTTP_400_BAD_REQUEST)
@@ -66,7 +66,7 @@ class BusinessController(APIView):
                     "business":orm.toDict(mybusiness),
                     "services":orm.toDict(orm.select(Service,business_id=mybusiness.id)),
                     "pictures":orm.toDict(orm.select(BusinessFile,business_id=mybusiness.id))
-                }, status= status.HTTP_200_OK)
+                }, status= restStatus.HTTP_200_OK)
 
         # except Exception:
         #     return Response({}, status= status.HTTP_400_BAD_REQUEST)
@@ -100,13 +100,13 @@ class BusinessController(APIView):
                            )
 
                 if not status:
-                     return Response({},status=status.HTTP_400_BAD_REQUEST)
+                     return Response({},status=restStatus.HTTP_400_BAD_REQUEST)
                 mybusiness = orm.select(Business, id=id)[0]
                 return Response(
                     {
                         "business": orm.toDict(mybusiness),
                         "pictures": orm.toDict(orm.select(BusinessFile, business_id=mybusiness.id))
-                    }, status=status.HTTP_200_OK)
+                    }, status=restStatus.HTTP_200_OK)
          # except Exception :
          #     return Response({},status=status.HTTP_400_BAD_REQUEST)
     def post(self, request, format=None, *args, **kwargs):
@@ -130,7 +130,7 @@ class BusinessController(APIView):
                     }
                 )
             return Response(
-                data, status= status.HTTP_200_OK)
+                data, status= restStatus.HTTP_200_OK)
 
         # except Exception:
         #     return Response({}, status= status.HTTP_400_BAD_REQUEST)
@@ -150,7 +150,7 @@ class BusinessSearchController(APIView):
 
             res = orm.rawQuery(query)
             resDict = orm.toDict(res)
-            return Response(resDict, status=status.HTTP_200_OK)
+            return Response(resDict, status=restStatus.HTTP_200_OK)
 
         # except Exception:
         #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
