@@ -29,8 +29,8 @@ class CancellationController(APIView):
 
 
             if(True):
-                selected_Reserve = orm.select(Reserve,id=reserve_id)[0]
-                if user_id != selected_Reserve.user_id:
+                selected_Reserve = orm.select(Reserve,id=int(reserve_id))[0]
+                if int(user_id) != selected_Reserve.user_id:
                     return Response({"its not your reservation"}, status=status.HTTP_403_FORBIDDEN)
 
                 #find reservation dateTime
@@ -38,18 +38,17 @@ class CancellationController(APIView):
                     reserveDate=selected_Reserve.date.split("/");
                 else:
                     reserveDate=selected_Reserve.date.split("-");
-                sans = orm.select(Sans,id=selected_Reserve.sans_id)[0]
-                reserveTime=sans.startTime.split(":");
-                reserveDateTime=JalaliDatetime(int(reserveDate[0]),int(reserveDate[1]),int(reserveDate[2]), int(reserveTime[0]), int(reserveTime[1]),0);
+                # sans = orm.select(Sans,id=selected_Reserve.sans_id)[0]
+                # reserveTime=sans.startTime.split(":");
+                # reserveDateTime=JalaliDatetime(int(reserveDate[0]),int(reserveDate[1]),int(reserveDate[2]), int(reserveTime[0]), int(reserveTime[1]),0);
 
                 #find cancellation range
                 service = orm.select(Service,id=selected_Reserve.service_id)[0]
 
-                duration = service.cancellation_range.split(":")
-                delta = datetime.timedelta(hours=int(duration[0])-1, minutes=int(duration[1]))
+                duration = service.cancellation_range
+                delta = datetime.timedelta(minutes=int(duration))
 
-                #check isn't it late
-                if(JalaliDatetime.now()+delta < reserveDateTime):
+                if((datetime.datetime.now().replace(tzinfo=None)+delta) < selected_Reserve.createdAt.replace(tzinfo=None)):
                     orm.update(Reserve,selected_Reserve.id,is_cancelled=True)
                     return Response({"done!"}, status=status.HTTP_200_OK)
                 else:
