@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+import json
 from datetime import datetime
 
 from django.http import HttpResponse, FileResponse
@@ -7,12 +8,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser
-from  .models import BusinessFile,MessageFile,ServiceFile
+from .models import BusinessFile, MessageFile, ServiceFile, Service, Business
 from uuid import uuid4
 import API.orm as orm
 
 class Image(APIView):
-    parser_classes = (MultiPartParser,)
+
 
     def put(self, request, format=None, *args, **kwargs):
         try:
@@ -27,14 +28,14 @@ class Image(APIView):
         if service:
             service_id = request.data['serviceId']
             orm.insert(ServiceFile,service_id=service_id,address=picture.name+"|"+picture.content_type)
-            pic = orm.toDict(orm.select(BusinessFile,messageId=ServiceFile,address=picture.name+"|"+picture.content_type)[0])
+            pic = orm.toDict(orm.select(ServiceFile,service_id=service_id,address=picture.name+"|"+picture.content_type)[0])
 
             file = open("uploads/service/" + picture.name, 'wb')
 
         elif business:
             business_id = request.data['businessId']
             orm.insert(BusinessFile,service_id=business_id,address=picture.name+"|"+picture.content_type)
-            pic = orm.toDict(orm.select(BusinessFile,messageId=messageId,address=picture.name+"|"+picture.content_type)[0])
+            pic = orm.toDict(orm.select(BusinessFile,business_id=business_id,address=picture.name+"|"+picture.content_type)[0])
 
             file = open("uploads/business/" + picture.name, 'wb')
 
@@ -51,26 +52,35 @@ class Image(APIView):
 
 
     def post(self, request, format=None, *args, **kwargs):
-        service = int(request.data.get('service',0))
-        business = int(request.data.get('business',0))
         message = int(request.data.get('message',0))
-        id = request.data.get('id',1)
+        id = request.data.get('id',None)
+        userId = request.GET.get("userId")
 
-        if service:
+        if id is None:
+            return HttpResponse(json.dumps({"error":"id ارسال نشده است"}).encode(),status=400,content_type="application/json")
+        if int(request.data.get('serviceId',0)):
             service_id = request.data['serviceId']
+            if len(orm.select(Business,id=orm.select(Service,id=service_id)[0].business_id,owner_id=userId)) ==0:
+                return HttpResponse(json.dumps({"error": "سرویس متعلق به شما نیست"}).encode(), status=400,
+                                    content_type="application/json")
             pic = orm.select(ServiceFile,service_id=service_id,id=id)
+            if len(pic) == 0:
+                pic =  orm.select(ServiceFile)[0]
             data = pic[0].address.split("|")
             file = open("uploads/service/" + data[0], 'rb')
             return HttpResponse(file.read(), content_type=data[1])
 
-        elif business:
+        elif int(request.data.get('businessId',0)):
             business_id = request.data['businessId']
+            if len(orm.select(Business,id=business_id,user_id=userId)) ==0:
+                return HttpResponse(json.dumps({"error": "بیزینس متعلق به شما نیست"}).encode(), status=400,
+                                    content_type="application/json")
             pic = orm.select(BusinessFile,service_id=business_id,id=id)
             data = pic[0].address.split("|")
             file = open("uploads/business/" + data[0], 'rb')
             return HttpResponse(file.read(), content_type=data[1])
 
-        elif message:
+        elif int(request.data.get('messageId',0)):
             messageId = request.data['messageId']
             pic = orm.select(MessageFile,messageId=messageId,id=id)
             data = pic[0].address.split("|")

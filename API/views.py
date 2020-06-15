@@ -14,7 +14,7 @@ from .models import Review,Service
 import json
 from .Token import Tokenizer as tokenizer
 class TEST(APIView):
-    parser_classes = (MultiPartParser,)
+
 
     def post(self, request, format=None, *args, **kwargs):
         try:

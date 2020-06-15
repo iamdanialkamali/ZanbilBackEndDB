@@ -68,17 +68,16 @@ class TimeTableController(APIView):
 
         orm.insert(TimeTable, name="timeTable", business_id=business_id)
         timeTable = orm.select(TimeTable, business_id=business_id)[-1]
-        for day in days:
-            for data in day:
-                sans = data['sans']
-                orm.insert(Sans,
-                           weekDay=sans['weekday'],
-                           startTimeHour=int(sans['startTime'][:2]),
-                           startTimeMinute=int(sans['startTime'][3:]),
-                           endTimeHour=int(sans['endTime'][:2]),
-                           endTimeMinute=int(sans['endTime'][3:]),
-                           timeTable_id=timeTable.id
-                           )
+        for data in days:
+            sans = data['sans']
+            orm.insert(Sans,
+                       weekDay=sans['weekday'],
+                       startTimeHour=int(sans['startTime'][:2]),
+                       startTimeMinute=int(sans['startTime'][3:]),
+                       endTimeHour=int(sans['endTime'][:2]),
+                       endTimeMinute=int(sans['endTime'][3:]),
+                       timeTable_id=timeTable.id
+                       )
         return timeTable
 
 #

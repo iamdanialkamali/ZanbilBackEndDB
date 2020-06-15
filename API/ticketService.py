@@ -28,13 +28,13 @@ class TicketManager:
         ticket.addNormalMessage(text, fromUserId, files, toUserId)
         return ticket
 
-    @staticmethod
-    def addAdminMessage(ticketId, text, fromUserId, files=[]):
-        ticket = Ticket.objects.get(id=ObjectId(ticketId))
-        toUserId = ticket.userId
-        ticket = TicketManager.addMessageAndFiles(ticket, text=text, fromUserId=fromUserId, toUserId=toUserId,
-                                                  files=files)
-        return ticket.toDict()
+    # @staticmethod
+    # def addAdminMessage(ticketId, text, fromUserId, files=[]):
+    #     ticket = Ticket.objects.get(id=ObjectId(ticketId))
+    #     toUserId = ticket.userId
+    #     ticket = TicketManager.addMessageAndFiles(ticket, text=text, fromUserId=fromUserId, toUserId=toUserId,
+    #                                               files=files)
+    #     return ticket.toDict()
 
     @staticmethod
     def addUserMessage(ticketId, text, fromUserId, files=[]):
@@ -42,7 +42,7 @@ class TicketManager:
         if fromUserId is not None:
             filters['userId'] = fromUserId
         ticket = Ticket.objects.get(**filters)
-        ticket = TicketManager.addMessageAndFiles(ticket, text=text, fromUserId=fromUserId, toUserId=None, files=files)
+        ticket = TicketManager.addMessageAndFiles(ticket, text=text, fromUserId=fromUserId,  files=files)
         ticket.save()
         return ticket
 
@@ -115,11 +115,16 @@ class TicketManager:
         for index, message in enumerate(messages):
             id = message['fromUserId']
             if idToName.get(id, None) is None:
-                userName = orm.select(User,id=id)[0].username
+                userName = orm.select(User,id=id)
+                if len(userName) == 0:
+                    userName = orm.select(User,id=1)
+                else:
+                    userName = userName[0].username
+                    print("IDDDDDDDDDDD   ",id)
                 idToName[id] = userName
 
             message['name'] = idToName[id]
-            message['attachments'] = [orm.select(MessageFile,id=x) for x in message['files']]
+            message['attachments'] = [orm.toDict(orm.select(MessageFile,id=x)) for x in message['files']]
             dictedTickets['messages'][index] = message
 
         return dictedTickets
