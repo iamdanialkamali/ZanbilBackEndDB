@@ -15,7 +15,7 @@ from .validation import FieldValidator
 
 
 class ServiceController(APIView):
-    parser_classes = (MultiPartParser,)
+    #
 
     def put(self, request, format=None, *args, **kwargs):
 
@@ -44,7 +44,7 @@ class ServiceController(APIView):
         price = data.get('price')
         business_id = data.get('business_id')
         address = data.get('address')
-        days = literal_eval(data.get('days'))
+        days = data.get('days')
         cancellation_range = data.get('cancellation_range')
         timetable = TimeTableController.buildTimetable(days, business_id)
 

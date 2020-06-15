@@ -14,7 +14,7 @@ from API.validation import FieldValidator
 
 
 class TicketController(APIView):
-    parser_classes = (MultiPartParser,)
+
 
     def put(self, request, format=None, *args, **kwargs):
 
@@ -28,19 +28,15 @@ class TicketController(APIView):
         if validator.statusCode != 200:
             Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
         data = request.data
-        toUserId = data.get("toUserId",None)
         businessId = data.get("businessId")
         files = data.get("files",[])
         if isinstance(files,str):
             files = literal_eval(files)
         business = orm.select(Business,id=businessId)[0]
         admin = business.owner_id == user_id
-        ticket = TicketManager.createTicket(request.data.get("subject"),businessId,toUserId)
+        ticket = TicketManager.createTicket(request.data.get("subject"),businessId,user_id)
         ticket.save()
-        if admin:
-            TicketManager.addAdminMessage(ticket.id,data.get("text"),fromUserId=user_id,files=files)
-        else:
-            TicketManager.addUserMessage(ticket.id,data.get("text"),user_id,files)
+        TicketManager.addUserMessage(ticket.id,data.get("text"),user_id,files)
         responseTicket = TicketManager.getTicket(ticket.id)
         return Response({
             'ticket': responseTicket
