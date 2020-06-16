@@ -138,7 +138,7 @@ class ServiceController(APIView):
 
     def patch(self, request, format=None, *args, **kwargs):
 
-        try:
+        # try:
             from ast import literal_eval
             try:
                 user_id = request.GET['userId']
@@ -190,8 +190,8 @@ class ServiceController(APIView):
                                        endTimeMinute=int(sans['endTime'][3:]))):
                         return Response({}, status=status.HTTP_400_BAD_REQUEST)
             return Response({}, status=status.HTTP_200_OK)
-        except Exception:
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+        # except Exception:
+        #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, format=None, *args, **kwargs):
 
