@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 from khayyam import *
 
@@ -91,7 +92,11 @@ class ServiceController(APIView):
         service_data = orm.toDict(service)
         timeTable = orm.select(TimeTable, id=service.timeTable_id)[0]
 
+
         today = JalaliDate.today().__str__().replace('-', '/')
+        if request.GET.get('date'):
+            today = JalaliDate.fromtimestamp(float(request.GET.get('date'))).__str__().replace('-', '/')#datetime.fromtimestamp(float(request.GET.get('date')))
+        print(today)
         sanses, start_of_week_date = SansController.getSansForPage(timeTable_id=timeTable.id, date=today)
 
         return Response({"service": service_data,

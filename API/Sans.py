@@ -61,10 +61,9 @@ class SansController:
             c = orm.rawQuery(query)
             capacity = 1 - len(c)
             if(capacity==0):
-                is_reserved = True
                 result[sans.weekDay].append({"sans":orm.toDict(sans),"is_reserved": True , 'capacity':0 ,'reserveId':c[0].id})
             else:
-                result[sans.weekDay].append({"sans":orm.toDict(sans),"is_reserved": is_reserved , 'capacity':capacity})
+                result[sans.weekDay].append({"sans":orm.toDict(sans),"is_reserved": False , 'capacity':capacity})
 
         return (result,start_week_date.__str__().replace('-','/'))
 
