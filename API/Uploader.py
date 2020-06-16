@@ -28,24 +28,32 @@ class Image(APIView):
             pic = orm.toDict(orm.select(ServiceFile,service_id=service_id,address=picture.name+"|"+picture.content_type)[0])
 
             file = open("uploads/service/" + picture.name, 'wb')
-
+            for byte in picture:
+                file.write(bytearray(byte))
+            file.close()
+            return Response({"pic":pic}, status=status.HTTP_200_OK)
         elif request.data.get('businessId'):
             business_id = request.data['businessId']
             orm.insert(BusinessFile,service_id=business_id,address=picture.name+"|"+picture.content_type)
             pic = orm.toDict(orm.select(BusinessFile,business_id=business_id,address=picture.name+"|"+picture.content_type)[0])
 
             file = open("uploads/business/" + picture.name, 'wb')
-
+            for byte in picture:
+                file.write(bytearray(byte))
+            file.close()
+            return Response({"pic":pic}, status=status.HTTP_200_OK)
         elif request.data.get('messageId'):
             messageId = request.data['messageId']
             orm.insert(MessageFile,messageId=messageId,address=picture.name+"|"+picture.content_type)
             pic = orm.toDict(orm.select(MessageFile,messageId=messageId,address=picture.name+"|"+picture.content_type)[0])
             file = open("uploads/message/"+ picture.name, 'wb')
 
-        for byte in picture:
-            file.write(bytearray(byte))
-        file.close()
-        return Response({"pic":pic}, status=status.HTTP_200_OK)
+            for byte in picture:
+                file.write(bytearray(byte))
+            file.close()
+            return Response({"pic":pic}, status=status.HTTP_200_OK)
+        return Response({"pic":"کیرم توش"}, status=status.HTTP_404_NOT_FOUND)
+
 
 
     def post(self, request, format=None, *args, **kwargs):
