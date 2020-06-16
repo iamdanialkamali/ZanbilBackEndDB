@@ -181,7 +181,6 @@ class ServiceController(APIView):
                 if sans.get('is_deleted') == "1":
                     orm.delete(Sans, id=sans['sans_id'])
                 else:
-
                     if not (orm.update(Sans, id=sans['sans_id'],
                                        weekDay=sans['weekday'],
                                        startTimeHour=int(sans['startTime'][:2]),

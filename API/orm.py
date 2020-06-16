@@ -72,12 +72,12 @@ def delete(model,**options):
             if "__gt" in key:
                 print("WTF")
             else:
-                query += "AND {}={} ".format(key,value)
+                query += "AND \"{}\"={} ".format(key,value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
         c.execute("delete from \"{}\" where {};".format(modelName,query))
         return namedtuplefetchall(c)
 def update(model,id,**options):
-    try:
+    # try:
         with connection.cursor() as c:
             query =  " "
             for key, value in options.items():
@@ -86,13 +86,13 @@ def update(model,id,**options):
                 else:
                     options[key] = str(value)
             for key,value in options.items():
-                query += "{}={},".format(key,value)
+                query += "\"{}\"={},".format(key,value)
             modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
             final = "UPDATE \"{}\" SET {}  where id={};".format(modelName,query[:-1],id)
             c.execute(final)
             return True
-    except:
-        return False
+    # except:
+        # return False
 def rawQuery(query):
     with connection.cursor() as c:
         c.execute(query)
