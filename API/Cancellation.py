@@ -33,11 +33,7 @@ class CancellationController(APIView):
                 if int(user_id) != selected_Reserve.user_id:
                     return Response({"its not your reservation"}, status=status.HTTP_403_FORBIDDEN)
 
-                #find reservation dateTime
-                if(selected_Reserve.date[4]=="/"):
-                    reserveDate=selected_Reserve.date.split("/");
-                else:
-                    reserveDate=selected_Reserve.date.split("-");
+                reserveDate=selected_Reserve.createdAt
                 # sans = orm.select(Sans,id=selected_Reserve.sans_id)[0]
                 # reserveTime=sans.startTime.split(":");
                 # reserveDateTime=JalaliDatetime(int(reserveDate[0]),int(reserveDate[1]),int(reserveDate[2]), int(reserveTime[0]), int(reserveTime[1]),0);
@@ -48,11 +44,14 @@ class CancellationController(APIView):
                 duration = service.cancellation_range
                 delta = datetime.timedelta(minutes=int(duration))
 
-                if((datetime.datetime.now().replace(tzinfo=None)+delta) < selected_Reserve.createdAt.replace(tzinfo=None)):
-                    orm.update(Reserve,selected_Reserve.id,is_cancelled=True)
-                    return Response({"done!"}, status=status.HTTP_200_OK)
+                if(datetime.datetime.now()+delta < selected_Reserve.createdAt and  not selected_Reserve.isCancelled):
+                    orm.update(Reserve,selected_Reserve.id,isCancelled=True)
+                    return Response({"message":"done!"}, status=status.HTTP_200_OK)
+                elif(selected_Reserve.isCancelled):
+                    return Response({"message":"قبلا کنسل شده است."}, status=status.HTTP_400_BAD_REQUEST)
+
                 else:
-                    return Response({"its too late for cancellation"}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({"message":"برای کنسل کردن دیر شده است."}, status=status.HTTP_400_BAD_REQUEST)
 
         # except Exception :
         #     return Response({},status=status.HTTP_400_BAD_REQUEST)

@@ -24,39 +24,37 @@ class ReserveController(APIView):
             service_id = data['service_id']
             date = data['date']
             sans = orm.select(Sans,id=sans_id)[0]
-            verified = True
 
-            # reserves = Reserve.objects.filter(sans_id=sans_id,
-            #                                 date=date,
-            #                                 service_id=service_id,
-            #                                 is_cancelled=False).values()
-            reserves = orm.select(Reserve,sans_id=sans_id,date=date,service_id=service_id,isCancelled=False)
+            year, month, day = map(int, date.split("-"))
+
+            createdAt = datetime(
+                      year=year,
+                      month=month,
+                      day=day,
+                      hour=sans.startTime.hour,
+                      minute=sans.startTime.minute,
+                  )
+
+
+            reserves = orm.select(Reserve,sans_id=sans_id, createdAt="\""+createdAt.__str__() + "\"",service_id=service_id,isCancelled=False)
+
+            verified = jdatetime.datetime.fromgregorian(datetime=createdAt).weekday() == sans.weekDay
+
+            if not verified:
+                return Response({"message":"تاریخ با سانس آن همخوانی ندارد."}, status=status.HTTP_400_BAD_REQUEST)
+
             free = len(reserves) == 0
-            if free and verified:
-
-                # reserve = Reserve.objects.create(user_id=user_id,
-                #                                   description=description,
-                #                                   sans_id=sans_id,
-                #                                   date=date,
-                #                                   service_id=service_id,
-                #                                   )
-                year,month,day =map(int,date.split("-"))
+            if free:
                 orm.insert(Reserve,user_id=user_id,
                                                   description=description,
                                                   sans_id=sans_id,
-                                                  date=date,
-                                                  createdAt="\""+jdatetime.datetime(
-                                                      year=year,
-                                                      month=month,
-                                                      day=day,
-                                                      hour=sans.startTimeHour,
-                                                      minute=sans.startTimeMinute
-                                                  ).togregorian().__str__() + "\"",
+                                                  # date=date,
+                                                  createdAt="\""+createdAt.__str__() + "\"",
                                                   service_id=service_id
                            ,isCancelled=False)
                 return Response("DONE", status=status.HTTP_200_OK)
             else:
-                raise Exception
+                return Response({"message":"قبلا رزرو شده است."}, status=status.HTTP_400_BAD_REQUEST)
 
         # except Exception:
         #     return Response({}, status=status.HTTP_400_BAD_REQUEST)
