@@ -1,6 +1,5 @@
 
-Gpython:S1481"%Remove the unused local variable "w".(€ü¾åûÿÿÿÿ8šü¼É¨.
-Ypython:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8…ÀùÒ¨.
-qpython:S1542"ORename function "toDict" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(“®ºžûÿÿÿÿ8šü¼É¨.
-@python:S125"Remove this commented out code.(—ÉÄúÿÿÿÿ8šü¼É¨.
-spython:S1542"QRename function "rawQuery" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(”’äÈýÿÿÿÿ8šü¼É¨.
+Ipython:S1481="%Remove the unused local variable "w".(€ü¾åûÿÿÿÿ8šü¼É¨.
+spython:S1542"ORename function "toDict" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(“®ºžûÿÿÿÿ8šü¼É¨.
+Bpython:S125"Remove this commented out code.(—ÉÄúÿÿÿÿ8šü¼É¨.
+upython:S1542`"QRename function "rawQuery" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(”’äÈýÿÿÿÿ8šü¼É¨.

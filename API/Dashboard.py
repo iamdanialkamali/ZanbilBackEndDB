@@ -1,6 +1,6 @@
 from django.db.models import Count
 from khayyam import  JalaliDate,JalaliDatetime
-from datetime import timedelta
+from datetime import timedelta, datetime
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -108,9 +108,9 @@ class DashboardController(APIView):
                 allReserve.append({
                     "serviceName":service.name,
                     "date":reserve.date,
-                    "startTime":"{}:{}".format(str(sans.startTimeHour).zfill(2),str(sans.startTimeMinute).zfill(2)),
-                    "endTime":"{}:{}".format(str(sans.endTimeHour).zfill(2),str(sans.endTimeMinute).zfill(2)),
-                    })
+                    "startTime":datetime.time(int(sans['startTime'][:2]),int(sans['startTime'][3:])),
+                    "endTime":datetime.time(int(sans['endTime'][:2]),int(sans['endTime'][3:]))
+                       })
         allReserve=sorted(allReserve,key=lambda k: k['date'])
         return allReserve
 
@@ -130,8 +130,9 @@ class DashboardController(APIView):
                     int(splited_date[0]),
                     int(splited_date[1]),
                     int(splited_date[2]),
-                    int(sans.startTimeHour),
-                    int(sans.startTimeMinute),
+                    int(sans.startTime.hour),
+                    int(sans.startTime.minute),
+
                     0
                 )
 

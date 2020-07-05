@@ -1,4 +1,5 @@
 
-Opython:S1481"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8´ÓÞ–©.
-[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8´ÓÞ–©.
-Opython:S1481"+Remove the unused local variable "address".(ÈÉŸˆøÿÿÿÿ8£ŠßÖ¨.
+Jpython:S1481<"+Remove the unused local variable "message".(®»–à8•û£Í«.
+upython:S1192A"QDefine a constant instead of duplicating this literal "application/json" 3 times.(‘³ù„üÿÿÿÿ8„£»Í«.
+[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8´ÓÞ–©.
+Opython:S1481"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8´ÓÞ–©.

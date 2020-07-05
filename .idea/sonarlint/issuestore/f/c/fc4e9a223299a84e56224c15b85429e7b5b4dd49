@@ -1,6 +1,5 @@
 
-[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8¸°Õ–©.
-=python:S125"Remove this commented out code.(™ìï¡8Á³…‰¦.
-=python:S125#"Remove this commented out code.(Ïïƒ—8—ò…‰¦.
-Tpython:S1120">Replace this generic exception class with a more specific one.(Œåß%
-Gpython:S1481"(Remove the unused local variable "sans".(Èô¥Ý8……‰¦.
+=python:S125%"Remove this commented out code.(Ïïƒ—8—ò…‰¦.
+Tpython:S112;">Replace this generic exception class with a more specific one.(Œåß%
+[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8¸°Õ–©.
+=python:S125"Remove this commented out code.(™ìï¡8Á³…‰¦.

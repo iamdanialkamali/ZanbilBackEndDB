@@ -22,42 +22,40 @@ class AccountPageController(APIView):
             reserves = orm.select(Reserve,user_id=user_id)
             reserves_list = []
             for reserve in reserves:
-                sans = orm.select(Sans, id=reserve.sans_id)[0]
                 service = orm.select(Service,id=reserve.service_id)[0]
-                if(reserve.date[4]=="/"):
-                    reserveDate=reserve.date.split("/");
-                else:
-                    reserveDate=reserve.date.split("-");
-               
-                reserveTime=sans.startTime.split(":");
-                
-                reserveDateTime=JalaliDatetime(int(reserveDate[0]),int(reserveDate[1]),int(reserveDate[2]), int(reserveTime[0]), int(reserveTime[1]),0)
+                reserveDateTime= reserve.createdAt
 
                 #find cancellation range
-                duration = service.cancellation_range.split(":")
-                delta = datetime.timedelta(hours=int(duration[0])-1, minutes=int(duration[1]))
+
+                delta = datetime.timedelta(minutes=service.cancellation_range)
 
                 #check isn't it late
-                if(JalaliDatetime.now() + delta < reserveDateTime):
+                if(datetime.datetime.now() + delta < reserveDateTime):
                     reserve = {
-                        # 'reserve':ReserveSerializer(reserve).data,
-                        'reserve':reserve,
+                        'reserve':orm.toDict(reserve),
                         'is_cancellabe':True
                     }
                 else:
                     reserve = {
-                        'reserve':reserve,
+                        'reserve':orm.toDict(reserve),
                         'is_cancellabe':False
                     }
                     reserves_list.append(reserve)
 
 
             user = orm.select(User,id=user_id)
-            businseses = orm.select(Business, owner_id=user_id)
 
+            user = orm.toDict(user[0])
+            del user['password']
+            businseses = orm.select(Business, owner_id=user_id)
+            if len(user) == 0:
+                return Response({
+                            'message' : "کاربر مورد نظر یافت نشد"
+
+                        }, status=status.HTTP_404_NOT_FOUND)
             return Response({
-                        'user':orm.toDict(user[0]),
-                        'reserves': orm.toDict(reserves_list),
+                        'user':user,
+                        'reserves': reserves_list,
                         'businseses':orm.toDict(businseses)
 
                     }, status=status.HTTP_200_OK)

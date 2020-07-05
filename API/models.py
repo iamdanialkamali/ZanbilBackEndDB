@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from datetime import datetime
+from datetime import datetime,time
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -57,15 +57,13 @@ class Service(models.Model):
 
 class Sans(models.Model):
     id = models.AutoField(primary_key=True)
-    startTimeHour = models.SmallIntegerField(default=0)
-    startTimeMinute = models.SmallIntegerField(default=0)
-    endTimeHour = models.SmallIntegerField(default=0)
-    endTimeMinute = models.SmallIntegerField(default=0)
+    startTime = models.TimeField(default=time(0,0,0))
+    endTime = models.TimeField(default=time(0,0,0))
     timeTable = models.ForeignKey(to=TimeTable, on_delete=models.DO_NOTHING, related_name='sanses')
     weekDay = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
-        return str(self.startTimeHour) + ' : ' + str(self.startTimeMinute) + "-->" +str(self.endTimeHour) + ' : ' + str(self.endTimeMinute)
+        return str(self.startTime) + "-->" + str(self.endTime)
 
 
 class Reserve(models.Model):
@@ -74,7 +72,6 @@ class Reserve(models.Model):
     service = models.ForeignKey(to=Service, on_delete=models.DO_NOTHING, null=True)
     sans = models.ForeignKey(Sans, on_delete=models.DO_NOTHING, null=True, blank=True)
     description = models.TextField()
-    date = models.CharField(max_length=150)
     createdAt = models.DateTimeField(default=datetime.now())
     isCancelled = models.BooleanField(default=False)
 

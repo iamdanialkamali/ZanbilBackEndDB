@@ -1,7 +1,6 @@
-from khayyam import  JalaliDate
 from datetime import timedelta
 from .models import Sans,Reserve
-
+import jdatetime
 from django.db.models import Count
 
 import API.orm as orm
@@ -19,10 +18,11 @@ class SansController:
     def getSansForPage(timeTable_id,date):
 
         #calculate weekdays date of given date
-        date_splited = date.split('/')
-        Jdate = JalaliDate(int(date_splited[0]), int(date_splited[1]), int(date_splited[2]))
-        start_week_date = Jdate - timedelta(days=Jdate.weekday())
-        today_weekday = JalaliDate.today().weekday()
+
+
+        start_week_date = (date - timedelta(days=jdatetime.datetime.fromgregorian(datetime=date).weekday())).replace(hour=0,minute=0,second=0)
+        end_week_date = start_week_date + timedelta(days=7)
+        today_weekday = jdatetime.datetime.today().weekday()
         # make a list of weekdays date in our format
         this_week_days_date = []
         weekday_date=start_week_date
@@ -47,17 +47,13 @@ class SansController:
         result=[[],[],[],[],[],[],[]]
         for sans in selected_sanses:
             is_reserved = False
-            if(start_week_date < JalaliDate.today()-timedelta(today_weekday)):
+            if(start_week_date < jdatetime.datetime.today()-timedelta(today_weekday)):
                 is_reserved = True
 
-            elif(start_week_date == JalaliDate.today()-timedelta(today_weekday) and  sans.weekDay<today_weekday  ):
+            elif(start_week_date == jdatetime.datetime.today()-timedelta(today_weekday) and  sans.weekDay<today_weekday  ):
                 is_reserved = True
 
-            # capacity = 1
-            # capacity = 1 - len(reserved_sanses.filter(sans_id = sans.id ).values())
-            # capacity = 1 - len(orm.rawQuery("SELECT \"API_reserve\".\"sans_id\", COUNT(\"API_reserve\".\"sans_id\") AS \"total\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE ANY (\'{}\') AND \"API_reserve\".\"isCancelled\" = False AND \"API_reserve\".\"sans_id\" = {}) GROUP BY \"API_reserve\".\"sans_id\" ORDER BY \"total\" ASC".format("{"+", ".join(this_week_days_date)+"}", sans.id)))
-            # capacity = orm.rawQuery("SELECT \"API_reserve\".\"sans_id\", COUNT(\"API_reserve\".\"sans_id\") AS \"total\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE ANY (\'{}\') AND \"API_reserve\".\"isCancelled\" = False AND \"API_reserve\".\"sans_id\" = {}) GROUP BY \"API_reserve\".\"sans_id\" ORDER BY \"total\" ASC".format("{"+", ".join(this_week_days_date)+"}", sans.id))
-            query = "SELECT \"API_reserve\".\"id\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE ANY (\'{}\') AND \"API_reserve\".\"sans_id\" = {} )".format("{" + ", ".join(this_week_days_date) + "}", sans.id)
+            query = "SELECT \"API_reserve\".\"id\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"createdAt\" >= \'{}\' AND \"API_reserve\".\"createdAt\" <=  \'{}\' AND \"API_reserve\".\"sans_id\" = {} )".format(start_week_date,end_week_date, sans.id)
             c = orm.rawQuery(query)
             capacity = 1 - len(c)
             if(capacity==0):

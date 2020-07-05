@@ -60,7 +60,13 @@ class BusinessController(APIView):
                 Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
             id = request.GET['business_id']
-            mybusiness = orm.select(Business, id=id)[0]
+            mybusiness = orm.select(Business, id=id)
+            if len(mybusiness) == 0:
+                return Response({
+                    'message': "کاربر مورد نظر یافت نشد"
+
+                }, status=restStatus.HTTP_404_NOT_FOUND)
+            mybusiness = mybusiness[0]
             return Response(
                 {
                     "business":orm.toDict(mybusiness),

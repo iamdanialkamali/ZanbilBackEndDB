@@ -1,8 +1,6 @@
 import json
-from datetime import datetime
-
 from khayyam import *
-
+import datetime
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -93,11 +91,16 @@ class ServiceController(APIView):
         timeTable = orm.select(TimeTable, id=service.timeTable_id)[0]
 
 
-        today = JalaliDate.today().__str__().replace('-', '/')
+        # today = JalaliDate.today().__str__().replace('-', '/')
+        # if request.GET.get('date'):
+        #     today = JalaliDate.fromtimestamp(float(request.GET.get('date'))).__str__().replace('-', '/')#datetime.datetime.fromtimestamp(float(request.GET.get('date')))
+        # print(today)
         if request.GET.get('date'):
-            today = JalaliDate.fromtimestamp(float(request.GET.get('date'))).__str__().replace('-', '/')#datetime.fromtimestamp(float(request.GET.get('date')))
-        print(today)
-        sanses, start_of_week_date = SansController.getSansForPage(timeTable_id=timeTable.id, date=today)
+            today = request.GET.get('date').split("-")
+            datetime.datetimeObject = datetime.datetime(int(today[0]),int(today[1]),int(today[2]))
+        else:
+            datetime.datetimeObject = datetime.datetime.now()
+        sanses, start_of_week_date = SansController.getSansForPage(timeTable_id=timeTable.id, date=datetime.datetimeObject)
 
         return Response({"service": service_data,
                          "sanses": sanses,
@@ -181,13 +184,15 @@ class ServiceController(APIView):
                 if sans.get('is_deleted') == "1":
                     orm.delete(Sans, id=sans['sans_id'])
                 else:
-
-                    if not (orm.update(Sans, id=sans['sans_id'],
+                    if not (orm.update(Sans,
+                                       id=sans['sans_id'],
                                        weekDay=sans['weekday'],
-                                       startTimeHour=int(sans['startTime'][:2]),
-                                       startTimeMinute=int(sans['startTime'][3:]),
-                                       endTimeHour=int(sans['endTime'][:2]),
-                                       endTimeMinute=int(sans['endTime'][3:]))):
+                                       startTime=datetime.time(int(sans['startTime'][:2]),
+                                                               int(sans['startTime'][3:])).__str__(),
+                                       endTime=datetime.time(int(sans['endTime'][:2]),
+                                                             int(sans['endTime'][3:])).__str__(),
+                                       )):
+
                         return Response({}, status=status.HTTP_400_BAD_REQUEST)
             return Response({}, status=status.HTTP_200_OK)
         # except Exception:
@@ -206,22 +211,22 @@ class ServiceController(APIView):
 
 
 class SearchController(APIView):
-    def post(self, request, format=None, *args, **kwargs):
+    def get(self, request, format=None, *args, **kwargs):
         # try:
             query = "SELECT \"API_service\".\"id\", \"business_id\", \"API_service\".\"timeTable_id\", \"API_service\".\"name\", \"API_service\".\"address\", \"API_service\".\"fee\", \"API_service\".\"rating\", \"API_service\".\"description\", \"API_service\".\"cancellation_range\" FROM \"API_service\" INNER JOIN \"API_business\" ON (\"API_service\".\"business_id\" = \"API_business\".\"id\") INNER JOIN \"API_category\" ON (\"API_business\".\"category_id\" = \"API_category\".\"id\") WHERE ( 1=1"
             data = request.GET
-            if data.get("service_name"):
+            if data.get("service_name",False):
                 query += " AND \"API_service\".\"name\" LIKE  {}".format("'%" + data.get("service_name") + "%'")
-            if data.get('business_name'):
+            if data.get('business_name',False):
                 query += " AND \"API_business\".\"name\" LIKE  {}".format("'%" + data.get('business_name') + "%'")
-            if data.get("min_price"):
-                query += " AND \"fee\" <= {}".format(data.get("max_price"))
-            if data.get("max_price"):
-                query += " AND \"fee\" >= {}".format(data.get("max_price"))
-            if data.get('category'):
+            if data.get("min_price",False):
+                query += " AND \"fee\" >= {}".format(float(data.get("min_price")))
+            if data.get("max_price",False):
+                query += " AND \"fee\" <= {}".format(float(data.get("max_price")))
+            if data.get('category',False):
                 query += " AND \"API_category\".\"name\" LIKE  {}".format("'%" + data.get('category') + "%'")
             query += ") ORDER BY \"rating\" DESC"
-            if data.get("sort_fee"):
+            if data.get("sort_fee",False):
                 query += ",\"fee\" DESC"
             res = orm.rawQuery(query)
             resDict = orm.toDict(res)
