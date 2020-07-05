@@ -1,3 +1,4 @@
+import jdatetime
 from django.db.models import Count
 from khayyam import  JalaliDate,JalaliDatetime
 from datetime import timedelta, datetime
@@ -22,7 +23,7 @@ class DashboardController(APIView):
             if validator.statusCode != 200:
                 Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             business_id = request.GET['id']
-            today = JalaliDate.today()
+            today = datetime.today()
             # reserves = Reserve.objects.filter(service_business__id=business_id)
             #
             # business = Business.objects.get(pk=business_id)
@@ -31,7 +32,7 @@ class DashboardController(APIView):
             numReserveInDay=self.findAllReserveForADay(today,business_id)
 
             #find all reserves for yesterday
-            yesterday = (JalaliDate.today()-timedelta(1)).__str__()
+            yesterday = today-timedelta(1)
             numReserveInYesterday=self.findAllReserveForADay(yesterday,business_id)
 
             #calculate increaseReservePercentageForDay
@@ -70,7 +71,7 @@ class DashboardController(APIView):
             popularService = self.findPopularService(today,business_id)
 
             #FIND upcoming reserves
-            upcomingReserve=self.getUpcomingReserve(today,business_id)
+            upcomingReserve=self.getUpcomingReserve(business_id)
 
             #  and all resrves
             allReserve=self.getAllReserve(business_id)
@@ -107,29 +108,28 @@ class DashboardController(APIView):
                 sans = orm.select(Sans, id=reserve.sans_id)[0]
                 allReserve.append({
                     "serviceName":service.name,
-                    "date":reserve.date,
-                    "startTime":datetime.time(int(sans['startTime'][:2]),int(sans['startTime'][3:])),
-                    "endTime":datetime.time(int(sans['endTime'][:2]),int(sans['endTime'][3:]))
+                    "createdAt":reserve.createdAt,
+                    "startTime":sans.startTime,
+                    "endTime":sans.endTime
                        })
-        allReserve=sorted(allReserve,key=lambda k: k['date'])
+        allReserve=sorted(allReserve,key=lambda k: k['createdAt'])
         return allReserve
 
 
     @staticmethod
-    def getUpcomingReserve(day,business_id):
+    def getUpcomingReserve(business_id):
         upcomingReserve=[]
         services=orm.select(Service,business_id=business_id)
-        now = JalaliDatetime.now()
+        now = datetime.now()
         reserves = []
         for service in services:
             reserves += orm.select(Reserve,service_id=service.id)
         for reserve in reserves:
                 sans = orm.select(Sans,id=reserve.sans_id)[0]
-                splited_date = reserve.date.split('-')
-                reserve_time = JalaliDatetime(
-                    int(splited_date[0]),
-                    int(splited_date[1]),
-                    int(splited_date[2]),
+                reserve_time = datetime(
+                    int(reserve.createdAt.year),
+                    int(reserve.createdAt.month),
+                    int(reserve.createdAt.day),
                     int(sans.startTime.hour),
                     int(sans.startTime.minute),
 
@@ -143,7 +143,7 @@ class DashboardController(APIView):
 
 
 
-        upcomingReserve=sorted(upcomingReserve,key=lambda k: k['date'])
+        upcomingReserve=sorted(upcomingReserve,key=lambda k: k['createdAt'])
         return upcomingReserve
 
     @staticmethod
@@ -156,7 +156,7 @@ class DashboardController(APIView):
             # # print(currentMonthReserve.query)
             # # q = Reserve.objects.raw("SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE BINARY %{}% AND \"API_reserve\".\"service_id\" = {})".format(day.__str__(),service.id))
             try:
-                query = "SELECT Count(*) FROM API_reserve WHERE date LIKE {} AND service_id={};".format("'%"+day.__str__()+"%'",service.id)
+                query = "SELECT Count(*) FROM API_reserve WHERE \"API_reserve\".\"createdAt\" >= \'{}\' AND \"API_reserve\".\"createdAt\" <=  \'{}\' AND service_id={};".format(day, day+timedelta(days=1), service.id)
                 reserves += orm.rawQuery(query)[0].count
             except:
                 pass
@@ -165,23 +165,17 @@ class DashboardController(APIView):
 
     @staticmethod
     def findAllReserveForAMonth(day,business_id):
-        day=day.__str__()
         # currentMonthReserve=Reserve.objects.filter(service__business__id=business_id , date__contains=day[:7])
-        query = "SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"API_service\".\"id\") WHERE (\"API_reserve\".\"date\" LIKE  {} AND \"business_id\" ={})".format("'%"+day+"%'",business_id)
+        query = "SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"API_service\".\"id\") WHERE ( \"API_reserve\".\"createdAt\" >= \'{}\' AND \"API_reserve\".\"createdAt\" <=  \'{}\' AND  \"business_id\" ={})".format(day,day+timedelta(days=30),business_id)
         numReserveInMonth= orm.rawQuery(query)[0].count
         return numReserveInMonth
 
     @staticmethod
-    def  findAllReserveForAWeek(day,business_id):
-        start_week_date = day - timedelta(days=JalaliDate.today().weekday())
-        this_week_days_date = []
-        weekday_date=start_week_date
-        for i in range(7):
-            this_week_days_date.append("'"+weekday_date.__str__()+"'")
-            weekday_date = weekday_date + timedelta(1)
+    def findAllReserveForAWeek(date,business_id):
+        start_week_date = (date - timedelta(days=jdatetime.datetime.fromgregorian(datetime=date).weekday())).replace(hour=0,minute=0,second=0)
+        end_week_date = start_week_date + timedelta(days=7)
         # currentWeekReserve=Reserve.objects.filter(service__business__id=business_id , date__in=this_week_days_date)
-        q = orm.rawQuery("SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"API_service\".\"id\") WHERE (\"API_reserve\".\"date\" IN ({}) AND \"business_id\"={})".format(", ".join(this_week_days_date), business_id))
-
+        q = orm.rawQuery("SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"API_service\".\"id\") WHERE ( \"API_reserve\".\"createdAt\" >= \'{}\' AND \"API_reserve\".\"createdAt\" <=  \'{}\' AND \"business_id\"={})".format(start_week_date,end_week_date, business_id))
         numReserveInWeek=q[0].count
         return numReserveInWeek
 
@@ -192,25 +186,15 @@ class DashboardController(APIView):
         services=orm.select(Service,business_id=business_id)
         for service in services:
             Tname=service.name
-            dayS=day.__str__()
-            query = "SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE  {} AND \"API_reserve\".\"service_id\" = {})".format("'%"+dayS[:7]+"%'", service.id)
+            query = "SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" WHERE ( \"API_reserve\".\"createdAt\" >= \'{}\' AND \"API_reserve\".\"createdAt\" <=  \'{}\' AND \"API_reserve\".\"service_id\" = {})".format(day,day+timedelta(days=30), service.id)
             cMonthRes = orm.rawQuery(query)
             # cMonthRes=Reserve.objects.filter(service_id=service.id , date__contains=dayS[:7])
             # print(cMonthRes.query)
             TnumberOfReserveInCurrentMonth=cMonthRes[0].count
             start_week_date = day - timedelta(days=JalaliDate.today().weekday())
-            this_week_days_date = []
-            weekday_date=start_week_date
-            for i in range(7):
-                this_week_days_date.append("\"{}\"".format(weekday_date.__str__()))
-                weekday_date = weekday_date + timedelta(1)
-            # cWeekRes=Reserve.objects.filter(service_id=service.id , date__in=this_week_days_date)
-            # print(cWeekRes.query.__str__())
-            # print("SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" IN ({}) AND \"API_reserve\".\"service_id\" = {})".format(
-            #         ", ".join(this_week_days_date), service.id))
-            # query = "SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" = ANY ( {}   ) AND \"API_reserve\".\"service_id\" = {})".format( "{" + ", ".join(this_week_days_date) + "}", service.id)
-            query = "SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" WHERE (\"API_reserve\".\"date\" LIKE ANY (\'{}\') AND \"API_reserve\".\"service_id\" = {})".format("{" + ", ".join(this_week_days_date) + "}", service.id)
-            print(query)
+            end_week_date = start_week_date + timedelta(days=7)
+
+            query = "SELECT COUNT(\"API_reserve\".\"id\") FROM \"API_reserve\" WHERE (\"API_reserve\".\"createdAt\" >= \'{}\' AND \"API_reserve\".\"createdAt\" <=  \'{}\' AND \"API_reserve\".\"service_id\" = {})".format(start_week_date,end_week_date, service.id)
             cWeekRes = orm.rawQuery(query)
 
             # cWeekRes = orm.rawQuery(
@@ -232,7 +216,7 @@ class DashboardController(APIView):
     def findCustomers(business_id):
         customers=[]
         # customers_ids=Reserve.objects.filter(service__business__id=business_id).values_list('user', flat=True)
-        res = orm.rawQuery("SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"date\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"API_service\".\"id\") WHERE \"business_id\" = {}".format(business_id))
+        res = orm.rawQuery("SELECT \"API_reserve\".\"id\", \"API_reserve\".\"user_id\", \"API_reserve\".\"service_id\", \"API_reserve\".\"sans_id\", \"API_reserve\".\"description\", \"API_reserve\".\"createdAt\", \"API_reserve\".\"isCancelled\" FROM \"API_reserve\" INNER JOIN \"API_service\" ON (\"API_reserve\".\"service_id\" = \"API_service\".\"id\") WHERE \"business_id\" = {}".format(business_id))
         customers_ids = [x.user_id for x in res]
         customers_ids=set(customers_ids)
         for id in customers_ids:
