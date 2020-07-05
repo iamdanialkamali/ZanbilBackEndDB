@@ -65,9 +65,9 @@ class Image(APIView):
             return HttpResponse(json.dumps({"error":"id ارسال نشده است"}).encode(),status=400,content_type="application/json")
         if int(request.data.get('serviceId',0)):
             service_id = request.data['serviceId']
-            if len(orm.select(Business,id=orm.select(Service,id=service_id)[0].business_id,owner_id=userId)) ==0:
-                return HttpResponse(json.dumps({"error": "سرویس متعلق به شما نیست"}).encode(), status=400,
-                                    content_type="application/json")
+            # if len(orm.select(Business,id=orm.select(Service,id=service_id)[0].business_id,owner_id=userId)) ==0:
+            #     return HttpResponse(json.dumps({"error": "سرویس متعلق به شما نیست"}).encode(), status=400,
+            #                         content_type="application/json")
             pic = orm.select(ServiceFile,service_id=service_id,id=id)
             if len(pic) == 0:
                 pic =  orm.select(ServiceFile)[0]
@@ -77,9 +77,9 @@ class Image(APIView):
 
         elif int(request.data.get('businessId',0)):
             business_id = request.data['businessId']
-            if len(orm.select(Business,id=business_id,user_id=userId)) ==0:
-                return HttpResponse(json.dumps({"error": "بیزینس متعلق به شما نیست"}).encode(), status=400,
-                                    content_type="application/json")
+            # if len(orm.select(Business,id=business_id,user_id=userId)) ==0:
+            #     return HttpResponse(json.dumps({"error": "بیزینس متعلق به شما نیست"}).encode(), status=400,
+            #                         content_type="application/json")
             pic = orm.select(BusinessFile,service_id=business_id,id=id)
             data = pic[0].address.split("|")
             file = open("uploads/business/" + data[0], 'rb')
