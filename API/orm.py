@@ -93,7 +93,14 @@ def update(model,id,**options):
             return True
     # except:
         # return False
+
 def rawQuery(query):
     with connection.cursor() as c:
         c.execute(query)
         return namedtuplefetchall(c)
+
+
+def calculateNewPoint(serviceId,point):
+    with connection.cursor() as cursor:
+        cursor.execute("CALL calculateNewPoint({},{})".format(serviceId,point))
+    #     cursor.callproc('calculateNewPoint', [serviceId, point])

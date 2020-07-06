@@ -48,6 +48,7 @@ class Service(models.Model):
     address = models.TextField(max_length=500)
     fee = models.FloatField()
     rating = models.FloatField(default=0)
+    reviewCount = models.IntegerField(default=0)
     description = models.TextField(max_length=600, blank=True)
     cancellation_range = models.IntegerField(default=None,null=True)
 
@@ -72,7 +73,7 @@ class Reserve(models.Model):
     service = models.ForeignKey(to=Service, on_delete=models.DO_NOTHING, null=True)
     sans = models.ForeignKey(Sans, on_delete=models.DO_NOTHING, null=True, blank=True)
     description = models.TextField()
-    createdAt = models.DateTimeField(default=datetime.now())
+    createdAt = models.DateTimeField(auto_now=True)
     isCancelled = models.BooleanField(default=False)
 
 

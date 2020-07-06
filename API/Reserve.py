@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .Notification import NotificationController
 from passlib.hash import pbkdf2_sha256  as decryptor
-from API.models import Sans,Reserve,Service
+from API.models import Sans,Reserve,Service, Transaction
 import API.orm as orm
 class ReserveController(APIView):
     def put(self, request, format=None, *args, **kwargs):
@@ -25,6 +25,7 @@ class ReserveController(APIView):
             date = data['date']
             sans = orm.select(Sans,id=sans_id)[0]
 
+            service = orm.select(Service,id=service_id)[0]
             year, month, day = map(int, date.split("-"))
 
             createdAt = datetime(
@@ -52,6 +53,9 @@ class ReserveController(APIView):
                                                   createdAt="\""+createdAt.__str__() + "\"",
                                                   service_id=service_id
                            ,isCancelled=False)
+                reserve = orm.select(Reserve,sans_id=sans_id, createdAt=createdAt.__str__(),service_id=service_id,isCancelled=False)[0]
+                if service.fee > 0:
+                    orm.insert(Transaction,reserve_id=reserve.id,paidAt="\""+createdAt.__str__() + "\"",amount=service.fee)
                 return Response("DONE", status=status.HTTP_200_OK)
             else:
                 return Response({"message":"قبلا رزرو شده است."}, status=status.HTTP_400_BAD_REQUEST)
