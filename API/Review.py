@@ -75,6 +75,8 @@ class ReviewController(APIView):
             connectionDict[token].execute("SELECT \"API_review\".\"id\", \"API_review\".\"description\", \"API_review\".\"rating\", \"API_review\".\"reserve_id\" FROM \"API_review\" INNER JOIN \"API_reserve\" ON (\"API_review\".\"reserve_id\" = \"API_reserve\".\"id\") WHERE \"API_reserve\".\"service_id\" = {}".format(id))
         try:
             w = connectionDict[token].fetchone()
+            if w is None:
+                raise Exception
         except:
             del connectionDict[token]
             return Response({"message":"تمام شد."}, status= status.HTTP_404_NOT_FOUND)
