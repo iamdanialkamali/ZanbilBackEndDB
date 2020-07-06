@@ -98,17 +98,17 @@ class Ticket(gj.Document):
     def prettifyDates(self):
         ticket = self.toDict()
         ticket['createdAt'] = toJalaliDateTime(self.createdAt)
-        ticket['createdAtPretty'] = toPrettyJalaliDateTime(self.createdAt)
+        # ticket['createdAtPretty'] = toPrettyJalaliDateTime(self.createdAt)
         ticket['updatedAt'] = toJalaliDateTime(self.updatedAt)
-        ticket['updatedAtPretty'] = toPrettyJalaliDateTime(self.updatedAt)
+        # ticket['updatedAtPretty'] = toPrettyJalaliDateTime(self.updatedAt)
 
         for message_index in range(len(ticket['messages'])):
-            ticket['messages'][message_index]['createdAtPretty'] = toPrettyJalaliDateTime(
-                self.messages[message_index].createdAt)
+            # ticket['messages'][message_index]['createdAtPretty'] = toPrettyJalaliDateTime(
+            #     self.messages[message_index].createdAt)
             ticket['messages'][message_index]['createdAt'] = toJalaliDateTime(self.messages[message_index].createdAt)
             if (self.messages[message_index].readAt):
-                ticket['messages'][message_index]['readAtPretty'] = toPrettyJalaliDateTime(
-                    self.messages[message_index].readAt)
+                # ticket['messages'][message_index]['readAtPretty'] = toPrettyJalaliDateTime(
+                #     self.messages[message_index].readAt)
                 ticket['messages'][message_index]['readAt'] = toJalaliDateTime(self.messages[message_index].readAt)
         return ticket
 
