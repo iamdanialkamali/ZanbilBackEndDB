@@ -8716,3 +8716,607 @@ DETAIL:  Key (owner_id)=(3) is not present in table "auth_user".
 [05/Jul/2020 14:36:43] "PUT /api/business/?userId=1 HTTP/1.1" 200 179
 [05/Jul/2020 14:56:24] "PUT /api/business/?userId=1 HTTP/1.1" 200 179
 [05/Jul/2020 15:48:38] "PUT /api/file/?userId=1 HTTP/1.1" 200 89
+/home/ubuntu/ZanbilBackEndDB/API/AccountPage.py changed, reloading.
+Performing system checks...
+
+June 16, 2020 - 18:19:30
+Django version 3.0.6, using settings 'ZanbilBackEnd.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+1399/03/27
+1399/03/27
+1399/03/24
+1399/03/24
+1399/03/24
+1399/03/24
+1399/03/24
+1399/03/24
+1399/03/24
+1399/04/07
+1399/04/07
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/khayyam/algorithms.py:19: UserWarning: The C extension is not available. Switching to fallback python pure algorithms,so it's about 1000X slower than C implementation of the algorithms.
+  "The C extension is not available. Switching to fallback python pure algorithms,"
+System check identified some issues:
+
+WARNINGS:
+API.Reserve.createdAt: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+
+System check identified 1 issue (0 silenced).
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/threading.py", line 916, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.6/threading.py", line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/autoreload.py", line 53, in wrapper
+    fn(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/management/commands/runserver.py", line 120, in inner_run
+    self.check_migrations()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/management/base.py", line 458, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.load_disk()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 108, in load_disk
+    migration_module = import_module(migration_path)
+  File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/ubuntu/ZanbilBackEndDB/API/migrations/0009_reserve_createdat.py", line 1
+    <<<<<<< HEAD
+     ^
+SyntaxError: invalid syntax
+
+/home/ubuntu/ZanbilBackEndDB/API/migrations/0009_reserve_createdat.py changed, reloading.
+Performing system checks...
+
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/khayyam/algorithms.py:19: UserWarning: The C extension is not available. Switching to fallback python pure algorithms,so it's about 1000X slower than C implementation of the algorithms.
+  "The C extension is not available. Switching to fallback python pure algorithms,"
+System check identified some issues:
+
+WARNINGS:
+API.Reserve.createdAt: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+
+System check identified 1 issue (0 silenced).
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/threading.py", line 916, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.6/threading.py", line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/utils/autoreload.py", line 53, in wrapper
+    fn(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/management/commands/runserver.py", line 120, in inner_run
+    self.check_migrations()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/management/base.py", line 458, in check_migrations
+    executor = MigrationExecutor(connections[DEFAULT_DB_ALIAS])
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/executor.py", line 18, in __init__
+    self.loader = MigrationLoader(self.connection)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 49, in __init__
+    self.build_graph()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 206, in build_graph
+    self.load_disk()
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/migrations/loader.py", line 108, in load_disk
+    migration_module = import_module(migration_path)
+  File "/usr/lib/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/ubuntu/ZanbilBackEndDB/API/migrations/0009_reserve_createdat.py", line 1
+    <<<<<<< HEAD
+     ^
+SyntaxError: invalid syntax
+
+/home/ubuntu/ZanbilBackEndDB/API/migrations/0009_reserve_createdat.py changed, reloading.
+Performing system checks...
+
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/khayyam/algorithms.py:19: UserWarning: The C extension is not available. Switching to fallback python pure algorithms,so it's about 1000X slower than C implementation of the algorithms.
+  "The C extension is not available. Switching to fallback python pure algorithms,"
+System check identified some issues:
+
+WARNINGS:
+API.Reserve.createdAt: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+
+System check identified 1 issue (0 silenced).
+Not Found: /
+[05/Jul/2020 22:04:54] "GET / HTTP/1.1" 404 5315
+Not Found: /favicon.ico
+[05/Jul/2020 22:04:55] "GET /favicon.ico HTTP/1.1" 404 5366
+[05/Jul/2020 22:05:07] "GET /api/user/?userId=2 HTTP/1.1" 200 293
+[05/Jul/2020 22:06:05] "GET /api/user/?userId=2 HTTP/1.1" 200 293
+[05/Jul/2020 22:06:06] "GET /api/user/?userId=2 HTTP/1.1" 200 293
+Internal Server Error: /api/user/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(amiiiiiiiiee1e1qq1212) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/AccountPage.py", line 96, in put
+    is_active=True
+  File "/home/ubuntu/ZanbilBackEndDB/API/orm.py", line 61, in insert
+    w = c.execute(query)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(amiiiiiiiiee1e1qq1212) already exists.
+
+[05/Jul/2020 22:06:13] "PUT /api/user/ HTTP/1.1" 500 17291
+[05/Jul/2020 22:06:30] "PUT /api/user/ HTTP/1.1" 200 340
+Not Found: //api/user/
+[05/Jul/2020 22:06:40] "POST //api/user/ HTTP/1.1" 404 5364
+Not Found: //api/user/
+[05/Jul/2020 22:06:43] "POST //api/user/ HTTP/1.1" 404 5364
+Not Found: //api/user/
+[05/Jul/2020 22:06:49] "POST //api/user/ HTTP/1.1" 404 5364
+Not Found: //api/user/
+[05/Jul/2020 22:06:54] "POST //api/user/ HTTP/1.1" 404 5364
+Not Found: //api/user/
+[05/Jul/2020 22:06:55] "POST //api/user/ HTTP/1.1" 404 5364
+[05/Jul/2020 22:06:59] "POST /api/user/ HTTP/1.1" 200 262
+[05/Jul/2020 22:07:08] "GET /api/business/?userId=1&business_id=5 HTTP/1.1" 200 181
+Not Found: /api/business/
+[05/Jul/2020 22:07:11] "GET /api/business/?business_id=1 HTTP/1.1" 404 56
+[05/Jul/2020 22:07:13] "PUT /api/business/?userId=1 HTTP/1.1" 200 179
+Internal Server Error: /api/business/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/Business.py", line 110, in patch
+    mybusiness = orm.select(Business, id=id)[0]
+IndexError: list index out of range
+[05/Jul/2020 22:07:16] "PATCH /api/business/ HTTP/1.1" 500 15694
+[05/Jul/2020 22:07:22] "PATCH /api/business/ HTTP/1.1" 200 183
+Internal Server Error: /api/business/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/Business.py", line 110, in patch
+    mybusiness = orm.select(Business, id=id)[0]
+IndexError: list index out of range
+[05/Jul/2020 22:07:25] "PATCH /api/business/ HTTP/1.1" 500 15694
+[05/Jul/2020 22:07:32] "GET /api/business/search/?business_name=kiri&category=%D8%AA HTTP/1.1" 200 2
+Forbidden: /api/cancellation/
+[05/Jul/2020 22:07:36] "POST /api/cancellation/?userId=2 HTTP/1.1" 403 28
+Bad Request: /api/service/reserve/
+[05/Jul/2020 22:07:40] "PUT /api/service/reserve/?userId=2 HTTP/1.1" 400 70
+[05/Jul/2020 22:07:46] "GET /api/category/?category_id=1 HTTP/1.1" 200 2171
+[05/Jul/2020 22:07:53] "GET /api/dashboard/?id=1 HTTP/1.1" 200 292
+[05/Jul/2020 22:07:59] "GET /api/service/?service_id=1 HTTP/1.1" 200 808
+[05/Jul/2020 22:08:05] "PUT /api/file/?userId=1 HTTP/1.1" 200 89
+Bad Request: /api/file/
+[05/Jul/2020 22:08:08] "POST /api/file/?userId=1 HTTP/1.1" 400 131
+Bad Request: /api/file/
+[05/Jul/2020 22:09:12] "POST /api/file/?userId=1 HTTP/1.1" 400 131
+Bad Request: /api/file/
+[05/Jul/2020 22:09:13] "POST /api/file/?userId=1 HTTP/1.1" 400 131
+Bad Request: /api/file/
+[05/Jul/2020 22:09:37] "POST /api/file/?userId=1 HTTP/1.1" 400 131
+[05/Jul/2020 22:10:13] "GET /api/service/search/?business_name=kiri&max_price=99999999&min_price=0&sort_fee=1 HTTP/1.1" 200 2923
+[05/Jul/2020 22:10:16] "GET /api/service/?service_id=1&date=2020-01-01 HTTP/1.1" 200 883
+Internal Server Error: /api/service/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+psycopg2.errors.ForeignKeyViolation: insert or update on table "API_timetable" violates foreign key constraint "API_timetable_business_id_e45b5a1f_fk_API_business_id"
+DETAIL:  Key (business_id)=(1) is not present in table "API_business".
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/Service.py", line 48, in put
+    timetable = TimeTableController.buildTimetable(days, business_id)
+  File "/home/ubuntu/ZanbilBackEndDB/API/TimeTable.py", line 69, in buildTimetable
+    orm.insert(TimeTable, name="timeTable", business_id=business_id)
+  File "/home/ubuntu/ZanbilBackEndDB/API/orm.py", line 61, in insert
+    w = c.execute(query)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+django.db.utils.IntegrityError: insert or update on table "API_timetable" violates foreign key constraint "API_timetable_business_id_e45b5a1f_fk_API_business_id"
+DETAIL:  Key (business_id)=(1) is not present in table "API_business".
+
+[05/Jul/2020 22:10:19] "PUT /api/service/?userId=4 HTTP/1.1" 500 17654
+[05/Jul/2020 22:10:25] "PATCH /api/service/?userId=1 HTTP/1.1" 200 2
+[05/Jul/2020 22:11:01] "PUT /api/service/?userId=4 HTTP/1.1" 200 483
+Internal Server Error: /api/ticket/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/Ticket.py", line 35, in put
+    business = orm.select(Business,id=businessId)[0]
+IndexError: list index out of range
+[05/Jul/2020 22:11:08] "PUT /api/ticket/?userId=1 HTTP/1.1" 500 15824
+[05/Jul/2020 22:11:13] "GET /api/ticket/search/?userId=1&businessId=1 HTTP/1.1" 200 32
+Internal Server Error: /api/ticket/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/Ticket.py", line 84, in post
+    business = orm.select(Business, id=businessId)[0]
+IndexError: list index out of range
+[05/Jul/2020 22:11:15] "POST /api/ticket/?userId=1 HTTP/1.1" 500 15865
+Internal Server Error: /api/ticket/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/mongoengine/queryset/base.py", line 260, in get
+    result = next(queryset)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/mongoengine/queryset/base.py", line 1590, in __next__
+    raw_doc = next(self._cursor)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pymongo/cursor.py", line 1164, in next
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/Ticket.py", line 55, in get
+    responseTicket = TicketManager.getTicket(ticketId)
+  File "/home/ubuntu/ZanbilBackEndDB/API/ticketService.py", line 104, in getTicket
+    ticket = Ticket.objects.get(**filters)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/mongoengine/queryset/base.py", line 263, in get
+    raise queryset._document.DoesNotExist(msg)
+API.mongoModel.DoesNotExist: Ticket matching query does not exist.
+[05/Jul/2020 22:11:17] "GET /api/ticket/?userId=1&ticketId=5ee7d6120e90decf1a61a52c HTTP/1.1" 500 16720
+/home/ubuntu/ZanbilBackEndDB/API/Uploader.py changed, reloading.
+Performing system checks...
+
+
+You have 2 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): API.
+Run 'python manage.py migrate' to apply them.
+July 05, 2020 - 22:04:17
+Django version 3.0.6, using settings 'ZanbilBackEnd.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/khayyam/algorithms.py:19: UserWarning: The C extension is not available. Switching to fallback python pure algorithms,so it's about 1000X slower than C implementation of the algorithms.
+  "The C extension is not available. Switching to fallback python pure algorithms,"
+System check identified some issues:
+
+WARNINGS:
+API.Reserve.createdAt: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`
+
+System check identified 1 issue (0 silenced).
+Internal Server Error: /api/user/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(iamdanialkamali1) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/AccountPage.py", line 96, in put
+    is_active=True
+  File "/home/ubuntu/ZanbilBackEndDB/API/orm.py", line 61, in insert
+    w = c.execute(query)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(iamdanialkamali1) already exists.
+
+[06/Jul/2020 00:38:05] "PUT /api/user/ HTTP/1.1" 500 17274
+Internal Server Error: /api/user/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(iamdanialkamali1) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/AccountPage.py", line 96, in put
+    is_active=True
+  File "/home/ubuntu/ZanbilBackEndDB/API/orm.py", line 61, in insert
+    w = c.execute(query)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(iamdanialkamali1) already exists.
+
+[06/Jul/2020 00:38:24] "PUT /api/user/ HTTP/1.1" 500 17274
+[06/Jul/2020 00:38:29] "PUT /api/user/ HTTP/1.1" 200 334
+[06/Jul/2020 00:40:40] "PUT /api/user/ HTTP/1.1" 200 335
+Internal Server Error: /api/user/
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(iamdanialkamali111) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 505, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 465, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 476, in raise_uncaught_exception
+    raise exc
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/rest_framework/views.py", line 502, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/ZanbilBackEndDB/API/AccountPage.py", line 96, in put
+    is_active=True
+  File "/home/ubuntu/ZanbilBackEndDB/API/orm.py", line 61, in insert
+    w = c.execute(query)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "auth_user_username_key"
+DETAIL:  Key (username)=(iamdanialkamali111) already exists.
+
+[06/Jul/2020 00:40:46] "PUT /api/user/ HTTP/1.1" 500 17282
+[06/Jul/2020 00:40:50] "PUT /api/user/ HTTP/1.1" 200 333
+Not Found: /
+[06/Jul/2020 02:30:35] "HEAD / HTTP/1.0" 404 5317
+Not Found: /robots.txt
+[06/Jul/2020 02:55:30] "GET /robots.txt HTTP/1.1" 404 5363
+Not Found: /
+[06/Jul/2020 02:55:30] "GET / HTTP/1.1" 404 5315
+Not Found: /
+[06/Jul/2020 02:55:30] "GET / HTTP/1.1" 404 5315
+Not Found: /
+[06/Jul/2020 04:03:23] "GET / HTTP/1.0" 404 5319
+Not Found: /robots.txt
+[06/Jul/2020 05:27:03] "GET /robots.txt HTTP/1.1" 404 5367
+Not Found: /
+[06/Jul/2020 05:27:12] "GET / HTTP/1.1" 404 5319
+Not Found: /
+[06/Jul/2020 14:05:08] "GET / HTTP/1.0" 404 5319
+Not Found: /
+[06/Jul/2020 14:16:38] "GET / HTTP/1.1" 404 5316
+/home/ubuntu/ZanbilBackEndDB/API/Review.py changed, reloading.
+Performing system checks...
+
+July 05, 2020 - 22:11:55
+Django version 3.0.6, using settings 'ZanbilBackEnd.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+/home/ubuntu/.local/lib/python3.6/site-packages/khayyam/algorithms.py:19: UserWarning: The C extension is not available. Switching to fallback python pure algorithms,so it's about 1000X slower than C implementation of the algorithms.
+  "The C extension is not available. Switching to fallback python pure algorithms,"
