@@ -69,6 +69,7 @@ class ReviewController(APIView):
             Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
         id = request.GET['service_id']
+        orm.checkForSqlInjection(id)
         token = request.GET['token']
         if not token in connectionDict.keys():
             connectionDict[token] = connection.cursor()

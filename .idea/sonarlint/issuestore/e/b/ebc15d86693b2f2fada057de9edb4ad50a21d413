@@ -1,3 +1,7 @@
 
-ƒpython:S1542%"_Rename function "toPrettyJalaliDateTime" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(âÛñ´ıÿÿÿÿ8è³ïÕ¨.
-}python:S1542"YRename function "toJalaliDateTime" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(†¾Ì¿ÿÿÿÿÿ8è³ïÕ¨.
+{python:S1542"YRename function "toJalaliDateTime" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(†¾Ì¿ÿÿÿÿÿ8è³ïÕ¨.
+python:S1542"_Rename function "toPrettyJalaliDateTime" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(âÛñ´ıÿÿÿÿ8è³ïÕ¨.
+@python:S125"Remove this commented out code.(ÍØ‚ıÿÿÿÿ8½Áº®².
+;python:S125"Remove this commented out code.(ìáÊ”8½Áº®².
+@python:S125"Remove this commented out code.(ì³ÔÍúÿÿÿÿ8½Áº®².
+@python:S125"Remove this commented out code.(à•…Æûÿÿÿÿ8½Áº®².

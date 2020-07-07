@@ -216,14 +216,19 @@ class SearchController(APIView):
             query = "SELECT \"API_service\".\"id\", \"business_id\", \"API_service\".\"timeTable_id\", \"API_service\".\"name\", \"API_service\".\"address\", \"API_service\".\"fee\", \"API_service\".\"rating\", \"API_service\".\"description\", \"API_service\".\"cancellation_range\" FROM \"API_service\" INNER JOIN \"API_business\" ON (\"API_service\".\"business_id\" = \"API_business\".\"id\") INNER JOIN \"API_category\" ON (\"API_business\".\"category_id\" = \"API_category\".\"id\") WHERE ( 1=1"
             data = request.GET
             if data.get("service_name",False):
+                orm.checkForSqlInjection(data.get("service_name"))
                 query += " AND \"API_service\".\"name\" LIKE  {}".format("'%" + data.get("service_name") + "%'")
             if data.get('business_name',False):
+                orm.checkForSqlInjection(data.get("business_name"))
                 query += " AND \"API_business\".\"name\" LIKE  {}".format("'%" + data.get('business_name') + "%'")
             if data.get("min_price",False):
+                orm.checkForSqlInjection(data.get("min_price"))
                 query += " AND \"fee\" >= {}".format(float(data.get("min_price")))
             if data.get("max_price",False):
+                orm.checkForSqlInjection(data.get("max_price"))
                 query += " AND \"fee\" <= {}".format(float(data.get("max_price")))
             if data.get('category',False):
+                orm.checkForSqlInjection(data.get("category"))
                 query += " AND \"API_category\".\"name\" LIKE  {}".format("'%" + data.get('category') + "%'")
             query += ") ORDER BY \"rating\" DESC"
             if data.get("sort_fee",False):
