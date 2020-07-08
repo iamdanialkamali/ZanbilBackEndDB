@@ -1,6 +1,6 @@
 from django.db import connection
 cursor = connection.cursor()
-
+import re
 
 from collections import namedtuple
 
@@ -29,6 +29,7 @@ def select(model,**options):
     # x = model.objects.raw("select * from API_{} where {};".format(model.__name__.lower(),query))
     # y = serializer(x,many=True)
     # return y.data
+    checkForSqlInjection(*list(options.values()))
     with connection.cursor() as c:
         query = "1 = 1 "
         for key, value in options.items():
@@ -46,6 +47,7 @@ def select(model,**options):
         return namedtuplefetchall(c)
 
 def insert(model,**options):
+    checkForSqlInjection(*list(options.values()))
     with connection.cursor() as c:
         for key, value in options.items():
             if isinstance(value,str):
@@ -61,6 +63,7 @@ def insert(model,**options):
         w = c.execute(query)
 
 def delete(model,**options):
+    checkForSqlInjection(*list(options.values()))
     with connection.cursor() as c:
         query = "1 = 1 "
         for key, value in options.items():
@@ -78,6 +81,7 @@ def delete(model,**options):
         return namedtuplefetchall(c)
 def update(model,id,**options):
     # try:
+        checkForSqlInjection(id,*list(options.values()))
         with connection.cursor() as c:
             query =  " "
             for key, value in options.items():
@@ -104,3 +108,10 @@ def calculateNewPoint(serviceId,point):
     with connection.cursor() as cursor:
         cursor.execute("CALL calculateNewPoint({},{})".format(serviceId,point))
     #     cursor.callproc('calculateNewPoint', [serviceId, point])
+
+def checkForSqlInjection(*params):
+    import django.core.exceptions
+    for param in params:
+        if ";" in param or " and " in param.lower() or " or " in param.lower() or "|" in param.lower() or "&" in param.lower():
+            raise django.core.exceptions.ValidationError("{} اشتباه است.".format(param))
+

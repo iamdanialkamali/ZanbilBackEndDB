@@ -149,8 +149,10 @@ class BusinessSearchController(APIView):
             data = request.GET
             query = "SELECT \"API_business\".\"id\", \"API_business\".\"name\" , \"API_business\".\"score\", \"API_business\".\"owner_id\", \"API_category\".\"id\" as \"categoryId\", \"API_category\".\"name\" as \"categryName\", \"API_business\".\"address\", \"API_business\".\"phone_number\", \"API_business\".\"description\" FROM \"API_business\" INNER JOIN \"API_category\" ON (\"API_business\".\"category_id\" = \"API_category\".\"id\") WHERE ( 1=1"
             if data.get('business_name'):
+                orm.checkForSqlInjection(data.get('business_name'))
                 query += " AND \"API_business\".\"name\" LIKE  {}".format("'%" + data.get('business_name') + "%'")
             if data.get('category'):
+                orm.checkForSqlInjection(data.get('category'))
                 query += " AND \"API_category\".\"name\" LIKE  {}".format("'%" + data.get('category') + "%'")
             query += ") ORDER BY \"score\" DESC"
 
