@@ -42,10 +42,10 @@ class Image(APIView):
                 file.write(bytearray(byte))
             file.close()
             return Response({"pic":pic}, status=status.HTTP_200_OK)
-        elif request.data.get('messageId'):
-            messageId = request.data['messageId']
-            orm.insert(MessageFile,messageId=messageId,address=picture.name+"|"+picture.content_type)
-            pic = orm.toDict(orm.select(MessageFile,messageId=messageId,address=picture.name+"|"+picture.content_type)[0])
+        elif request.data.get('ticketId'):
+            ticketId = request.data['ticketId']
+            orm.insert(MessageFile,ticketId=ticketId,address=picture.name+"|"+picture.content_type)
+            pic = orm.toDict(orm.select(MessageFile,ticketId=ticketId,address=picture.name+"|"+picture.content_type)[0])
             file = open("uploads/message/"+ picture.name, 'wb')
 
             for byte in picture:
@@ -85,9 +85,9 @@ class Image(APIView):
             file = open("uploads/business/" + data[0], 'rb')
             return HttpResponse(file.read(), content_type=data[1])
 
-        elif int(request.data.get('messageId',0)):
-            messageId = request.data['messageId']
-            pic = orm.select(MessageFile,messageId=messageId,id=id)
+        elif int(request.data.get('ticketId',0)):
+            ticketId = request.data['ticketId']
+            pic = orm.select(MessageFile,ticketId=ticketId,id=id)
             data = pic[0].address.split("|")
             file = open("uploads/message/" + data[0])
             return HttpResponse(file.read(), content_type=data[1])

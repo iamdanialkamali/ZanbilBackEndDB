@@ -112,6 +112,6 @@ def calculateNewPoint(serviceId,point):
 def checkForSqlInjection(*params):
     import django.core.exceptions
     for param in params:
-        if ";" in param or " and " in param.lower() or " or " in param.lower() or "|" in param.lower() or "&" in param.lower():
+        if ";" in param or " and " in param.lower() or " or " in param.lower()  or "&" in param.lower():
             raise django.core.exceptions.ValidationError("{} اشتباه است.".format(param))
 

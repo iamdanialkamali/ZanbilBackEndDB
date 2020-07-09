@@ -1,4 +1,4 @@
 
-npython:S100"RRename method "sendMessage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(€Éàşÿÿÿÿ
 lpython:S100"PRename method "sendEmail" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ê¼øŞşÿÿÿÿ
 ipython:S100	"MRename method "Notify" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(áË˜„ûÿÿÿÿ
+npython:S100"RRename method "sendMessage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(€Éàşÿÿÿÿ

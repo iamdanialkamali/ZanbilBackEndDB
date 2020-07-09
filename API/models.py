@@ -112,5 +112,5 @@ class ServiceFile(models.Model):
 class MessageFile(models.Model):
     id = models.AutoField(primary_key=True)
     address = models.CharField(null=True, max_length=200)
-    messageId = models.TextField(null=True)
+    ticketId = models.TextField(null=True)
 

@@ -33,12 +33,14 @@ class AccountPageController(APIView):
                 if(datetime.datetime.now() + delta < reserveDateTime):
                     reserve = {
                         'reserve':orm.toDict(reserve),
-                        'is_cancellabe':True
+                        'is_cancellabe':True,
+                        'serviceName':service.name
                     }
                 else:
                     reserve = {
                         'reserve':orm.toDict(reserve),
-                        'is_cancellabe':False
+                        'is_cancellabe':False,
+                        'serviceName': service.name
                     }
                     reserves_list.append(reserve)
 

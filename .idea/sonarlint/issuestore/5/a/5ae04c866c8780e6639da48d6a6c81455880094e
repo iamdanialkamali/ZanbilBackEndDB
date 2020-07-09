@@ -1,6 +1,7 @@
 
-[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8„ôìò«.
-Ppython:S1481"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8„ôìò«.
-Ppython:S1481´"0Remove the unused local variable "selectedSans".(žË¬å8„ôìò«.
-Opython:S1481"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8„ôìò«.
-\python:S5754‘"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8„ôìò«.
+Ppython:S1481·"0Remove the unused local variable "selectedSans".(žË¬å8„ôìò«.
+=python:S125^"Remove this commented out code.(¾Ô‰½8ä¹¦å².
+[python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8„ôìò«.
+\python:S5754”"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8„ôìò«.
+Opython:S1481"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8„ôìò«.
+Ppython:S1481“"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8„ôìò«.
