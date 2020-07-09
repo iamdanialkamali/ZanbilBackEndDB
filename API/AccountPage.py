@@ -42,7 +42,7 @@ class AccountPageController(APIView):
                         'is_cancellabe':False,
                         'serviceName': service.name
                     }
-                    reserves_list.append(reserve)
+                reserves_list.append(reserve)
 
 
             user = orm.select(User,id=user_id)
