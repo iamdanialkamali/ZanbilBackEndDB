@@ -36,6 +36,8 @@ class ReserveController(APIView):
                       minute=sans.startTime.minute,
                   )
 
+            if createdAt < datetime.now():
+                return Response({"message": "از تاریخ مجاز رزرو گذشته است."}, status=status.HTTP_400_BAD_REQUEST)
 
             reserves = orm.select(Reserve,sans_id=sans_id, createdAt="\""+createdAt.__str__() + "\"",service_id=service_id,isCancelled=False)
 
