@@ -1,12 +1,12 @@
 
-spython:S100"YRename method "addMessageAndFiles" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ûÃŠ¤ùÿÿÿÿ
-jpython:S100"URename method "addUserMessage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(²¥¯ğ
-lpython:S100"RRename method "closeTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ò¦âøÿÿÿÿ
-fpython:S100"QRename method "openTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(™˜Œó
-@python:S1481"*Remove the unused local variable "result".(ÜÿÕ 
-hpython:S100"SRename method "createTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ÂØ£
-@python:S125"Remove this commented out code.(¼¯‘­øÿÿÿÿ8Ÿ«²×¨.
-@python:S125"Remove this commented out code.(½œ›¼ûÿÿÿÿ8¦åÍÌ«.
-@python:S1481"*Remove the unused local variable "result".(ù½
-epython:S100"PRename method "getTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Õ× ‡
-xpython:S100"^Rename method "addNameOfUserToMessages" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ò¬Šøıÿÿÿÿ
+lpython:S100("URename method "addUserMessage" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(²¥¯ğ
+gpython:S100_"PRename method "getTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Õ× ‡
+Bpython:S1481J"*Remove the unused local variable "result".(ÜÿÕ 
+zpython:S100p"^Rename method "addNameOfUserToMessages" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ò¬Šøıÿÿÿÿ
+hpython:S1002"QRename method "openTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(™˜Œó
+Bpython:S1481:"*Remove the unused local variable "result".(ù½
+npython:S100A"RRename method "closeTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ò¦âøÿÿÿÿ
+upython:S100"YRename method "addMessageAndFiles" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ûÃŠ¤ùÿÿÿÿ
+Bpython:S125"Remove this commented out code.(½œ›¼ûÿÿÿÿ8¦åÍÌ«.
+Bpython:S125e"Remove this commented out code.(¼¯‘­øÿÿÿÿ8Ÿ«²×¨.
+jpython:S100"SRename method "createTicket" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(ÂØ£

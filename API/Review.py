@@ -63,26 +63,41 @@ class ReviewController(APIView):
         validator = FieldValidator(request.GET)
         validator.\
             checkNotNone('service_id').\
-            checkNotNone('token').\
+            checkNotNone('page').\
+            checkNotNone('size').\
             validate()
         if validator.statusCode != 200:
             Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
         id = request.GET['service_id']
         orm.checkForSqlInjection(id)
-        token = request.GET['token']
-        if not token in connectionDict.keys():
-            connectionDict[token] = connection.cursor()
-            connectionDict[token].execute("SELECT \"API_review\".\"id\", \"API_review\".\"description\", \"API_review\".\"rating\", \"API_review\".\"reserve_id\" FROM \"API_review\" INNER JOIN \"API_reserve\" ON (\"API_review\".\"reserve_id\" = \"API_reserve\".\"id\") WHERE \"API_reserve\".\"service_id\" = {}".format(id))
+        size = int(request.GET['size'])
+        page = int(request.GET['page'])
+        # if not connectionDict.get(token,False):
+        #     connectionDict[token] = connection.cursor()
+        #     connectionDict[token].execute("SELECT \"API_review\".\"id\", \"API_review\".\"description\", \"API_review\".\"rating\", \"API_review\".\"reserve_id\" FROM \"API_review\" INNER JOIN \"API_reserve\" ON (\"API_review\".\"reserve_id\" = \"API_reserve\".\"id\") WHERE \"API_reserve\".\"service_id\" = {}".format(id))
+        # try:
+        #     w = connectionDict[token].fetchone()
+        #     if w is None:
+        #         raise Exception
+        # except:
+        #     del connectionDict[token]
+        #     return Response({"message":"تمام شد."}, status= status.HTTP_404_NOT_FOUND)
+        data = []
         try:
-            w = connectionDict[token].fetchone()
-            if w is None:
-                raise Exception
+            cur = connection.cursor()
+            cur.execute("SELECT \"API_review\".\"id\", \"API_review\".\"description\", \"API_review\".\"rating\", \"API_review\".\"reserve_id\" FROM \"API_review\" INNER JOIN \"API_reserve\" ON (\"API_review\".\"reserve_id\" = \"API_reserve\".\"id\") WHERE \"API_reserve\".\"service_id\" = {}".format(id))
+            for i in range(page*size):
+                cur.fetchone()
+            for i in range(size):
+                d = cur.fetchone()
+                if d:
+                    data.append(d)
         except:
-            del connectionDict[token]
-            return Response({"message":"تمام شد."}, status= status.HTTP_404_NOT_FOUND)
-        columns = [col[0] for col in connectionDict[token].description]
-        reserve = dict(zip(columns, w))
+            if len(data) == 0:
+                return Response({"message":"تمام شد."}, status= status.HTTP_404_NOT_FOUND)
+        columns = [col[0] for col in cur.description]
+        reserve = [dict(zip(columns, w)) for w in data]
 
         # reviews = Review.objects.filter(reserve__service_id=id)
         # review_datas = ReviewSerializer(reviews,many=True).data

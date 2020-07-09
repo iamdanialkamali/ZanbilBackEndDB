@@ -1,5 +1,7 @@
 
-Jpython:S1481<"+Remove the unused local variable "message".(®»–à8•û£Í«.
-upython:S1192A"QDefine a constant instead of duplicating this literal "application/json" 3 times.(‘³ù„üÿÿÿÿ8„£»Í«.
+Ipython:S1481>"*Remove the unused local variable "userId".(‡ÑŒ8ü×Š³.
 [python:S5754"<Specify an exception class to catch or reraise the exception(ˆÊÉ·8´ÓŞ–©.
 Opython:S1481"+Remove the unused local variable "user_id".(ÿ©ƒÕùÿÿÿÿ8´ÓŞ–©.
+Bpython:S125P"Remove this commented out code.(¢ µüùÿÿÿÿ8ü×Š³.
+<python:S125D"Remove this commented out code.(äÑ˜K8ü×Š³.
+Jpython:S1481<"+Remove the unused local variable "message".(®»–à8•û£Í«.

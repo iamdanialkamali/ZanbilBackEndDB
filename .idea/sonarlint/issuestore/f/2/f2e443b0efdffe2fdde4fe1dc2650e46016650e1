@@ -1,7 +1,7 @@
 
-spython:S1542"ORename function "toDict" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(“®ºûÿÿÿÿ8šü¼É¨.
-Ipython:S1481?"%Remove the unused local variable "w".(€ü¾åûÿÿÿÿ8šü¼É¨.
-upython:S1542e"QRename function "rawQuery" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(”’äÈıÿÿÿÿ8šü¼É¨.
 Bpython:S125"Remove this commented out code.(—ÉÄúÿÿÿÿ8šü¼É¨.
+upython:S1542e"QRename function "rawQuery" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(”’äÈıÿÿÿÿ8šü¼É¨.
+spython:S1542"ORename function "toDict" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(“®ºûÿÿÿÿ8šü¼É¨.
 python:S1542p"]Rename function "checkForSqlInjection" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(£Ï§óùÿÿÿÿ8”ÎØä².
+Ipython:S1481?"%Remove the unused local variable "w".(€ü¾åûÿÿÿÿ8šü¼É¨.
 ypython:S1542k"ZRename function "calculateNewPoint" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(œ™›…8¬áÉä².
