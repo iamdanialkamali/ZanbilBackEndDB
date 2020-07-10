@@ -24,7 +24,7 @@ class CancellationController(APIView):
             validator.checkNotNone('reserve_id').\
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             reserve_id = data['reserve_id']
 
 

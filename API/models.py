@@ -7,6 +7,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Wallet(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    credit = models.FloatField(default=0)
+
+
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=300)
@@ -40,6 +47,7 @@ class TimeTable(models.Model):
     def __str__(self):
         return str(self.name)
 
+
 class Service(models.Model):
     id = models.AutoField(primary_key=True)
     business = models.ForeignKey(to=Business, on_delete=models.DO_NOTHING, related_name='services')
@@ -51,7 +59,7 @@ class Service(models.Model):
     reviewCount = models.IntegerField(default=0)
     description = models.TextField(max_length=600, blank=True)
     cancellation_range = models.IntegerField(default=None,null=True)
-
+    wallet =  models.ForeignKey(to=Wallet,null=True, on_delete=models.DO_NOTHING)
     def __str__(self):
         return self.name
 
@@ -90,6 +98,7 @@ class Review(models.Model):
 class Transaction(models.Model):
     id = models.AutoField(primary_key=True)
     reserve = models.ForeignKey(Reserve, on_delete=models.DO_NOTHING, null=True, blank=True)
+    wallet = models.ForeignKey(Wallet, on_delete=models.DO_NOTHING)
     paidAt = models.DateTimeField()
     amount = models.FloatField()
 
@@ -113,4 +122,5 @@ class MessageFile(models.Model):
     id = models.AutoField(primary_key=True)
     address = models.CharField(null=True, max_length=200)
     ticketId = models.TextField(null=True)
+
 

@@ -25,7 +25,7 @@ class ReviewController(APIView):
                 checkNotNone('reserve_id'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
             data = request.data
             point = int(data['point'])
@@ -67,7 +67,7 @@ class ReviewController(APIView):
             checkNotNone('size').\
             validate()
         if validator.statusCode != 200:
-            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
         id = request.GET['service_id']
         orm.checkForSqlInjection(id)

@@ -52,12 +52,13 @@ class ReserveController(APIView):
                                                   description=description,
                                                   sans_id=sans_id,
                                                   # date=date,
-                                                  createdAt="\""+createdAt.__str__() + "\"",
+                                                  createdAt=createdAt.__str__(),
                                                   service_id=service_id
                            ,isCancelled=False)
                 reserve = orm.select(Reserve,sans_id=sans_id, createdAt=createdAt.__str__(),service_id=service_id,isCancelled=False)[0]
                 if service.fee > 0:
-                    orm.insert(Transaction,reserve_id=reserve.id,paidAt="\""+createdAt.__str__() + "\"",amount=service.fee)
+                    orm.insert(Transaction,reserve_id=reserve.id,wallet_id=service.wallet_id,paidAt=createdAt.__str__() ,amount=service.fee)
+                    orm.charge(service.wallet_id,service.fee)
                 return Response("DONE", status=status.HTTP_200_OK)
             else:
                 return Response({"message":"قبلا رزرو شده است."}, status=status.HTTP_400_BAD_REQUEST)

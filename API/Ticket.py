@@ -26,7 +26,7 @@ class TicketController(APIView):
         validator.checkNotNone('businessId'). \
             validate()
         if validator.statusCode != 200:
-            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
         data = request.data
         businessId = data.get("businessId")
         files = data.get("files",[])
@@ -50,7 +50,7 @@ class TicketController(APIView):
         validator.checkNotNone('ticketId').\
             validate()
         if validator.statusCode != 200:
-            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
         ticketId = request.GET['ticketId']
         responseTicket = TicketManager.getTicket(ticketId)
         return Response({
@@ -73,7 +73,7 @@ class TicketController(APIView):
             checkNotNone('text'). \
             validate()
         if validator.statusCode != 200:
-            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
         ticketId = request.data.get('ticketId')
         data = request.data
@@ -102,7 +102,7 @@ class TicketSearchController(APIView):
             checkNotNone('businessId'). \
             validate()
         if validator.statusCode != 200:
-            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
         userId = request.GET.get('userId')
         businessId = request.GET.get('businessId')
         responseTicket = TicketManager.search(userId=userId,businessId=businessId)

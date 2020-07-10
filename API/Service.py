@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from .Sans import SansController
 from .TimeTable import TimeTableController
 from rest_framework.parsers import MultiPartParser
-from API.models import Sans, Service, ServiceFile, TimeTable
+from API.models import Sans, Service, ServiceFile, TimeTable, Wallet
 import API.orm as orm
 from .validation import FieldValidator
 
@@ -35,18 +35,25 @@ class ServiceController(APIView):
             checkNotNone('cancellation_range'). \
             validate()
         if validator.statusCode != 200:
-            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
         data = request.data
         name = data.get('name')
         description = data.get('description')
         price = data.get('price')
         business_id = data.get('business_id')
+        walletId = data.get('walletId',None)
         address = data.get('address')
         days = data.get('days')
         cancellation_range = data.get('cancellation_range')
         timetable = TimeTableController.buildTimetable(days, business_id)
 
+        if walletId is None:
+            import random
+            name = ''.join(random.choices([x for x in "ABCDFVGGDETIFAODQWERTYUIOPASDFGHJKLZXCVBNM"],k=12)) +str(len(orm.select(Wallet))+1)
+            orm.insert(Wallet,name=name,credit=0,user_id=user_id)
+            wallet = orm.select(Wallet,name=name)[0]
+            walletId = wallet.id
         if (True):
             orm.insert(Service,
                        name=name,
@@ -56,7 +63,9 @@ class ServiceController(APIView):
                        rating=10,
                        address=address,
                        timeTable_id=timetable.id,
-                       cancellation_range=cancellation_range
+                       cancellation_range=cancellation_range,
+                       wallet_id=walletId,
+                       reviewCount=0,
                        )
             myService = orm.select(Service,
                                    name=name,
@@ -84,7 +93,7 @@ class ServiceController(APIView):
             validate()
         id = request.GET['service_id']
         if validator.statusCode != 200:
-            Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+            return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
         service = orm.select(Service, id=id)[0]
         service_data = orm.toDict(service)
@@ -120,7 +129,7 @@ class ServiceController(APIView):
                 checkNotNone('service_id'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
             data = request.data
             date = data['date']
@@ -154,6 +163,7 @@ class ServiceController(APIView):
             fee = data.get('price')
             address = data.get('address')
             sanses = data.get('sanses')
+            walletId = data.get('walletId')
             cancellation_range = data.get('cancellation_range')
 
             validator = FieldValidator(request.data)
@@ -163,10 +173,11 @@ class ServiceController(APIView):
                 checkNotNone('id'). \
                 checkNotNone('address'). \
                 checkNotNone('sanses'). \
+                checkNotNone('walletId'). \
                 checkNotNone('cancellation_range'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             # edit name and fee and description
             selectedService = orm.toDict(orm.select(Service, id=id)[0])
 
@@ -175,6 +186,11 @@ class ServiceController(APIView):
             selectedService['address'] = address
             selectedService['cancellation_range'] = cancellation_range
             selectedService['description'] = description
+            selectedService['wallet_id'] = walletId
+            if(len(orm.select(Wallet,id=walletId,user_id=user_id))==0):
+                return Response({'status': False, 'errors': "کیف پول یافت نشد"}, status=status.HTTP_404_NOT_FOUND)
+            if validator.statusCode != 200:
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             del selectedService['id']
             orm.update(Service, id, **selectedService)
 

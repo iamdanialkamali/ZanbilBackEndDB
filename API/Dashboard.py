@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Review, Service, Sans, Reserve
+from .models import Review, Service, Sans, Reserve, Wallet
 
 from .models import Business,Service,Reserve,User
 import API.orm as orm
@@ -21,7 +21,7 @@ class DashboardController(APIView):
             validator.checkNotNone('id').\
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             business_id = request.GET['id']
             today = datetime.today()
             # reserves = Reserve.objects.filter(service_business__id=business_id)

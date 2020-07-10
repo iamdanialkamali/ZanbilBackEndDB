@@ -2,7 +2,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Review, User, Reserve, Business, User, Sans, Service
+from .models import Review, User, Reserve, Business, User, Sans, Service, Wallet
 from khayyam import *
 import datetime
 import API.orm as orm
@@ -46,17 +46,18 @@ class AccountPageController(APIView):
 
 
             user = orm.select(User,id=user_id)
+            if len(user) == 0:
+                return Response({
+                    'message': "کاربر مورد نظر یافت نشد"
 
+                }, status=status.HTTP_404_NOT_FOUND)
             user = orm.toDict(user[0])
             del user['password']
             businseses = orm.select(Business, owner_id=user_id)
-            if len(user) == 0:
-                return Response({
-                            'message' : "کاربر مورد نظر یافت نشد"
-
-                        }, status=status.HTTP_404_NOT_FOUND)
+            wallets = orm.toDict(orm.select(Wallet,user_id=user_id))
             return Response({
                         'user':user,
+                        'wallets':wallets,
                         'reserves': reserves_list,
                         'businseses':orm.toDict(businseses)
 
@@ -83,7 +84,7 @@ class AccountPageController(APIView):
                 checkPhone('phoneNumber'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             # try:
                 orm.insert(User,
                            username=user_name,
@@ -117,7 +118,7 @@ class AccountPageController(APIView):
                 checkNotNone('password'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             user = orm.select(User,username=user_name,password=hashlib.sha256(password.encode()).hexdigest().__str__())
             if len(user)>0:
                 userDict = orm.toDict(user[0])

@@ -57,7 +57,7 @@ class BusinessController(APIView):
             validator.checkNotNone('business_id'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
 
             id = request.GET['business_id']
             mybusiness = orm.select(Business, id=id)
@@ -122,7 +122,7 @@ class BusinessController(APIView):
             validator.checkNotNone('userId'). \
                 validate()
             if validator.statusCode != 200:
-                Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
+                return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             id = request.data['userId']
             mybusiness = orm.select(Business, owner_id=id)
 

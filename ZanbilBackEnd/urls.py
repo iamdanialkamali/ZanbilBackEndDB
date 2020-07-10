@@ -48,6 +48,7 @@ from API.Uploader import Image
 from API.Dashboard import DashboardController
 from API.Cancellation import CancellationController
 from API.Ticket import TicketController,TicketSearchController
+from API.Wallet import WalletController,TransactionSearchController
 from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns += [
     path('admin/', admin.site.urls),
@@ -64,6 +65,8 @@ urlpatterns += [
     path('api/cancellation/',CancellationController.as_view()),
     path('api/ticket/',TicketController.as_view()),
     path('api/ticket/search/',TicketSearchController.as_view()),
+    path('api/wallet/transaction/',TransactionSearchController.as_view()),
+    path('api/wallet/',WalletController.as_view()),
 
 ]
 

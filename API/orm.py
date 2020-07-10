@@ -59,7 +59,8 @@ def insert(model,**options):
         for x in options.keys():
             # keys.append("\"{}\".\"{}\"".format(modelName,x))
             keys.append("\"{}\"".format(x))
-        query = "INSERT INTO \"{}\"({})  VALUES ({} );".format(modelName ,",".join(keys),",".join(options.values()))
+        query = "INSERT INTO \"{}\" ({})  VALUES ({} );".format(modelName ,",".join(keys),",".join(options.values()))
+        print(query)
         w = c.execute(query)
 
 def delete(model,**options):
@@ -108,6 +109,17 @@ def calculateNewPoint(serviceId,point):
     with connection.cursor() as cursor:
         cursor.execute("CALL calculateNewPoint({},{})".format(serviceId,point))
     #     cursor.callproc('calculateNewPoint', [serviceId, point])
+
+def decharge(walletId,amount):
+    with connection.cursor() as cursor:
+        cursor.execute("CALL decharge({},{})".format(walletId,amount))
+    #     cursor.callproc('calculateNewPoint', [serviceId, point])
+
+def charge(walletId,amount):
+    with connection.cursor() as cursor:
+        cursor.execute("CALL charge({},{})".format(walletId,amount))
+    #     cursor.callproc('calculateNewPoint', [serviceId, point])
+
 
 def checkForSqlInjection(*params):
     import django.core.exceptions
