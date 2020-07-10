@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Business, Category, Service, TimeTable, Reserve, Sans, Transaction, Wallet, Review, \
+from .models import  Business, Category, Service, TimeTable, Reserve, Sans, Transaction, Wallet, Review, \
     BusinessFile, ServiceFile, MessageFile
 
 admin.site.register(Business)
