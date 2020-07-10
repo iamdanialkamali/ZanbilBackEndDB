@@ -53,7 +53,7 @@ def simple_middleware(get_response):
         data = request.body.decode()
         response = get_response(request)
 
-        orm.insert(
+        orm.safeInsert(
             ActivityLog,
             ip=getClientIp(request),
             url=request.build_absolute_uri(),

@@ -65,6 +65,22 @@ def insert(model,**options):
         print(query)
         w = c.execute(query)
 
+def safeInsert(model,**options):
+    with connection.cursor() as c:
+        for key, value in options.items():
+            if isinstance(value,str):
+                options[key] = "'"+ value +"'"
+            else:
+                options[key] = str(value)
+        keys = []
+        modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
+        for x in options.keys():
+            # keys.append("\"{}\".\"{}\"".format(modelName,x))
+            keys.append("\"{}\"".format(x))
+        query = "INSERT INTO \"{}\" ({})  VALUES ({} );".format(modelName ,",".join(keys),",".join(options.values()))
+        print(query)
+        w = c.execute(query)
+
 def delete(model,**options):
     checkForSqlInjection(*list(options.values()))
     with connection.cursor() as c:
