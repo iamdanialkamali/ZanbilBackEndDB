@@ -75,7 +75,6 @@ class AccountPageController(APIView):
             phone_number= request.data.get("phoneNumber")
             validator = FieldValidator(request.data)
             validator.checkNotNone('username'). \
-                checkNotNone('description'). \
                 checkNotNone('firstName'). \
                 checkNotNone('lastName'). \
                 checkNotNone('password'). \

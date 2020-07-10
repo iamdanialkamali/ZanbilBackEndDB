@@ -36,6 +36,7 @@ class UserAPI(APIView):
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
+
     def put(self, request, format=None):
         data = request.data
         validator = DataValidator(data)

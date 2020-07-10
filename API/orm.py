@@ -43,7 +43,9 @@ def select(model,**options):
             else:
                 query += "AND \"{}\"={} ".format(key,value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-        c.execute("select * from \"{}\" where {};".format(modelName,query))
+        query = "select * from \"{}\" where {};".format(modelName,query)
+        print(query)
+        c.execute(query)
         return namedtuplefetchall(c)
 
 def insert(model,**options):
@@ -78,10 +80,12 @@ def delete(model,**options):
             else:
                 query += "AND \"{}\"={} ".format(key,value)
         modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
-        c.execute("delete from \"{}\" where {};".format(modelName,query))
+        query = "delete from \"{}\" where {};".format(modelName, query)
+        print(query)
+        c.execute(query)
         return namedtuplefetchall(c)
 def update(model,id,**options):
-    # try:
+    try:
         checkForSqlInjection(id,*list(options.values()))
         with connection.cursor() as c:
             query =  " "
@@ -94,14 +98,16 @@ def update(model,id,**options):
                 query += "\"{}\"={},".format(key,value)
             modelName = "API_{}".format(model.__name__.lower()) if model.__name__.lower() != "user" else "auth_user"
             final = "UPDATE \"{}\" SET {}  where id={};".format(modelName,query[:-1],id)
+            print(final)
             c.execute(final)
             return True
-    # except:
-        # return False
+    except:
+        return False
 
 def rawQuery(query):
     with connection.cursor() as c:
         c.execute(query)
+        print(query)
         return namedtuplefetchall(c)
 
 

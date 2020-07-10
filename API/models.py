@@ -13,6 +13,8 @@ class Wallet(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     credit = models.FloatField(default=0)
 
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
@@ -35,8 +37,7 @@ class Business(models.Model):
     def __str__(self):
         return str(self.name)
 
-    def calculateScore(self, sc):
-        return (self.score + sc) / 2
+
 
 
 class TimeTable(models.Model):
@@ -59,7 +60,7 @@ class Service(models.Model):
     reviewCount = models.IntegerField(default=0)
     description = models.TextField(max_length=600, blank=True)
     cancellation_range = models.IntegerField(default=None,null=True)
-    wallet =  models.ForeignKey(to=Wallet,null=True, on_delete=models.DO_NOTHING)
+    wallet = models.ForeignKey(to=Wallet,null=True, on_delete=models.DO_NOTHING)
     def __str__(self):
         return self.name
 
