@@ -66,6 +66,8 @@ class WalletController(APIView):
         if len(wallets) == 0:
             return Response({'status': False, 'errors':"یافت نشد" }, status=status.HTTP_404_NOT_FOUND)
 
+        print(amount)
+        print(wallets[0].credit)
         if wallets[0].credit < int(amount) :
             return Response({'status': False, 'errors':"موجودی نا کافی" }, status=status.HTTP_404_NOT_FOUND)
         # try:
