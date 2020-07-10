@@ -92,18 +92,20 @@ def simple_middleware(get_response):
     def middleware(request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
-        data = request.body.decode()
         response = get_response(request)
-        if len(response.content)<4000:
-            orm.safeInsert(
-                ActivityLog,
-                ip=getClientIp(request),
-                url=request.build_absolute_uri(),
-                request=data,
-                createdAt=datetime.now().__str__(),
-                response=response.content.decode()
-            )
-
+        try:
+            data = request.body.decode()
+            if len(response.content)<4000:
+                orm.safeInsert(
+                    ActivityLog,
+                    ip=getClientIp(request),
+                    url=request.build_absolute_uri(),
+                    request=data,
+                    createdAt=datetime.now().__str__(),
+                    response=response.content.decode()
+                )
+        except:
+            pass
         # Code to be executed for each request/response after
         # the view is called.
 
