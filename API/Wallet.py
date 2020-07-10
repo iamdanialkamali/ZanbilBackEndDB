@@ -60,8 +60,8 @@ class WalletController(APIView):
             validate()
         if validator.statusCode != 200:
             return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
-        walletId = request.data.get("walletId")
-        amount = request.data.get("amount")
+        walletId = int(request.data.get("walletId"))
+        amount = int(request.data.get("amount"))
         wallets = orm.select(Wallet,id=walletId,user_id=user_id)
         if len(wallets) == 0:
             return Response({'status': False, 'errors':"یافت نشد" }, status=status.HTTP_404_NOT_FOUND)
