@@ -203,7 +203,7 @@ class ServiceController(APIView):
                     if not (orm.update(Sans,
                                        id=sans['sans_id'],
                                        weekDay=sans['weekday'],
-                                       startTime=datetime.time(int(sans['startTime'].split(":")[0],
+                                       startTime=datetime.time(int(sans['startTime'].split(":")[0]),
                                                                int(sans['startTime'].split(":")[1])).__str__(),
                                        endTime=datetime.time(int(sans['endTime'].split(":")[0]),
                                                              int(sans['endTime'].split(":")[1])).__str__(),
