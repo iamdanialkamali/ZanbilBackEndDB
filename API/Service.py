@@ -50,9 +50,9 @@ class ServiceController(APIView):
 
         if walletId is None:
             import random
-            name = ''.join(random.choices([x for x in "ABCDFVGGDETIFAODQWERTYUIOPASDFGHJKLZXCVBNM"],k=12)) +str(len(orm.select(Wallet))+1)
-            orm.insert(Wallet,name=name,credit=0,user_id=user_id)
-            wallet = orm.select(Wallet,name=name)[0]
+            walletName = ''.join(random.choices([x for x in "ABCDFVGGDETIFAODQWERTYUIOPASDFGHJKLZXCVBNM"],k=12)) +str(len(orm.select(Wallet))+1)
+            orm.insert(Wallet,name=walletName,credit=0,user_id=user_id)
+            wallet = orm.select(Wallet,name=walletName)[0]
             walletId = wallet.id
         if (True):
             orm.insert(Service,
@@ -113,8 +113,8 @@ class ServiceController(APIView):
 
         return Response({"service": service_data,
                          "sanses": sanses,
+                         "wallet" : orm.toDict(orm.select(Wallet,id=service.wallet_id)[0]),
                          "pictures": orm.toDict(orm.select(ServiceFile, service_id=service.id)),
-
                          "start_of_week_date": start_of_week_date},
                         status=status.HTTP_200_OK)
 

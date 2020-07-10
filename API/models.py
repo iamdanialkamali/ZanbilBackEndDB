@@ -125,3 +125,10 @@ class MessageFile(models.Model):
     ticketId = models.TextField(null=True)
 
 
+class ActivityLog(models.Model):
+    id = models.AutoField(primary_key=True)
+    ip = models.TextField(null=True)
+    url = models.TextField(null=True)
+    request = models.TextField(null=True)
+    response = models.TextField(null=True)
+    createdAt = models.DateTimeField(null=True)
