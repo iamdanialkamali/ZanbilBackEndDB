@@ -85,7 +85,7 @@ class AccountPageController(APIView):
             if validator.statusCode != 200:
                 return Response({'status': False, 'errors': validator.getErrors()}, status=validator.statusCode)
             # try:
-                orm.insert(User,
+            orm.insert(User,
                            username=user_name,
                            last_name=last_name,
                            first_name=first_name,
