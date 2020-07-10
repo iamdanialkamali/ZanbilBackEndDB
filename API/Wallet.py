@@ -68,13 +68,13 @@ class WalletController(APIView):
 
         if wallets[0].credit < int(amount):
             return Response({'status': False, 'errors':"موجودی نا کافی" }, status=status.HTTP_404_NOT_FOUND)
-        try:
-            orm.decharge(walletId,amount)
-            orm.insert(Transaction, wallet_id=wallets[0].id,
-                       paidAt="\"" + datetime.now().__str__() + "\"", amount=-1*amount)
+        # try:
+        orm.decharge(walletId,amount)
+        orm.insert(Transaction, wallet_id=wallets[0].id,
+                   paidAt=datetime.now().__str__(), amount=-1*amount)
 
-        except:
-            return Response({'status': False, 'errors':"موجودی نا کافی" }, status=status.HTTP_404_NOT_FOUND)
+        # except:
+        #     return Response({'status': False, 'errors':"موجودی نا کافی" }, status=status.HTTP_404_NOT_FOUND)
         userWallets = orm.toDict(orm.select(Wallet, id=walletId))
         return Response(userWallets, status=status.HTTP_200_OK)
 
