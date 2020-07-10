@@ -133,11 +133,13 @@ def calculateNewPoint(serviceId,point):
     #     cursor.callproc('calculateNewPoint', [serviceId, point])
 
 def decharge(walletId,amount):
+    amount = int(amount)
     with connection.cursor() as cursor:
         cursor.execute("CALL decharge({},{})".format(walletId,amount))
     #     cursor.callproc('calculateNewPoint', [serviceId, point])
 
 def charge(walletId,amount):
+    amount = int(amount)
     with connection.cursor() as cursor:
         cursor.execute("CALL charge({},{})".format(walletId,amount))
     #     cursor.callproc('calculateNewPoint', [serviceId, point])
