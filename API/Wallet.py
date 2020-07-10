@@ -66,7 +66,7 @@ class WalletController(APIView):
         if len(wallets) == 0:
             return Response({'status': False, 'errors':"یافت نشد" }, status=status.HTTP_404_NOT_FOUND)
 
-        if wallets[0].credit < int(amount):
+        if wallets[0].credit < int(amount) :
             return Response({'status': False, 'errors':"موجودی نا کافی" }, status=status.HTTP_404_NOT_FOUND)
         # try:
         orm.decharge(walletId,amount)

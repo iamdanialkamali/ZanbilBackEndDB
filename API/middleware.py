@@ -32,16 +32,58 @@ class ExceptionMiddleware(MiddlewareMixin):
             payload.pop(k, None)
 
         if isinstance(exception, PermissionDenied):
-            return jsonResponse({'message': exception.__str__() or 'شما اجازه دسترسی به این قسمت را ندارید!', 'success': False}, status.HTTP_400_BAD_REQUEST)
-        if isinstance(exception, ValidationError):
-            return jsonResponse(
-                {'message': exception.__str__() or 'شما اجازه دسترسی به این قسمت را ندارید!', 'success': False}, status.HTTP_400_BAD_REQUEST)
+            response = jsonResponse({'message': exception.__str__() or 'شما اجازه دسترسی به این قسمت را ندارید!', 'success': False}, status.HTTP_400_BAD_REQUEST)
+            data = request.body.decode()
 
+            if len(response.content) < 4000:
+                orm.safeInsert(
+                    ActivityLog,
+                    ip=getClientIp(request),
+                    url=request.build_absolute_uri(),
+                    request=data,
+                    createdAt=datetime.now().__str__(),
+                    response=exception.__str__() or 'شما اجازه دسترسی به این قسمت را ندارید!'
+                )
+            return response
+        if isinstance(exception, ValidationError):
+            response = jsonResponse(
+                {'message': exception.__str__() or 'شما اجازه دسترسی به این قسمت را ندارید!', 'success': False}, status.HTTP_400_BAD_REQUEST)
+            data = request.body.decode()
+            if len(response.content) < 4000:
+                orm.safeInsert(
+                    ActivityLog,
+                    ip=getClientIp(request),
+                    url=request.build_absolute_uri(),
+                    request=data,
+                    createdAt=datetime.now().__str__(),
+                    response=exception.__str__() or 'شما اجازه دسترسی به این قسمت را ندارید!'
+                )
+            return response
         # print(traceback.format_exc())
-        return jsonResponse(
+        response =  jsonResponse(
             {'message': 'خطای داخلی سرور، زیبال این خطا را بررسی و برطرف خواهد کرد', 'status': False, 'result': -1,"begaie":
              traceback.format_exc()},
             status.HTTP_400_BAD_REQUEST)
+        data = request.body.decode()
+        if len(response.content) < 4000:
+            orm.safeInsert(
+                ActivityLog,
+                ip=getClientIp(request),
+                url=request.build_absolute_uri(),
+                request=data,
+                createdAt=datetime.now().__str__(),
+                response=traceback.format_exc().lower().strip().replace("\'","").replace("\"","")
+            )
+            return response
+
+            #procedure
+            # ActivityLog(
+            #     ip=getClientIp(request),
+            #     url=request.build_absolute_uri(),
+            #     request=data,
+            #     createdAt=datetime.now().__str__(),
+            #     response=traceback.format_exc()
+            # ).save()
     # One-time configuration and initialization.
 
 def simple_middleware(get_response):
